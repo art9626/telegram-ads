@@ -1,7 +1,7 @@
 import {InitData, SDKProvider, useInitData} from "@tma.js/sdk-react";
 import {useEffect, useState} from "react";
 
-const baseUrl = "http://127.0.0.1:8000/app/api/v1"
+const baseUrl = "https://game.botsquad.win/api/v1"
 const authUrl = `${baseUrl}/auth`
 const userUrl = `${baseUrl}/game/user`
 const gameUrl = `${baseUrl}/game/info`
