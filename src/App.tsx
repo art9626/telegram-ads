@@ -75,6 +75,7 @@ async function getUser(token: string, initData: InitData): Promise<GameUser> {
   return (await res.json()).data
 }
 
+// @ts-ignore
 async function getGameInfo(token: string, initData: InitData): Promise<GameData> {
   let res = await fetch(gameUrl, {
     method: "GET",
@@ -91,9 +92,9 @@ async function getGameInfo(token: string, initData: InitData): Promise<GameData>
   }
 
   return (await res.json()).data
-
 }
 
+// @ts-ignore
 async function getUserFriends(token: string, initData: InitData): Promise<userFriends> {
   let res = await fetch(friendsUrl, {
     method: "GET",
