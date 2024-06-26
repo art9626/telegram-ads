@@ -10,6 +10,7 @@ export default function Friends() {
 
   useEffect(() => {
     getUserFriends(token, initData).then(res => setFriends(res))
+    console.log(friendList)
   }, []);
 
   const anyFriends = friendList && friendList.friends.length > 0
@@ -18,10 +19,10 @@ export default function Friends() {
     <div>
       <h3>Friends</h3>
       <div>Your ref link: {friendList?.ref_link}</div>
-      <div>{ anyFriends ?
-        (friendList.friends.map((friend, index) => (
-          <FriendElement key={index} friend={friend}/>
-        ))) : (<div>No Friends</div>)}</div>
+      { anyFriends ?
+        (friendList.friends.map((friend, index) => (<FriendElement key={index} friend={friend}/>))
+        ) : (<div>No Friends</div>)
+      }
     </div>
   )
 }
