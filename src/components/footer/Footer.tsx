@@ -1,13 +1,25 @@
-import {Link} from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
-export default function Footer () {
-  return(
-    <ul>
-      <li><Link to={"/"}>Main</Link></li>
-      <li><Link to={"friends"}>Friends</Link></li>
-      <li><Link to={"upgrades"}>Upgrades</Link></li>
-      <li><Link to={"game-info"}>Info</Link></li>
-      <li><Link to={"tasks"}>Tasks</Link></li>
-    </ul>
-  )
+export default function Footer() {
+  return (
+    <footer>
+      <ul>
+        <li>
+          <NavLink to={"/"}>Main</NavLink>
+        </li>
+        <li>
+          <NavLink to={"/friends"}>Friends</NavLink>
+        </li>
+        <li>
+          <NavLink to={"/upgrades"}>Upgrades</NavLink>
+        </li>
+        <li>
+          <NavLink to={"/game-info"}>Info</NavLink>
+        </li>
+        <li>
+          <NavLink to={"/tasks"}>Tasks</NavLink>
+        </li>
+      </ul>
+    </footer>
+  );
 }
