@@ -4,17 +4,6 @@ import {
   retrieveLaunchParams,
 } from "@tma.js/sdk-react";
 
-declare global {
-  interface Window {Telegram: Telegram }
-  interface Telegram {
-    WebApp: WebApp;
-  }
-
-  interface WebApp {
-    initDataUnsafe: any
-  }
-}
-
 // It is important, to mock the environment only for development purposes. When building the
 // application, import.meta.env.DEV will become false, and the code inside will be tree-shaken,
 // so you will not see it in your final bundle.
@@ -82,8 +71,10 @@ if (import.meta.env.DEV) {
       platform: "tdesktop",
     });
     sessionStorage.setItem("____mocked", "1");
-    window.Telegram = { WebApp: { initDataUnsafe: parseInitData(initDataRaw) } }; // mock for ads
-
+    // TODO:
+    // Attempt to load banner without user data.
+    // If your dev server uses browser environment, you should mock window.Telegram.WebApp.initDataUnsafe.user.id.
+    // Be aware, some alerts/confirms won't be showed in browser
     console.info(
       "As long as the current environment was not considered as the Telegram-based one, it was mocked. Take a note, that you should not do it in production and current behavior is only specific to the development process. Environment mocking is also applied only in development mode. So, after building the application, you will not see this behavior and related warning, leading to crashing the application outside Telegram."
     );
