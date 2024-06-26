@@ -1,50 +1,32 @@
-import {SDKProvider} from "@tma.js/sdk-react";
-import Main from "./components/pages/Main.tsx";
-import {createBrowserRouter, RouterProvider} from "react-router-dom";
-import Friends from "./components/pages/Friends.tsx";
-import GameInfo from "./components/pages/GameInfo.tsx";
-import Ad from "./components/pages/Ad.tsx";
-import Tasks from "./components/pages/Tasks.tsx";
-import Upgrades from "./components/pages/Upgrades.tsx";
+import {initNavigator, SDKProvider} from "@tma.js/sdk-react";
+import {Navigate, Route, Router, Routes} from "react-router-dom";
+import { useIntegration } from '@tma.js/react-router-integration';
 import {TonConnectUIProvider} from "@tonconnect/ui-react";
-import {useMemo} from "react";
-
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <Main/>
-  },
-  {
-    path: "/friends",
-    element: <Friends/>
-  },
-  {
-    path: "/upgrades",
-    element: <Upgrades/>
-  },
-  {
-    path: "/game_info",
-    element: <GameInfo/>
-  },
-  {
-    path: "/ads",
-    element: <Ad/>
-  },
-  {
-    path: "/tasks",
-    element: <Tasks/>
-  }
-]);
+import {useEffect, useMemo} from "react";
+import {routes} from "./lib/routes.ts";
 
 function App() {
   const manifestUrl = useMemo(() => {
     return new URL('tonconnect-manifest.json', window.location.href).toString();
   }, []);
 
+  const navigator = useMemo(() => initNavigator('app-navigation-state'), []);
+  const [location, reactNavigator] = useIntegration(navigator);
+
+  useEffect(() => {
+    navigator.attach()
+    return () => navigator.detach()
+  }, []);
+
   return (
     <TonConnectUIProvider manifestUrl={manifestUrl}>
       <SDKProvider acceptCustomStyles debug>
-        <RouterProvider router={router}/>
+        <Router location={location} navigator={reactNavigator}>
+          <Routes>
+            {routes.map((route) => <Route key={route.path} {...route} />)}
+            <Route path='*' element={<Navigate to='/'/>}/>
+          </Routes>
+        </Router>
       </SDKProvider>
     </TonConnectUIProvider>
   );

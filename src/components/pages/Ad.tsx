@@ -34,7 +34,6 @@ function showAd(data: InitData | undefined, navigate: NavigateFunction) {
     })
     .catch((result: ShowPromiseResult) => {
       AdController.destroy();
-      console.log(data)
       console.error(result);
     })
 }
