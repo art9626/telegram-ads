@@ -1,5 +1,7 @@
 import {useEffect} from "react";
 import {InitData, useInitData} from '@tma.js/sdk-react';
+import {NavigateFunction, useNavigate} from "react-router-dom";
+import {watched} from "../../lib/fetch.ts";
 
 declare global {
   interface Window { Adsgram: AdsgramProps; }
@@ -21,12 +23,14 @@ interface ShowPromiseResult {
   error: boolean; // true if event was emitted due to error, otherwise false
 }
 
-function showAd(data: InitData | undefined) {
+function showAd(data: InitData | undefined, navigate: NavigateFunction) {
+  const token = localStorage.getItem('token');
   const AdController = window.Adsgram.init({blockId: "239", debug: true})
   AdController.show()
     .then((result: ShowPromiseResult) => {
       // TODO: send to BE
       console.log(result);
+      watched(token, data).then(() => navigate("/"))
     })
     .catch((result: ShowPromiseResult) => {
       AdController.destroy();
@@ -37,10 +41,10 @@ function showAd(data: InitData | undefined) {
 
 export default function Ad() {
   const data = useInitData()
-
+  const navigate = useNavigate();
   useEffect(() => {
     document.title = 'AdsGram';
-    showAd(data)
+    showAd(data, navigate)
   });
 
   return (

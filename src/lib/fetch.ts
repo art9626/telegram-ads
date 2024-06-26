@@ -1,15 +1,18 @@
 import {InitData} from "@tma.js/sdk-react";
 
-const baseUrl = "https://game.botsquad.win/api/v1"
+const baseUrl = "http://127.0.0.1:8000/api/v1"
 const authUrl = `${baseUrl}/auth`
 const userUrl = `${baseUrl}/game/user`
 const gameUrl = `${baseUrl}/game/info`
 const friendsUrl = `${baseUrl}/game/user/friends`
+const upgradesUrl = `${baseUrl}/game/upgrades`
+const watchedUrl = `${baseUrl}/game/watched`
 
 export interface GameData {
   balance: number,
   total: number,
-  spent: number
+  spent: number,
+  watched: number,
 }
 
 export interface GameUser {
@@ -24,6 +27,25 @@ export interface GameUser {
 export interface UserFriends {
   friends: GameUser[],
   ref_link: string,
+}
+
+export interface GameGlobalInfo {
+  users_count: number,
+  total_balance: number,
+  total_spent: number,
+  total_watched: number
+}
+
+export interface UpgradeList {
+  upgrades: Upgrade[]
+}
+
+export interface Upgrade {
+  id: number,
+  name: string,
+  description: string,
+  token_price: number,
+  ton_price: string
 }
 
 function headers(token: string|null) {
@@ -58,6 +80,18 @@ export function authUser(initData: InitData | undefined) {
   });
 }
 
+export async function watched(token: string | null, initData: InitData | undefined) {
+  const res = await fetch(watchedUrl, {
+    method: "POST",
+    headers: headers(token),
+  })
+
+  if (res.status === 401) {
+    console.log("Unauthorized");
+    authUser(initData)
+  }
+}
+
 export async function getUser(token: string | null, initData: InitData | undefined): Promise<GameUser> {
   const res = await fetch(userUrl, {
     method: "GET",
@@ -72,8 +106,22 @@ export async function getUser(token: string | null, initData: InitData | undefin
   return (await res.json()).data
 }
 
-export async function getGameInfo(token: string | null, initData: InitData | undefined): Promise<GameData> {
+export async function getGameInfo(token: string | null, initData: InitData | undefined): Promise<GameGlobalInfo> {
   const res = await fetch(gameUrl, {
+    method: "GET",
+    headers: headers(token),
+  })
+
+  if (res.status === 401) {
+    console.log("Unauthorized");
+    authUser(initData)
+  }
+
+  return (await res.json()).data
+}
+
+export async function getUpgrades(token: string | null, initData: InitData | undefined): Promise<UpgradeList> {
+  const res = await fetch(upgradesUrl, {
     method: "GET",
     headers: headers(token),
   })
