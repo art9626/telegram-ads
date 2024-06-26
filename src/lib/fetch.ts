@@ -26,8 +26,16 @@ export interface GameUser {
   game_data: GameData
 }
 
+export interface Friend {
+  id: bigint,
+  username: string,
+  first_name: string,
+  last_name: string,
+  earned: number
+}
+
 export interface UserFriends {
-  friends: GameUser[],
+  friends: Friend[],
   ref_link: string,
 }
 
