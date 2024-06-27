@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { GameGlobalInfo, getGameInfo } from "../api/fetch.ts";
 import { useInitData } from "@tma.js/sdk-react";
-import Footer from "../components/Footer.tsx";
 
 export default function GameInfo() {
   const initData = useInitData();
@@ -16,7 +15,6 @@ export default function GameInfo() {
       <div>Total users: {gameInfo?.users_count}</div>
       <div>Total views: {gameInfo?.total_watched}</div>
       <div>Total spent: {gameInfo?.total_spent}</div>
-      <Footer />
     </>
   );
 }

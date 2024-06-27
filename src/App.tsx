@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 import { initNavigator, SDKProvider } from "@tma.js/sdk-react";
 import { Navigate, Route, Router, Routes } from "react-router-dom";
 import { useIntegration } from "@tma.js/react-router-integration";
@@ -7,14 +8,13 @@ import Main from "./pages/Main.tsx";
 import Friends from "./pages/Friends.tsx";
 import Upgrades from "./pages/Upgrades.tsx";
 import GameInfo from "./pages/GameInfo.tsx";
-import Ad from "./pages/Ad.tsx";
 import Tasks from "./pages/Tasks.tsx";
 import Auth from "./layout/Auth.tsx";
 import { AppRoot } from "@telegram-apps/telegram-ui";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import BaseLayout from "./layout/BaseLayout.tsx";
 
-const queryClient = new QueryClient();
+export const queryClient = new QueryClient();
 
 function App() {
   const manifestUrl = useMemo(() => {
@@ -42,7 +42,6 @@ function App() {
                     <Route path="/friends" element={<Friends />} />
                     <Route path="/upgrades" element={<Upgrades />} />
                     <Route path="/game-info" element={<GameInfo />} />
-                    <Route path="/ads" element={<Ad />} />
                     <Route path="/tasks" element={<Tasks />} />
                     <Route path="*" element={<Navigate to="/" />} />
                   </Routes>

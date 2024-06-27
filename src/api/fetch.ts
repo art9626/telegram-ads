@@ -75,21 +75,8 @@ export async function authUser(initData: InitData) {
     });
 }
 
-export async function watched(
-  token: string | null,
-  initData: InitData | undefined
-) {
-  const res = await fetch(Endpoints.WATCHED, {
-    method: "POST",
-    headers: headers(token),
-  });
-
-  if (res.status === 401) {
-    console.log("Unauthorized");
-    if (initData) {
-      authUser(initData);
-    }
-  }
+export async function watched() {
+  return apiClient.post(Endpoints.WATCHED);
 }
 
 export async function getUser(): Promise<GameUser> {
