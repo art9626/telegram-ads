@@ -20,34 +20,36 @@ export default function ShowAdButton() {
   });
 
   return (
-    <button
-      // TODO tmp
-      disabled={loading}
-      onClick={() => {
-        setLoading(true);
+    <>
+      <button
+        // TODO tmp
+        disabled={loading}
+        onClick={() => {
+          setLoading(true);
 
-        // @ts-expect-error Adsgram defined by script in index.html
-        const AdController = window.Adsgram.init({
-          blockId: "239",
-          debug: true,
-        });
-
-        AdController.show()
-          .then((result: ShowPromiseResult) => {
-            // TODO: send to BE
-            console.log(result);
-            return mutation.mutate();
-          })
-          .catch((result: ShowPromiseResult) => {
-            AdController.destroy();
-            console.error(result);
-          })
-          .finally(() => {
-            setLoading(false);
+          // @ts-expect-error Adsgram defined by script in index.html
+          const AdController = window.Adsgram.init({
+            blockId: "239",
+            debug: true,
           });
-      }}
-    >
-      Watch ad
-    </button>
+
+          AdController.show()
+            .then((result: ShowPromiseResult) => {
+              // TODO: send to BE
+              console.log(result);
+              return mutation.mutate();
+            })
+            .catch((result: ShowPromiseResult) => {
+              AdController.destroy();
+              console.error(result);
+            })
+            .finally(() => {
+              setLoading(false);
+            });
+        }}
+      >
+        Watch ad
+      </button>
+    </>
   );
 }
