@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { GameGlobalInfo, getGameInfo } from "../api/fetch.ts";
 import { useInitData } from "@tma.js/sdk-react";
-import Footer from "../components/footer/Footer.tsx";
+import Footer from "../components/Footer.tsx";
 
 export default function GameInfo() {
   const initData = useInitData();

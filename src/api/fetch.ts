@@ -86,7 +86,9 @@ export async function watched(
 
   if (res.status === 401) {
     console.log("Unauthorized");
-    authUser(initData);
+    if (initData) {
+      authUser(initData);
+    }
   }
 }
 
@@ -107,7 +109,9 @@ export async function getGameInfo(
 
   if (res.status === 401) {
     console.log("Unauthorized");
-    authUser(initData);
+    if (initData) {
+      authUser(initData);
+    }
   }
 
   return (await res.json()).data;
@@ -124,7 +128,9 @@ export async function getUpgrades(
 
   if (res.status === 401) {
     console.log("Unauthorized");
-    authUser(initData);
+    if (initData) {
+      authUser(initData);
+    }
   }
 
   return (await res.json()).data;
@@ -141,7 +147,9 @@ export async function getUserFriends(
 
   if (res.status === 401) {
     console.log("Unauthorized");
-    authUser(initData);
+    if (initData) {
+      authUser(initData);
+    }
   }
 
   return (await res.json()).data;
