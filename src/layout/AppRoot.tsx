@@ -18,6 +18,8 @@ export default function  AppRoot() {
 
   useEffect(() => {
     navigator.attach();
+    app.setBgColor("#111110")
+    app.setHeaderColor("#111110")
     app.ready()
     viewPort?.expand()
     return () => navigator.detach();
