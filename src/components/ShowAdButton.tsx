@@ -2,6 +2,7 @@ import React from "react";
 import { watched } from "../api/fetch";
 import { useMutation } from "@tanstack/react-query";
 import { queryClient } from "../App";
+import {Button} from "@radix-ui/themes";
 
 interface ShowPromiseResult {
   done: boolean; // true if user watch till the end, otherwise false
@@ -21,7 +22,7 @@ export default function ShowAdButton() {
 
   return (
     <>
-      <button
+      <Button size="4"
         // TODO tmp
         disabled={loading}
         onClick={() => {
@@ -48,8 +49,8 @@ export default function ShowAdButton() {
             });
         }}
       >
-        Watch ad
-      </button>
+        Money button
+      </Button>
     </>
   );
 }

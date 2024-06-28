@@ -1,18 +1,10 @@
 /* eslint-disable react-refresh/only-export-components */
-import { initNavigator, SDKProvider } from "@tma.js/sdk-react";
-import { Navigate, Route, Router, Routes } from "react-router-dom";
-import { useIntegration } from "@tma.js/react-router-integration";
-import { TonConnectUIProvider } from "@tonconnect/ui-react";
-import { useEffect, useMemo } from "react";
-import Main from "./pages/Main.tsx";
-import Friends from "./pages/Friends.tsx";
-import Upgrades from "./pages/Upgrades.tsx";
-import GameInfo from "./pages/GameInfo.tsx";
-import Tasks from "./pages/Tasks.tsx";
-import Auth from "./layout/Auth.tsx";
-import { AppRoot } from "@telegram-apps/telegram-ui";
+import {SDKProvider} from "@tma.js/sdk-react";
+import {THEME, TonConnectUIProvider} from "@tonconnect/ui-react";
+import { useMemo } from "react";
+import AppRoot from "./layout/AppRoot.tsx";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import BaseLayout from "./layout/BaseLayout.tsx";
+import {Flex, Theme} from "@radix-ui/themes";
 
 export const queryClient = new QueryClient();
 
@@ -21,37 +13,18 @@ function App() {
     return new URL("tonconnect-manifest.json", window.location.href).toString();
   }, []);
 
-  const navigator = useMemo(() => initNavigator("app-navigation-state"), []);
-  const [location, reactNavigator] = useIntegration(navigator);
-
-  useEffect(() => {
-    navigator.attach();
-    return () => navigator.detach();
-  }, [navigator]);
-
   return (
-    <TonConnectUIProvider manifestUrl={manifestUrl}>
-      <SDKProvider acceptCustomStyles debug>
-        <QueryClientProvider client={queryClient}>
-          <AppRoot>
-            <Auth>
-              <Router location={location} navigator={reactNavigator}>
-                <BaseLayout>
-                  <Routes>
-                    <Route path="/" element={<Main />} />
-                    <Route path="/friends" element={<Friends />} />
-                    <Route path="/upgrades" element={<Upgrades />} />
-                    <Route path="/game-info" element={<GameInfo />} />
-                    <Route path="/tasks" element={<Tasks />} />
-                    <Route path="*" element={<Navigate to="/" />} />
-                  </Routes>
-                </BaseLayout>
-              </Router>
-            </Auth>
-          </AppRoot>
-        </QueryClientProvider>
-      </SDKProvider>
-    </TonConnectUIProvider>
+    <Theme appearance="dark" accentColor="yellow">
+      <Flex direction="column" height="100vh" p="2" justify="between">
+        <TonConnectUIProvider manifestUrl={manifestUrl} uiPreferences={{theme: THEME.DARK}}>
+          <SDKProvider acceptCustomStyles debug>
+            <QueryClientProvider client={queryClient}>
+              <AppRoot/>
+            </QueryClientProvider>
+          </SDKProvider>
+        </TonConnectUIProvider>
+      </Flex>
+    </Theme>
   );
 }
 
