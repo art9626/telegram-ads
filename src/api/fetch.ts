@@ -83,7 +83,7 @@ export async function authUser(initData: InitData) {
 }
 
 export async function watched() {
-  return apiClient.post(Endpoints.WATCHED);
+  return apiClient.post<{data: GameData}>(Endpoints.WATCHED);
 }
 
 export async function getUser(): Promise<GameUser> {

@@ -11,7 +11,7 @@ export enum Endpoints {
   GAME_INFO = `${BASE_URL}/game/info`,
   FRIENDS = `${BASE_URL}/game/user/friends`,
   UPGRADES = `${BASE_URL}/game/upgrades`,
-  WATCHED = `${BASE_URL}/game/done`,
+  WATCHED = `${BASE_URL}/game/watched`,
 }
 
 export const apiClient = axios.create({
