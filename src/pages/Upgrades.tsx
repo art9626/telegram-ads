@@ -26,7 +26,6 @@ export function UpgradeElement({ upgrade }: { upgrade: Upgrade }) {
       <div>Name: {upgrade.name}</div>
       <div>Description: {upgrade.description}</div>
       <div>Price: {upgrade.token_price}</div>
-      <div>TON price: {upgrade.ton_price}</div>
     </div>
   );
 }
