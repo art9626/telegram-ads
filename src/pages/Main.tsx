@@ -18,7 +18,9 @@ export default function Main() {
         <Box width="50%">
           <Text as="div" align="center">CurrentXP: {user?.game_data.xp}</Text>
           <Text as="div" align="center">NextXP: {user?.game_data.xp_to_next_level}</Text>
-          <Progress value={(user?.game_data.xp || 0) / (user?.game_data.xp_to_next_level || 1) * 100} max={100} size="3" />
+          <Progress value={
+            (user?.game_data.xp || 0) / ((user?.game_data.xp_to_next_level || 1) - (user?.game_data.xp || 0)) * 100
+          } max={100} size="3" />
         </Box>
       </Flex>
       <Flex align={"center"} direction={"column"}>
