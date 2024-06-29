@@ -6,6 +6,11 @@ export interface GameData {
   total: number;
   spent: number;
   watched: number;
+  xp: number
+  level: number
+  xp_to_next_level: number
+  available_watch_count: number
+  max_watch_count: number
 }
 
 export interface GameUser {
@@ -14,6 +19,7 @@ export interface GameUser {
   full_name: string;
   premium: boolean;
   ref_link: string;
+  wallet_id: string
   game_data: GameData;
 }
 
@@ -35,6 +41,7 @@ export interface GameGlobalInfo {
   total_balance: number;
   total_spent: number;
   total_watched: number;
+  to_next_round: number
 }
 
 export interface UpgradeList {

@@ -1,7 +1,7 @@
 import { useInitData } from "@tma.js/sdk-react";
 import React from "react";
 import { authUser } from "../api/fetch";
-import { Spinner } from "@telegram-apps/telegram-ui";
+import {Spinner} from "@radix-ui/themes";
 
 export default function Auth({ children }: { children: React.ReactNode }) {
   const initData = useInitData();
@@ -23,7 +23,7 @@ export default function Auth({ children }: { children: React.ReactNode }) {
     }
   }, [initData]);
 
-  if (loading) return <Spinner size="l" />;
+  if (loading) return <Spinner size="3" />;
 
   return <>{children}</>;
 }

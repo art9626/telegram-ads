@@ -17,13 +17,15 @@ export default function  AppRoot() {
   const viewPort = useViewport()
 
   useEffect(() => {
-    navigator.attach();
-    app.setBgColor("#111110")
-    app.setHeaderColor("#111110")
-    app.ready()
-    viewPort?.expand()
+    navigator.attach().then(() => {
+      viewPort?.expand()
+      app.setBgColor("#111110")
+      app.setHeaderColor("#111110")
+      app.ready()
+    });
+
     return () => navigator.detach();
-  }, [navigator]);
+  }, []);
 
   return(
     <Auth>
