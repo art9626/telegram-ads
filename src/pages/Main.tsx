@@ -25,7 +25,7 @@ export default function Main() {
         </Box>
       </Flex>
       <Flex align={"center"} direction={"column"}>
-        <ShowAdButton />
+        <ShowAdButton availableCount={user?.game_data.available_watch_count || 0}/>
         <Box mt="4">
           <StarIcon/>
           <StarIcon/>

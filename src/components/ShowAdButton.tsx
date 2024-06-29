@@ -11,7 +11,7 @@ interface ShowPromiseResult {
   error: boolean; // true if event was emitted due to error, otherwise false
 }
 
-export default function ShowAdButton() {
+export default function ShowAdButton({availableCount}: {availableCount: number}) {
   const [loading, setLoading] = React.useState(false);
   const mutation = useMutation({
     mutationFn: watched,
@@ -24,7 +24,7 @@ export default function ShowAdButton() {
     <>
       <Button size="4"
         // TODO tmp
-        disabled={loading}
+        disabled={loading || availableCount === 0}
         onClick={() => {
           setLoading(true);
 
