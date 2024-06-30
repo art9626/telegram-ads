@@ -8,7 +8,7 @@ import { Theme } from "@radix-ui/themes";
 import Auth from "./layout/Auth";
 import BaseLayout from "./layout/BaseLayout";
 import Friends from "./pages/Friends";
-import Upgrades from "./pages/Upgrades";
+import Perks from "./pages/Perks.tsx";
 import GameInfo from "./pages/GameInfo";
 import Tasks from "./pages/Tasks";
 import Main from "./pages/Main";
@@ -38,7 +38,7 @@ function App() {
       <SDKProvider acceptCustomStyles debug>
         <QueryClientProvider client={queryClient}>
           <ThemeProvider attribute="class">
-            <Theme accentColor="yellow">
+            <Theme accentColor="cyan">
               <Auth>
                 <UserProvider>
                   <MiniAppLayout>
@@ -47,7 +47,7 @@ function App() {
                         <Routes>
                           <Route path="/" element={<Main />} />
                           <Route path="/friends" element={<Friends />} />
-                          <Route path="/upgrades" element={<Upgrades />} />
+                          <Route path="/upgrades" element={<Perks />} />
                           <Route path="/game-info" element={<GameInfo />} />
                           <Route path="/tasks" element={<Tasks />} />
                           <Route path="*" element={<Navigate to="/" />} />

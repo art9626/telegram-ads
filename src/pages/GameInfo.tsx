@@ -1,17 +1,24 @@
 import { useEffect, useState } from "react";
 import { GameGlobalInfo, getGameInfo } from "../api/fetch.ts";
 import { useInitData } from "@tma.js/sdk-react";
-import {Box, Progress} from "@radix-ui/themes";
+import {Box, Progress, Text} from "@radix-ui/themes";
 
 export default function GameInfo() {
   const initData = useInitData();
   const token = localStorage.getItem("token");
   const [gameInfo, setGameInfo] = useState<GameGlobalInfo | null>(null);
-  useEffect(() => {
-    getGameInfo(token, initData).then((res) => setGameInfo(res));
-  }, []);
+  const [progress, setProgress] = useState<number>(0);
 
-  const toListingPercent = Math.floor((gameInfo?.total_watched || 0) / (gameInfo?.to_next_round || 1))
+
+
+  useEffect(() => {
+    getGameInfo(token, initData).then((res) => {
+      setGameInfo(res)
+      if (res) {
+        setProgress((res.total_watched) / (res.to_next_round) * 100);
+      }
+    });
+  }, []);
 
   return (
     <>
@@ -19,9 +26,9 @@ export default function GameInfo() {
       <div>Total users: {gameInfo?.users_count}</div>
       <div>Total views: {gameInfo?.total_watched}</div>
       <div>Total spent: {gameInfo?.total_spent}</div>
-      <Box maxWidth={"50%"}>
-        To listing:
-        <Progress value={toListingPercent} />
+      <Text as="div" align="center">Progress to listing</Text>
+      <Box width="100%">
+        <Progress value={progress} size="3" duration={"60ms"} />
       </Box>
     </>
   );

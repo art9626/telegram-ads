@@ -1,8 +1,8 @@
 import { retrieveLaunchParams } from "@tma.js/sdk-react";
 import axios, { AxiosResponse } from "axios";
 
-export const PROD_URL = "https://game.botsquad.win";
-// export const PROD_URL = "http://localhost:8000";
+// export const PROD_URL = "https://game.botsquad.win";
+export const PROD_URL = "http://localhost:8000";
 export const BASE_URL = `${PROD_URL}/api/v1`;
 
 export enum Endpoints {
@@ -10,7 +10,7 @@ export enum Endpoints {
   USER = `${BASE_URL}/game/user`,
   GAME_INFO = `${BASE_URL}/game/info`,
   FRIENDS = `${BASE_URL}/game/user/friends`,
-  UPGRADES = `${BASE_URL}/game/upgrades`,
+  PERKS = `${BASE_URL}/game/perks`,
   WATCHED = `${BASE_URL}/game/watched`,
 }
 

@@ -1,4 +1,4 @@
-import { useInitData } from "@tma.js/sdk-react";
+import {useInitData, useMiniApp, useViewport} from "@tma.js/sdk-react";
 import React from "react";
 import { authUser } from "../api/fetch";
 import { Spinner } from "@radix-ui/themes";
@@ -9,6 +9,9 @@ export default function Auth({ children }: { children: React.ReactNode }) {
     const token = localStorage.getItem("token");
     return !token;
   });
+
+  const app = useMiniApp()
+  const viewPort = useViewport();
 
   React.useEffect(() => {
     const token = localStorage.getItem("token");
@@ -23,6 +26,8 @@ export default function Auth({ children }: { children: React.ReactNode }) {
     } else {
       setLoading(false);
     }
+    app.ready()
+    viewPort?.expand()
   }, [initData]);
 
   if (loading) return <Spinner size="3" />;

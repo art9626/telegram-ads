@@ -11,6 +11,7 @@ export interface GameData {
   xp_to_next_level: number
   available_watch_count: number
   max_watch_count: number
+  last_watched_at: string
 }
 
 export interface GameUser {
@@ -44,16 +45,22 @@ export interface GameGlobalInfo {
   to_next_round: number
 }
 
-export interface UpgradeList {
-  upgrades: Upgrade[];
+export interface PerksList {
+  perks: Perk[];
 }
 
-export interface Upgrade {
+export interface Perk {
   id: number;
   name: string;
   description: string;
-  token_price: number;
-  ton_price: string;
+  available: boolean;
+  requirements: PerkRequirements;
+}
+
+export interface PerkRequirements {
+  friends_count: number;
+  game_level: number
+  cost: number
 }
 
 function headers(token: string | null) {
@@ -111,11 +118,11 @@ export async function getGameInfo(
   return (await res.json()).data;
 }
 
-export async function getUpgrades(
+export async function getPerks(
   token: string | null,
   initData: InitData | undefined
-): Promise<UpgradeList> {
-  const res = await fetch(Endpoints.UPGRADES, {
+): Promise<PerksList> {
+  const res = await fetch(Endpoints.PERKS, {
     method: "GET",
     headers: headers(token),
   });
