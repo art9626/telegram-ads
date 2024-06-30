@@ -54,6 +54,7 @@ export interface Perk {
   name: string;
   description: string;
   available: boolean;
+  level: number
   requirements: PerkRequirements;
 }
 
@@ -133,6 +134,15 @@ export async function getPerks(
       authUser(initData);
     }
   }
+
+  return (await res.json()).data;
+}
+
+export async function applyPerk(perkId: number, token: string | null): Promise<PerksList> {
+  const res = await fetch(`${Endpoints.PERKS}/${perkId}`, {
+    method: "POST",
+    headers: headers(token),
+  });
 
   return (await res.json()).data;
 }
