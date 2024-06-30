@@ -55,6 +55,7 @@ export interface Perk {
   description: string;
   available: boolean;
   level: number
+  max_level: number;
   requirements: PerkRequirements;
 }
 

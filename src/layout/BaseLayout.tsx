@@ -9,7 +9,7 @@ export default function BaseLayout({
   children: React.ReactNode;
 }) {
   return (
-    <Flex direction="column" height="100vh" px="2" justify="between">
+    <Flex direction="column" minHeight="100vh" px="2" justify="between">
       <Header />
       <main>{children}</main>
       <Footer />

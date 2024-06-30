@@ -47,7 +47,7 @@ function App() {
                         <Routes>
                           <Route path="/" element={<Main />} />
                           <Route path="/friends" element={<Friends />} />
-                          <Route path="/upgrades" element={<Perks />} />
+                          <Route path="/perks" element={<Perks />} />
                           <Route path="/game-info" element={<GameInfo />} />
                           <Route path="/tasks" element={<Tasks />} />
                           <Route path="*" element={<Navigate to="/" />} />

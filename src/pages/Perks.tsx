@@ -1,7 +1,8 @@
 import { useInitData } from "@tma.js/sdk-react";
 import { useEffect, useState } from "react";
 import {Perk, PerksList, getPerks, applyPerk} from "../api/fetch";
-import {Button, Separator} from "@radix-ui/themes";
+import {Box, Button, Card, Flex, Text} from "@radix-ui/themes";
+import {ImageIcon} from "@radix-ui/react-icons";
 
 export default function Perks() {
   const initData = useInitData();
@@ -13,33 +14,49 @@ export default function Perks() {
   }, []);
 
   return (
-    <div>
-      {list?.perks.map((perk: Perk) => (
-        <div key={perk.id}>
-          <PerkElement perk={perk} key={perk.id} />
-          <Button disabled={!perk.available}
-                  onClick={() => {
-                    applyPerk(perk.id, token).then(res => setPerks(res))
-                  }}
-          >Get Perk</Button>
-        </div>
+    <>
+      { list?.perks.map((perk: Perk) => (
+        <PerkElement perk={perk} token={token} key={perk.id} />
       ))}
-    </div>
+    </>
   );
 }
 
-export function PerkElement({ perk }: { perk: Perk }) {
+function calcBackground(perk: Perk): string {
+  if (perk.level >= perk.max_level) {
+    return "indigo"
+  }
+
+  if (!perk.available) {
+    return "gray"
+  }
+
+  return "white"
+}
+
+export function PerkElement({ perk, token }: { perk: Perk, token: string | null }) {
   return (
-    <div key={perk.id}>
-      <div>ID: {perk.id}</div>
-      <div>Name: {perk.name}</div>
-      <div>Description: {perk.description}</div>
-      <div>Level: {perk.level}</div>
-      <div>Price: {perk.requirements.cost}</div>
-      <div>Friends count: {perk.requirements.friends_count}</div>
-      <div>Req Player Level: {perk.requirements.game_level}</div>
-      <div>Available: {perk.available.toString()}</div>
-      <Separator orientation="horizontal" />
-    </div>
+    <Box width={"100%"} my={"2"} style={{background: calcBackground(perk)}}>
+      <Card>
+        <Flex justify={"between"} align={"center"}>
+          <Box>
+            <ImageIcon></ImageIcon>
+            <Text ml={"2"} size={"4"} weight={"bold"}>{perk.name}</Text>
+          </Box>
+          <Text size={"1"}>
+            <Text mr={"1"}>{perk.requirements.cost}$ADC</Text>
+            <Text mr={"1"}>{perk.requirements.game_level} level</Text>
+            <Text mr={"1"}>{perk.requirements.friends_count} friends</Text>
+          </Text>
+          <Button disabled={!perk.available}
+                  onClick={() => {
+                    applyPerk(perk.id, token)
+                  }}
+                  size={"1"}
+          >UP</Button>
+        </Flex>
+      </Card>
+    </Box>
+
   );
 }

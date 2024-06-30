@@ -20,7 +20,7 @@ export default function Footer() {
         </Box>
         <Separator orientation="vertical" />
         <Box>
-          <NavLink to={"/upgrades"}>
+          <NavLink to={"/perks"}>
             <DoubleArrowUpIcon />
             <Text as="div">Perks</Text>
           </NavLink>
