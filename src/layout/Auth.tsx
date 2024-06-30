@@ -1,7 +1,7 @@
 import { useInitData } from "@tma.js/sdk-react";
 import React from "react";
 import { authUser } from "../api/fetch";
-import {Spinner} from "@radix-ui/themes";
+import { Spinner } from "@radix-ui/themes";
 
 export default function Auth({ children }: { children: React.ReactNode }) {
   const initData = useInitData();
@@ -13,11 +13,13 @@ export default function Auth({ children }: { children: React.ReactNode }) {
   React.useEffect(() => {
     const token = localStorage.getItem("token");
     if (!token) {
-      if (initData)
+      if (initData) {
         authUser(initData).then(() => {
           setLoading(false);
         });
-      console.error("Init data is empty");
+      } else {
+        console.error("Init data is empty");
+      }
     } else {
       setLoading(false);
     }

@@ -2,7 +2,8 @@ import React from "react";
 import { watched } from "../api/fetch";
 import { useMutation } from "@tanstack/react-query";
 import { queryClient } from "../App";
-import {Button} from "@radix-ui/themes";
+import { Button } from "@radix-ui/themes";
+import { useUser } from "../providers/UserProvider";
 
 interface ShowPromiseResult {
   done: boolean; // true if user watch till the end, otherwise false
@@ -11,7 +12,8 @@ interface ShowPromiseResult {
   error: boolean; // true if event was emitted due to error, otherwise false
 }
 
-export default function ShowAdButton({availableCount}: {availableCount: number}) {
+export default function ShowAdButton() {
+  const { user } = useUser();
   const [loading, setLoading] = React.useState(false);
   const mutation = useMutation({
     mutationFn: watched,
@@ -20,11 +22,14 @@ export default function ShowAdButton({availableCount}: {availableCount: number})
     },
   });
 
+  const counterIsOut = user?.game_data.available_watch_count === 0;
+
   return (
     <>
-      <Button size="4"
-        // TODO tmp
-        disabled={loading || availableCount === 0}
+      <Button
+        size="4"
+        loading={loading}
+        disabled={loading || !user || counterIsOut}
         onClick={() => {
           setLoading(true);
 

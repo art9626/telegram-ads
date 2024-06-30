@@ -1,30 +1,67 @@
 /* eslint-disable react-refresh/only-export-components */
-import {SDKProvider} from "@tma.js/sdk-react";
-import {THEME, TonConnectUIProvider} from "@tonconnect/ui-react";
-import { useMemo } from "react";
-import AppRoot from "./layout/AppRoot.tsx";
+import React from "react";
+import { SDKProvider } from "@tma.js/sdk-react";
+import { THEME, TonConnectUIProvider } from "@tonconnect/ui-react";
+import { Navigate, Route, Router, Routes } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import {Flex, Theme} from "@radix-ui/themes";
+import { Theme } from "@radix-ui/themes";
+import Auth from "./layout/Auth";
+import BaseLayout from "./layout/BaseLayout";
+import Friends from "./pages/Friends";
+import Upgrades from "./pages/Upgrades";
+import GameInfo from "./pages/GameInfo";
+import Tasks from "./pages/Tasks";
+import Main from "./pages/Main";
+import useNavigator from "./hooks/useNavigator";
+import MiniAppLayout from "./layout/MiniAppLayout";
+import { ThemeProvider } from "next-themes";
+import UserProvider from "./providers/UserProvider";
 
 export const queryClient = new QueryClient();
 
 function App() {
-  const manifestUrl = useMemo(() => {
+  const manifestUrl = React.useMemo(() => {
     return new URL("tonconnect-manifest.json", window.location.href).toString();
   }, []);
 
+  const [location, reactNavigator] = useNavigator();
+
   return (
-    <Theme appearance="dark" accentColor="yellow">
-      <Flex direction="column" height="100vh" p="2" justify="between">
-        <TonConnectUIProvider manifestUrl={manifestUrl} uiPreferences={{theme: THEME.DARK}}>
-          <SDKProvider acceptCustomStyles debug>
-            <QueryClientProvider client={queryClient}>
-              <AppRoot/>
-            </QueryClientProvider>
-          </SDKProvider>
-        </TonConnectUIProvider>
-      </Flex>
-    </Theme>
+    <TonConnectUIProvider
+      manifestUrl={manifestUrl}
+      uiPreferences={{
+        theme: document.querySelector("html")?.classList.contains("dark")
+          ? THEME.DARK
+          : THEME.LIGHT,
+      }}
+    >
+      <SDKProvider acceptCustomStyles debug>
+        <QueryClientProvider client={queryClient}>
+          <ThemeProvider attribute="class">
+            <Theme accentColor="yellow">
+              <Auth>
+                <UserProvider>
+                  <MiniAppLayout>
+                    <Router location={location} navigator={reactNavigator}>
+                      <BaseLayout>
+                        <Routes>
+                          <Route path="/" element={<Main />} />
+                          <Route path="/friends" element={<Friends />} />
+                          <Route path="/upgrades" element={<Upgrades />} />
+                          <Route path="/game-info" element={<GameInfo />} />
+                          <Route path="/tasks" element={<Tasks />} />
+                          <Route path="*" element={<Navigate to="/" />} />
+                        </Routes>
+                      </BaseLayout>
+                    </Router>
+                  </MiniAppLayout>
+                </UserProvider>
+              </Auth>
+            </Theme>
+          </ThemeProvider>
+        </QueryClientProvider>
+      </SDKProvider>
+    </TonConnectUIProvider>
   );
 }
 
