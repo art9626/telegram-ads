@@ -1,6 +1,13 @@
 import { InitData } from "@tma.js/sdk-react";
 import { Endpoints, apiClient } from ".";
 
+export interface WebsocketMessage {
+  event: {
+    type: string;
+    message: object
+  }
+}
+
 export interface GameData {
   balance: number;
   total: number;
