@@ -9,8 +9,6 @@ export default function GameInfo() {
   const [gameInfo, setGameInfo] = useState<GameGlobalInfo | null>(null);
   const [progress, setProgress] = useState<number>(0);
 
-
-
   useEffect(() => {
     getGameInfo(token, initData).then((res) => {
       setGameInfo(res)

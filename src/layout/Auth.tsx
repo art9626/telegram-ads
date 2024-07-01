@@ -2,6 +2,7 @@ import {useInitData, useMiniApp, useViewport} from "@tma.js/sdk-react";
 import React from "react";
 import { authUser } from "../api/fetch";
 import { Spinner } from "@radix-ui/themes";
+import {SOCKET_URL} from "../api";
 
 export default function Auth({ children }: { children: React.ReactNode }) {
   const initData = useInitData();
@@ -15,6 +16,12 @@ export default function Auth({ children }: { children: React.ReactNode }) {
 
   React.useEffect(() => {
     const token = localStorage.getItem("token");
+    const socket = new WebSocket(`${SOCKET_URL}/events/${token}`);
+
+    socket.addEventListener("message", (event) => {
+      console.log("Message from server ", event.data);
+    });
+
     if (!token) {
       if (initData) {
         authUser(initData).then(() => {
@@ -28,6 +35,8 @@ export default function Auth({ children }: { children: React.ReactNode }) {
     }
     app.ready()
     viewPort?.expand()
+
+    return () => socket.close()
   }, [initData]);
 
   if (loading) return <Spinner size="3" />;

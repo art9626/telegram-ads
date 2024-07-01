@@ -36,9 +36,9 @@ export default function Footer() {
         </Box>
         <Separator orientation="vertical" />
         <Box>
-          <NavLink to={"/game-info"}>
+          <NavLink to={"/achievements"}>
             <IdCardIcon />
-            <Text as="div">Info</Text>
+            <Text as="div">Prizes</Text>
           </NavLink>
         </Box>
         <Separator orientation="vertical" />
