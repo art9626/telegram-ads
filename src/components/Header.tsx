@@ -5,7 +5,7 @@ import { GearIcon } from "@radix-ui/react-icons";
 export default function Header() {
   return (
     <header>
-      <Flex direction="row" justify="between" align="center" py="4">
+      <Flex direction="row" justify="between" align="center" py="4" width="100%" >
         <GearIcon width={20} height={20} />
         <TonConnectButton />
       </Flex>

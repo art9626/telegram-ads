@@ -11,7 +11,7 @@ import {
 export default function Footer() {
   return (
     <footer>
-      <Flex direction="row" gap="3" justify="between" align="center" py="4">
+      <Flex direction="row" gap="3" justify="between" align="center" py="4" width="100%">
         <Box>
           <NavLink to={"/friends"}>
             <PersonIcon />

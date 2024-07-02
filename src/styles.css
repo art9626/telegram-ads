@@ -1,11 +1,22 @@
-#root {
-    width: 100vw;
-    min-height: 100vh;
-}
-
 body {
     margin: 0;
     padding: 0;
+}
+header {
+    display: flex;
+    flex: 1 1 100%;
+}
+
+footer {
+    display: flex;
+    flex: 1 1 100%;
+}
+
+main {
+    display: flex;
+    flex: 10 10 100%;
+    flex-direction: column;
+    justify-content: space-around;
 }
 
 a {

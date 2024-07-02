@@ -1,4 +1,4 @@
-import {useInitData, useMiniApp, usePopup, useViewport} from "@tma.js/sdk-react";
+import {useInitData, useMiniApp, useViewport} from "@tma.js/sdk-react";
 import React from "react";
 import {authUser, WebsocketMessage} from "../api/fetch";
 import { Spinner } from "@radix-ui/themes";
@@ -13,20 +13,19 @@ export default function Auth({ children }: { children: React.ReactNode }) {
 
   const app = useMiniApp()
   const viewPort = useViewport();
-  const popup = usePopup()
 
   React.useEffect(() => {
     const token = localStorage.getItem("token");
     const socket = new WebSocket(`${SOCKET_URL}/events/${token}`);
     socket.onmessage = (message) => {
       const data: WebsocketMessage = JSON.parse(message.data);
-      popup.open({
-        title: data.event.type,
-        message: data.event.message.toString(),
-        buttons: [
-          {id: "1", type: "close"}
-        ]
-      })
+
+      if (data) {
+        const field = document.getElementById("ai_field")
+        if (field === null) return
+
+        field.innerHTML = data.event.message.toString();
+      }
     }
 
     if (!token) {

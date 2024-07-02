@@ -44,16 +44,19 @@ export function PerkElement({ perk, token }: { perk: Perk, token: string | null 
             <Text ml={"2"} size={"4"} weight={"bold"}>{perk.name}</Text>
           </Box>
           <Text size={"1"}>
-            <Text mr={"1"}>{perk.requirements.cost}$ADC</Text>
+            <Text mr={"1"}>{Math.floor(perk.requirements.cost / 10e9)}$</Text>
             <Text mr={"1"}>{perk.requirements.game_level} level</Text>
             <Text mr={"1"}>{perk.requirements.friends_count} friends</Text>
           </Text>
           <Button disabled={!perk.available}
                   onClick={() => {
-                    applyPerk(perk.id, token)
+                    applyPerk(perk.id, token).then(r => console.log("applyPerk", r));
                   }}
                   size={"1"}
           >UP</Button>
+        </Flex>
+        <Flex>
+          <Text size={"2"}>{perk.description}</Text>
         </Flex>
       </Card>
     </Box>
