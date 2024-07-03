@@ -1,8 +1,7 @@
-import {useInitData, useMiniApp, useViewport} from "@tma.js/sdk-react";
+import { useInitData } from "@tma.js/sdk-react";
 import React from "react";
-import {authUser, WebsocketMessage} from "../api/fetch";
-import {Flex, Spinner, Text} from "@radix-ui/themes";
-import {SOCKET_URL} from "../api";
+import { authUser } from "../api/fetch";
+import { Spinner } from "@radix-ui/themes";
 
 export default function Auth({ children }: { children: React.ReactNode }) {
   const initData = useInitData();
@@ -11,19 +10,18 @@ export default function Auth({ children }: { children: React.ReactNode }) {
     return !token;
   });
 
-  const [wsMessage, setWsMessage] = React.useState<WebsocketMessage|null>(null)
-
-  const app = useMiniApp()
-  const viewPort = useViewport();
+  // const [wsMessage, setWsMessage] = React.useState<WebsocketMessage | null>(
+  //   null
+  // );
 
   React.useEffect(() => {
     const token = localStorage.getItem("token");
-    const socket = new WebSocket(`${SOCKET_URL}/events/${token}`);
+    // const socket = new WebSocket(`${SOCKET_URL}/events/${token}`);
 
-    socket.onmessage = (message) => {
-      const data: WebsocketMessage = JSON.parse(message.data);
-      setWsMessage(data)
-    }
+    // socket.onmessage = (message) => {
+      // const data: WebsocketMessage = JSON.parse(message.data);
+      // setWsMessage(data);
+    // };
 
     if (!token) {
       if (initData) {
@@ -36,18 +34,20 @@ export default function Auth({ children }: { children: React.ReactNode }) {
     } else {
       setLoading(false);
     }
-    app.ready()
-    viewPort?.expand()
 
-    return () => socket.close()
-  }, []);
+    // return () => socket.close();
+  }, [initData]);
 
   if (loading) return <Spinner size="3" />;
 
-  return <>
-    <Flex>
-      <Text as={"div"} id={"ai_field"}>{wsMessage?.event.message.toString()}</Text>
-    </Flex>
-    {children}
-  </>;
+  return (
+    <>
+      {/* <Flex>
+        <Text as={"div"} id={"ai_field"}>
+          {wsMessage?.event.message.toString()}
+        </Text>
+      </Flex> */}
+      {children}
+    </>
+  );
 }

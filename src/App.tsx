@@ -7,10 +7,6 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Theme } from "@radix-ui/themes";
 import Auth from "./layout/Auth";
 import BaseLayout from "./layout/BaseLayout";
-import Friends from "./pages/Friends";
-import Perks from "./pages/Perks.tsx";
-import GameInfo from "./pages/GameInfo";
-import Tasks from "./pages/Tasks";
 import Main from "./pages/Main";
 import useNavigator from "./hooks/useNavigator";
 import MiniAppLayout from "./layout/MiniAppLayout";
@@ -46,10 +42,6 @@ function App() {
                       <BaseLayout>
                         <Routes>
                           <Route path="/" element={<Main />} />
-                          <Route path="/friends" element={<Friends />} />
-                          <Route path="/perks" element={<Perks />} />
-                          <Route path="/game-info" element={<GameInfo />} />
-                          <Route path="/tasks" element={<Tasks />} />
                           <Route path="*" element={<Navigate to="/" />} />
                         </Routes>
                       </BaseLayout>

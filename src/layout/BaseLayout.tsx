@@ -1,6 +1,5 @@
 import React from "react";
 import { Flex } from "@radix-ui/themes";
-import Footer from "../components/Footer.tsx";
 import Header from "../components/Header";
 
 export default function BaseLayout({
@@ -9,10 +8,17 @@ export default function BaseLayout({
   children: React.ReactNode;
 }) {
   return (
-    <Flex direction="column" minHeight="100vh" px="2" justify="between">
+    <Flex direction="column" px="2" height="100dvh">
       <Header />
-      <main>{children}</main>
-      <Footer />
+      <main
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignContent: "center",
+        }}
+      >
+        {children}
+      </main>
     </Flex>
   );
 }
