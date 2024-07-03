@@ -5,11 +5,19 @@ body {
 header {
     display: flex;
     flex: 1 1 100%;
+    max-height: 60px;
 }
 
 footer {
     display: flex;
     flex: 1 1 100%;
+    align-items: center;
+    justify-content: space-around;
+    max-height: 60px;
+    padding-bottom: 20px;
+    div {
+        text-align: center;
+    }
 }
 
 main {

@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import { Box, Flex, Separator, Text } from "@radix-ui/themes";
+import { Box, Separator, Text } from "@radix-ui/themes";
 import {
   DoubleArrowUpIcon,
   IdCardIcon,
@@ -11,7 +11,6 @@ import {
 export default function Footer() {
   return (
     <footer>
-      <Flex direction="row" gap="3" justify="between" align="center" py="4" width="100%">
         <Box>
           <NavLink to={"/friends"}>
             <PersonIcon />
@@ -48,7 +47,6 @@ export default function Footer() {
             <Text as="div">Tasks</Text>
           </NavLink>
         </Box>
-      </Flex>
     </footer>
   );
 }

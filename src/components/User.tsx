@@ -1,6 +1,6 @@
 import {Avatar, Box, Flex, Progress, Spinner, Text} from "@radix-ui/themes";
 import { useUser } from "../providers/UserProvider";
-import imgUrl from "../assets/react.svg"
+import coin from "../assets/coin.png"
 
 export default function User() {
   const { user, status } = useUser();
@@ -16,7 +16,7 @@ export default function User() {
         <Text size="9" as="div" align="center">
           {(user?.game_data.balance ?? 0) / 10e9}
         </Text>
-        <Avatar src={imgUrl} fallback={"$"} size={"2"}></Avatar>
+        <Avatar src={coin} fallback={"$"} size={"5"}></Avatar>
       </Flex>
 
       <Text size="4" as="div" align="center">

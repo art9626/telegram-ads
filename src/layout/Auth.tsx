@@ -1,7 +1,7 @@
 import {useInitData, useMiniApp, useViewport} from "@tma.js/sdk-react";
 import React from "react";
 import {authUser, WebsocketMessage} from "../api/fetch";
-import { Spinner } from "@radix-ui/themes";
+import {Flex, Spinner, Text} from "@radix-ui/themes";
 import {SOCKET_URL} from "../api";
 
 export default function Auth({ children }: { children: React.ReactNode }) {
@@ -11,21 +11,18 @@ export default function Auth({ children }: { children: React.ReactNode }) {
     return !token;
   });
 
+  const [wsMessage, setWsMessage] = React.useState<WebsocketMessage|null>(null)
+
   const app = useMiniApp()
   const viewPort = useViewport();
 
   React.useEffect(() => {
     const token = localStorage.getItem("token");
     const socket = new WebSocket(`${SOCKET_URL}/events/${token}`);
+
     socket.onmessage = (message) => {
       const data: WebsocketMessage = JSON.parse(message.data);
-
-      if (data) {
-        const field = document.getElementById("ai_field")
-        if (field === null) return
-
-        field.innerHTML = data.event.message.toString();
-      }
+      setWsMessage(data)
     }
 
     if (!token) {
@@ -43,9 +40,14 @@ export default function Auth({ children }: { children: React.ReactNode }) {
     viewPort?.expand()
 
     return () => socket.close()
-  }, [initData]);
+  }, []);
 
   if (loading) return <Spinner size="3" />;
 
-  return <>{children}</>;
+  return <>
+    <Flex>
+      <Text as={"div"} id={"ai_field"}>{wsMessage?.event.message.toString()}</Text>
+    </Flex>
+    {children}
+  </>;
 }
