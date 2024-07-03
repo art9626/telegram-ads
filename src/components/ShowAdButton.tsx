@@ -1,9 +1,9 @@
 import React from "react";
-import { watched } from "../api/fetch";
 import { useMutation } from "@tanstack/react-query";
 import { queryClient } from "../App";
 import { Button } from "@radix-ui/themes";
 import { useUser } from "../providers/UserProvider";
+import { useServices } from "../providers/ServicesProvider";
 
 interface ShowPromiseResult {
   done: boolean; // true if user watch till the end, otherwise false
@@ -14,6 +14,7 @@ interface ShowPromiseResult {
 
 export default function ShowAdButton() {
   const { user } = useUser();
+  const { watched } = useServices();
   const [loading, setLoading] = React.useState(false);
   const mutation = useMutation({
     mutationFn: watched,

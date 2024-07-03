@@ -1,7 +1,8 @@
 /* eslint-disable react-refresh/only-export-components */
 import { QueryStatus, useQuery } from "@tanstack/react-query";
 import React from "react";
-import { GameUser, getUser } from "../api/fetch";
+import { GameUser } from "../api/Services";
+import { useServices } from "./ServicesProvider";
 
 const UserContext = React.createContext<{
   user: GameUser | undefined;
@@ -13,6 +14,7 @@ export default function UserProvider({
 }: {
   children: React.ReactNode;
 }) {
+  const { getUser } = useServices();
   const { data, status } = useQuery({
     queryKey: ["user"],
     queryFn: getUser,

@@ -21,7 +21,7 @@ interface ITab {
   icon: React.ReactElement;
 }
 
-export default function Main() {
+export default function MainPage() {
   const [tab, setTab] = React.useState<TabTypes>("AD_GAME");
 
   const tabs: ITab[] = [

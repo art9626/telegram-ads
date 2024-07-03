@@ -1,9 +1,10 @@
 import { useInitData } from "@tma.js/sdk-react";
 import React from "react";
-import { authUser } from "../api/fetch";
 import { Spinner } from "@radix-ui/themes";
+import { useServices } from "../providers/ServicesProvider";
 
 export default function Auth({ children }: { children: React.ReactNode }) {
+  const { authUser } = useServices();
   const initData = useInitData();
   const [loading, setLoading] = React.useState(() => {
     const token = localStorage.getItem("token");
@@ -19,8 +20,8 @@ export default function Auth({ children }: { children: React.ReactNode }) {
     // const socket = new WebSocket(`${SOCKET_URL}/events/${token}`);
 
     // socket.onmessage = (message) => {
-      // const data: WebsocketMessage = JSON.parse(message.data);
-      // setWsMessage(data);
+    // const data: WebsocketMessage = JSON.parse(message.data);
+    // setWsMessage(data);
     // };
 
     if (!token) {
@@ -36,7 +37,7 @@ export default function Auth({ children }: { children: React.ReactNode }) {
     }
 
     // return () => socket.close();
-  }, [initData]);
+  }, [initData, authUser]);
 
   if (loading) return <Spinner size="3" />;
 
