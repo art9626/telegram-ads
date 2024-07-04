@@ -1,4 +1,3 @@
-/* eslint-disable react-refresh/only-export-components */
 import React from "react";
 import { SDKProvider } from "@tma.js/sdk-react";
 import { THEME, TonConnectUIProvider } from "@tonconnect/ui-react";
@@ -14,7 +13,7 @@ import { ThemeProvider } from "next-themes";
 import UserProvider from "./providers/UserProvider";
 import ServicesProvider from "./providers/ServicesProvider";
 
-export const queryClient = new QueryClient();
+const queryClient = new QueryClient();
 
 function App() {
   const manifestUrl = React.useMemo(() => {

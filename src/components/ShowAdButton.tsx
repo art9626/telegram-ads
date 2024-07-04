@@ -1,6 +1,5 @@
 import React from "react";
-import { useMutation } from "@tanstack/react-query";
-import { queryClient } from "../App";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { Button } from "@radix-ui/themes";
 import { useUser } from "../providers/UserProvider";
 import { useServices } from "../providers/ServicesProvider";
@@ -16,6 +15,8 @@ export default function ShowAdButton() {
   const { user } = useUser();
   const { watched } = useServices();
   const [loading, setLoading] = React.useState(false);
+
+  const queryClient = useQueryClient();
   const mutation = useMutation({
     mutationFn: watched,
     onSuccess: () => {
