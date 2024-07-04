@@ -12,6 +12,7 @@ import MiniAppLayout from "./layout/MiniAppLayout";
 import { ThemeProvider } from "next-themes";
 import UserProvider from "./providers/UserProvider";
 import ServicesProvider from "./providers/ServicesProvider";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 const queryClient = new QueryClient();
 
@@ -53,6 +54,7 @@ function App() {
               </ServicesProvider>
             </Theme>
           </ThemeProvider>
+          <ReactQueryDevtools initialIsOpen={false} position="top" />
         </QueryClientProvider>
       </SDKProvider>
     </TonConnectUIProvider>

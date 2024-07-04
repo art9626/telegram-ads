@@ -12,15 +12,18 @@ interface ShowPromiseResult {
 }
 
 export default function ShowAdButton() {
-  const { user } = useUser();
+  const { data: user } = useUser();
   const { watched } = useServices();
   const [loading, setLoading] = React.useState(false);
 
   const queryClient = useQueryClient();
   const mutation = useMutation({
     mutationFn: watched,
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["user"] });
+    onSuccess: (data) => {
+      queryClient.setQueryData(["user"], {
+        ...user,
+        game_data: data.data.data,
+      });
     },
   });
 

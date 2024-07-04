@@ -1,13 +1,11 @@
 /* eslint-disable react-refresh/only-export-components */
-import { QueryStatus, useQuery } from "@tanstack/react-query";
+import { UseQueryResult, useQuery } from "@tanstack/react-query";
 import React from "react";
 import { GameUser } from "../api/Services";
 import { useServices } from "./ServicesProvider";
 
-const UserContext = React.createContext<{
-  user: GameUser | undefined;
-  status: QueryStatus | undefined;
-}>({ user: undefined, status: undefined });
+// @ts-expect-error fix
+const UserContext = React.createContext<UseQueryResult<GameUser, Error>>();
 
 export default function UserProvider({
   children,
@@ -15,17 +13,13 @@ export default function UserProvider({
   children: React.ReactNode;
 }) {
   const { getUser } = useServices();
-  const { data, status } = useQuery({
+  const userQuery = useQuery({
     queryKey: ["user"],
     queryFn: getUser,
   });
 
-  const providerValue = { user: data, status };
-
   return (
-    <UserContext.Provider value={providerValue}>
-      {children}
-    </UserContext.Provider>
+    <UserContext.Provider value={userQuery}>{children}</UserContext.Provider>
   );
 }
 

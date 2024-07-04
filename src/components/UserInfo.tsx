@@ -1,11 +1,11 @@
-import {Avatar, Box, Flex, Progress, Spinner, Text} from "@radix-ui/themes";
+import { Avatar, Box, Flex, Progress, Spinner, Text } from "@radix-ui/themes";
 import { useUser } from "../providers/UserProvider";
-import coin from "../assets/coin.png"
+import coin from "../assets/coin.png";
 
 export default function User() {
-  const { user, status } = useUser();
+  const { data: user, isLoading } = useUser();
 
-  if (status === "pending") return <Spinner size="2" />;
+  if (isLoading) return <Spinner size="2" />;
 
   const progress =
     ((user?.game_data.xp || 0) * 100) / (user?.game_data.xp_to_next_level || 1);
