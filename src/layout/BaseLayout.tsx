@@ -9,14 +9,13 @@ export default function BaseLayout({
   children: React.ReactNode;
 }) {
   const viewPort = useViewport();
+  const height = viewPort?.stableHeight ?? "var(--tg-viewport-height)";
 
   return (
     <Flex
       direction="column"
       px="2"
-      height={
-        viewPort ? `${viewPort.stableHeight}px` : "var(--tg-viewport-height)"
-      }
+      style={{ height }}
 
       // style={{height: }}
     >
