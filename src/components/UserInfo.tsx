@@ -16,7 +16,11 @@ export default function User() {
         <Text size="9" as="div" align="center">
           {(user?.game_data.balance ?? 0) / 10e9}
         </Text>
-        <Avatar src={coin} fallback={"$"} size={"5"}></Avatar>
+        <Avatar
+          src={coin}
+          fallback={"$"}
+          style={{ width: "50px", height: "50px" }}
+        ></Avatar>
       </Flex>
 
       <Text size="4" as="div" align="center">

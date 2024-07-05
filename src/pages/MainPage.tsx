@@ -57,7 +57,7 @@ export default function MainPage() {
       <Flex
         justify="between"
         position="fixed"
-        bottom="0"
+        bottom="30px"
         left="0"
         right="0"
         p="4"
