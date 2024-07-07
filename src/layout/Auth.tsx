@@ -1,7 +1,9 @@
 import { useInitData } from "@tma.js/sdk-react";
 import React from "react";
-import { Spinner } from "@radix-ui/themes";
+import {Flex, Spinner, Text } from "@radix-ui/themes";
 import { useServices } from "../providers/ServicesProvider";
+import {WebsocketMessage} from "../api/Services.ts";
+import {SOCKET_URL} from "../api";
 
 export default function Auth({ children }: { children: React.ReactNode }) {
   const { authUser } = useServices();
@@ -11,18 +13,18 @@ export default function Auth({ children }: { children: React.ReactNode }) {
     return !token;
   });
 
-  // const [wsMessage, setWsMessage] = React.useState<WebsocketMessage | null>(
-  //   null
-  // );
+  const [wsMessage, setWsMessage] = React.useState<WebsocketMessage | null>(
+    null
+  );
 
   React.useEffect(() => {
     const token = localStorage.getItem("token");
-    // const socket = new WebSocket(`${SOCKET_URL}/events/${token}`);
+    const socket = new WebSocket(`${SOCKET_URL}/events/${token}`);
 
-    // socket.onmessage = (message) => {
-    // const data: WebsocketMessage = JSON.parse(message.data);
-    // setWsMessage(data);
-    // };
+    socket.onmessage = (message) => {
+    const data: WebsocketMessage = JSON.parse(message.data);
+    setWsMessage(data);
+    };
 
     if (!token) {
       if (initData) {
@@ -43,11 +45,11 @@ export default function Auth({ children }: { children: React.ReactNode }) {
 
   return (
     <>
-      {/* <Flex>
+      <Flex>
         <Text as={"div"} id={"ai_field"}>
           {wsMessage?.event.message.toString()}
         </Text>
-      </Flex> */}
+      </Flex>
       {children}
     </>
   );

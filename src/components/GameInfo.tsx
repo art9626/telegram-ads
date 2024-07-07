@@ -1,4 +1,4 @@
-import { Box, Progress, Text } from "@radix-ui/themes";
+import { Box, Flex, Progress, Text } from "@radix-ui/themes";
 import { useQuery } from "@tanstack/react-query";
 import { useServices } from "../providers/ServicesProvider.tsx";
 
@@ -14,17 +14,16 @@ export default function GameInfo() {
     : 0;
 
   return (
-    <>
-      <div>Total coins: {(gameInfo?.total_balance || 0) / 10e9}</div>
-      <div>Total users: {gameInfo?.users_count}</div>
-      <div>Total views: {gameInfo?.total_watched}</div>
-      <div>Total spent: {gameInfo?.total_spent}</div>
+    <Flex direction="column">
+      <Text size={"1"}>Total coins: {(gameInfo?.total_balance || 0) / 10e9}</Text>
+      <Text size={"1"}>Total users: {gameInfo?.users_count}</Text>
+      <Text size={"1"}>Total views: {gameInfo?.total_watched}</Text>
       <Text as="div" align="center">
         Progress to listing
       </Text>
       <Box width="100%">
         <Progress value={progress} size="3" duration={"60ms"} />
       </Box>
-    </>
+    </Flex>
   );
 }

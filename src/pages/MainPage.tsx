@@ -8,12 +8,12 @@ import {
   TimerIcon,
 } from "@radix-ui/react-icons";
 import AdGame from "../components/AdGame";
-import GameInfo from "../components/GameInfo";
 import Tasks from "../components/Tasks";
 import Perks from "../components/Perks";
 import Friends from "../components/Friends";
+import Achievements from "../components/Achievements.tsx";
 
-type TabTypes = "AD_GAME" | "GAME_INFO" | "TASKS" | "PERKS" | "FRIENDS";
+type TabTypes = "AD_GAME" | "ACHIEVEMENTS" | "TASKS" | "PERKS" | "FRIENDS";
 
 interface ITab {
   key: TabTypes;
@@ -28,7 +28,7 @@ export default function MainPage() {
     { key: "FRIENDS", title: "Friends", icon: <PersonIcon /> },
     { key: "PERKS", title: "Perks", icon: <DoubleArrowUpIcon /> },
     { key: "AD_GAME", title: "Earn", icon: <TargetIcon /> },
-    { key: "GAME_INFO", title: "Prizes", icon: <IdCardIcon /> },
+    { key: "ACHIEVEMENTS", title: "Prizes", icon: <IdCardIcon /> },
     { key: "TASKS", title: "Tasks", icon: <TimerIcon /> },
   ];
 
@@ -39,8 +39,8 @@ export default function MainPage() {
           switch (tab) {
             case "AD_GAME":
               return <AdGame />;
-            case "GAME_INFO":
-              return <GameInfo />;
+            case "ACHIEVEMENTS":
+              return <Achievements />;
             case "TASKS":
               return <Tasks />;
             case "PERKS":

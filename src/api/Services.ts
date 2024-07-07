@@ -72,6 +72,19 @@ export interface PerkRequirements {
   cost: number;
 }
 
+export interface Achievement {
+  id: number
+  description: string
+  name: string
+  reward: number
+  claimed: boolean
+}
+
+export interface Achievements {
+  achievements: Achievement[];
+}
+
+
 export class Services {
   authUser = async (initData: InitData) => {
     const payload = {
@@ -123,4 +136,16 @@ export class Services {
       .get<{ data: UserFriends }>(Endpoints.FRIENDS)
       .then((res) => res.data.data);
   };
+
+  getAchievements = async () => {
+    return apiClient
+      .get<{data: Achievements}>(Endpoints.ACHIEVEMENTS)
+      .then(res => res.data.data);
+  }
+
+  claimAchievement = async (id: number) => {
+    return apiClient
+      .post<{data: GameData}>(`${Endpoints.ACHIEVEMENTS}/${id}`)
+      .then(res => res.data.data);
+  }
 }
