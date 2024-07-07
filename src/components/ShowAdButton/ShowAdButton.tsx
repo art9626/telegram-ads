@@ -1,8 +1,8 @@
 import React from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { Button } from "@radix-ui/themes";
-import { useUser } from "../providers/UserProvider";
-import { useServices } from "../providers/ServicesProvider";
+import { useUser } from "../../providers/UserProvider";
+import { useServices } from "../../providers/ServicesProvider";
+import s from "./showAdButton.module.css";
 
 interface ShowPromiseResult {
   done: boolean; // true if user watch till the end, otherwise false
@@ -29,38 +29,39 @@ export default function ShowAdButton() {
 
   const counterIsOut = user?.game_data.available_watch_count === 0;
 
+  const clickHandler = () => {
+    setLoading(true);
+
+    // @ts-expect-error Adsgram defined by script in index.html
+    const AdController = window.Adsgram.init({
+      blockId: "239",
+      debug: true,
+    });
+
+    AdController.show()
+      .then((result: ShowPromiseResult) => {
+        // TODO: send to BE
+        console.log(result);
+        return mutation.mutate();
+      })
+      .catch((result: ShowPromiseResult) => {
+        AdController.destroy();
+        console.error(result);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  };
+
   return (
     <>
-      <Button
-        size="4"
-        loading={loading}
+      <button
         disabled={loading || !user || counterIsOut}
-        onClick={() => {
-          setLoading(true);
-
-          // @ts-expect-error Adsgram defined by script in index.html
-          const AdController = window.Adsgram.init({
-            blockId: "239",
-            debug: true,
-          });
-
-          AdController.show()
-            .then((result: ShowPromiseResult) => {
-              // TODO: send to BE
-              console.log(result);
-              return mutation.mutate();
-            })
-            .catch((result: ShowPromiseResult) => {
-              AdController.destroy();
-              console.error(result);
-            })
-            .finally(() => {
-              setLoading(false);
-            });
-        }}
+        onClick={clickHandler}
+        className={s.button}
       >
         Money button
-      </Button>
+      </button>
     </>
   );
 }

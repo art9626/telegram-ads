@@ -1,0 +1,25 @@
+.button {
+  width: 220px;
+  height: 220px;
+  border: none;
+  border-radius: 50%;
+  font-size: 35px;
+  color: var(--text-primary);
+  background: var(--button-primary-default);
+  background-size: 300%;
+  background-repeat: no-repeat;
+  box-shadow: 0px 0px 30px -5px var(--accent-gold);
+  animation: glow 6s linear infinite;
+}
+
+@keyframes glow {
+  0% {
+    background-position: 0%;
+  }
+  50% {
+    background-position: 100%;
+  }
+  100% {
+    background-position: 0%;
+  }
+}

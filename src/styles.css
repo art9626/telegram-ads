@@ -1,8 +1,95 @@
+:root {
+  --border-radius: 10px;
+
+  --accent-red: #d22929;
+  --accent-gold: #ffce68;
+  --text-primary: #fff;
+  --text-secondary: #9d99a9;
+  --text-disabled: rgba(255, 255, 255, 0.3);
+  --background-default: rgba(117, 122, 167, 0.1);
+  --background-pressed: rgba(117, 122, 167, 0.16);
+  --background-disabled: rgba(117, 122, 167, 0.08);
+  --background-drower: rgba(25, 27, 38, 0.96);
+  --stroke-default: rgba(117, 122, 167, 0.2);
+  --stroke-pressed: rgba(146, 153, 214, 0.4);
+  --button-primary-default: linear-gradient(
+    120deg,
+    #dc8707 0%,
+    #fce099 50%,
+    #dc8707 100% /* #e59a2a 45.5%, */ /* #dc8707 100% */
+  );
+  --button-primary-pressed: linear-gradient(
+    180deg,
+    #efac46 0%,
+    #e59a2a 45.5%,
+    #dc8707 100%
+  );
+  --button-secondary-default: linear-gradient(
+    180deg,
+    #9e3fd9 0%,
+    #762da5 12%,
+    #571b8e 41%,
+    #31204e 100%
+  );
+  --button-secondary-pressed: linear-gradient(
+    180deg,
+    #8533ba 0%,
+    #641ea3 41%,
+    #3f2863 100%
+  );
+  --drower-elevate: 0px -8px 20px 0px rgba(0, 0, 0, 0.4);
+  --loader-main: linear-gradient(199deg, #fbba40 8.93%, #7028cd 92.21%);
+}
+
+.roboto-light {
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+}
+
+.roboto-regular {
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.roboto-medium {
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.roboto-bold {
+  font-family: "Roboto", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+* {
+  box-sizing: border-box;
+}
+
 body {
   overflow: hidden;
   height: 100vh;
   margin: 0;
   padding: 0;
+  font-family: Roboto;
+  line-height: 1.5;
+  font-weight: 400;
+  color: var(--text-primary);
+  background: linear-gradient(0deg, #5e54001f, #5e54001f),
+    radial-gradient(
+      209.53% 77.55% at 50% 117.48%,
+      #472b6ac4 21.44%,
+      #0b0f2700 69.66%
+    ),
+    radial-gradient(
+      302.81% 225.94% at 120.64% -30.92%,
+      #472b6ac4 12.81%,
+      #0b0f2700 58.46%
+    ),
+    #0b0f27;
 }
 
 #root {
@@ -13,23 +100,12 @@ body {
   bottom: 0;
   overflow-x: hidden;
   overflow-y: auto;
-  color: white;
-  background: #111110;
-}
-
-header {
-  display: flex;
-  flex: 1 1 100%;
-  max-height: 60px;
-}
-
-main {
-  display: flex;
-  flex: 10 10 100%;
-  flex-direction: column;
-  justify-content: space-around;
 }
 
 a {
   text-decoration: none;
+}
+
+ul {
+  list-style: none;
 }

@@ -4,13 +4,13 @@ import { THEME, TonConnectUIProvider } from "@tonconnect/ui-react";
 import { Navigate, Route, Router, Routes } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import Auth from "./layout/Auth";
-import BaseLayout from "./layout/BaseLayout";
+import BaseLayout from "./layout/BaseLayout/BaseLayout";
 import MainPage from "./pages/MainPage";
 import useNavigator from "./hooks/useNavigator";
 import MiniAppLayout from "./layout/MiniAppLayout";
 import UserProvider from "./providers/UserProvider";
 import ServicesProvider from "./providers/ServicesProvider";
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+// import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 const queryClient = new QueryClient();
 
@@ -24,11 +24,7 @@ function App() {
   return (
     <TonConnectUIProvider
       manifestUrl={manifestUrl}
-      uiPreferences={{
-        theme: document.querySelector("html")?.classList.contains("dark")
-          ? THEME.DARK
-          : THEME.LIGHT,
-      }}
+      uiPreferences={{ theme: THEME.DARK }}
     >
       <SDKProvider acceptCustomStyles debug>
         <QueryClientProvider client={queryClient}>
@@ -52,7 +48,7 @@ function App() {
               </UserProvider>
             </Auth>
           </ServicesProvider>
-          <ReactQueryDevtools initialIsOpen={false} position="top" />
+          {/* <ReactQueryDevtools initialIsOpen={false} position="top" /> */}
         </QueryClientProvider>
       </SDKProvider>
     </TonConnectUIProvider>

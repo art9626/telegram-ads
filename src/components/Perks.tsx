@@ -1,5 +1,4 @@
 import { Perk } from "../api/Services";
-import { Box, Button, Card, Flex, Text } from "@radix-ui/themes";
 import { ImageIcon } from "@radix-ui/react-icons";
 import { useQuery } from "@tanstack/react-query";
 import { useServices } from "../providers/ServicesProvider";
@@ -12,11 +11,11 @@ export default function Perks() {
   });
 
   return (
-    <>
+    <div style={{ maxHeight: "300px", overflowY: "scroll" }}>
       {perksList?.perks.map((perk: Perk) => (
         <PerkElement perk={perk} key={perk.id} />
       ))}
-    </>
+    </div>
   );
 }
 
@@ -36,34 +35,31 @@ export function PerkElement({ perk }: { perk: Perk }) {
   const { applyPerk } = useServices();
 
   return (
-    <Box width={"100%"} my={"2"} style={{ background: calcBackground(perk) }}>
-      <Card>
-        <Flex justify={"between"} align={"center"}>
-          <Box>
+    <div style={{ background: calcBackground(perk) }}>
+      <div>
+        <div>
+          <div>
             <ImageIcon></ImageIcon>
-            <Text ml={"2"} size={"4"} weight={"bold"}>
-              {perk.name}
-            </Text>
-          </Box>
-          <Text size={"1"}>
-            <Text mr={"1"}>{Math.floor(perk.requirements.cost / 10e9)}$</Text>
-            <Text mr={"1"}>{perk.requirements.game_level} level</Text>
-            <Text mr={"1"}>{perk.requirements.friends_count} friends</Text>
-          </Text>
-          <Button
+            <p>{perk.name}</p>
+          </div>
+          <p>
+            <p>{Math.floor(perk.requirements.cost / 10e9)}$</p>
+            <p>{perk.requirements.game_level} level</p>
+            <p>{perk.requirements.friends_count} friends</p>
+          </p>
+          <button
             disabled={!perk.available}
             onClick={() => {
               applyPerk(perk.id).then((r) => console.log("applyPerk", r));
             }}
-            size={"1"}
           >
             UP
-          </Button>
-        </Flex>
-        <Flex>
-          <Text size={"2"}>{perk.description}</Text>
-        </Flex>
-      </Card>
-    </Box>
+          </button>
+        </div>
+        <div>
+          <p>{perk.description}</p>
+        </div>
+      </div>
+    </div>
   );
 }

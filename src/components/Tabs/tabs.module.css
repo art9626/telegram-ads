@@ -1,0 +1,42 @@
+.root {
+  height: 100%;
+  padding-top: 30px;
+  padding-bottom: 105px;
+}
+
+.content {
+  height: 100%;
+}
+
+.list {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  gap: 5px;
+  padding: 20px 15px;
+}
+
+.trigger {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: calc(100% / 5);
+  min-width: 55px;
+  height: 65px;
+  border: 1px solid var(--stroke-default);
+  border-radius: var(--border-radius);
+  background-color: rgba(0, 0, 0, 0.1);
+  color: var(--text-primary);
+}
+
+.trigger > svg {
+  margin-bottom: 7px;
+}
+
+.trigger[data-state="active"] {
+  border-color: var(--accent-gold);
+  background-color: rgba(255, 206, 104, 0.05);
+}

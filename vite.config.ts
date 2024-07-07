@@ -7,4 +7,10 @@ export default defineConfig({
     host: true,
   },
   plugins: [react()],
+  css: {
+    modules: {
+      scopeBehaviour: "local",
+      localsConvention: "camelCase",
+    },
+  },
 });
