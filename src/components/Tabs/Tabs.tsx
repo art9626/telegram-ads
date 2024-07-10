@@ -9,9 +9,9 @@ import {
 import * as RTabs from "@radix-ui/react-tabs";
 import AdGame from "../AdGame/AdGame.tsx";
 import Tasks from "../Tasks.tsx";
-import Perks from "../Perks.tsx";
 import Friends from "../Friends.tsx";
 import Achievements from "../Achievements.tsx";
+import Perks from "../Perks/Perks.tsx";
 import s from "./tabs.module.css";
 
 enum TabTypes {

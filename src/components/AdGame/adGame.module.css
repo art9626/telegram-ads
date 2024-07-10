@@ -4,3 +4,7 @@
   align-items: center;
   height: 100%;
 }
+
+.container > div:first-child {
+  margin-bottom: 40px;
+}

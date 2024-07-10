@@ -52,11 +52,11 @@ export interface GameGlobalInfo {
   to_next_round: number;
 }
 
-export interface PerksList {
-  perks: Perk[];
+export interface IPerksList {
+  perks: IPerk[];
 }
 
-export interface Perk {
+export interface IPerk {
   id: number;
   name: string;
   description: string;
@@ -73,17 +73,16 @@ export interface PerkRequirements {
 }
 
 export interface Achievement {
-  id: number
-  description: string
-  name: string
-  reward: number
-  claimed: boolean
+  id: number;
+  description: string;
+  name: string;
+  reward: number;
+  claimed: boolean;
 }
 
 export interface Achievements {
   achievements: Achievement[];
 }
-
 
 export class Services {
   authUser = async (initData: InitData) => {
@@ -121,13 +120,13 @@ export class Services {
 
   getPerks = async () => {
     return apiClient
-      .get<{ data: PerksList }>(Endpoints.PERKS)
+      .get<{ data: IPerksList }>(Endpoints.PERKS)
       .then((res) => res.data.data);
   };
 
   applyPerk = async (id: number) => {
     return apiClient
-      .post<{ data: PerksList }>(`${Endpoints.PERKS}/${id}`)
+      .post<{ data: IPerksList }>(`${Endpoints.PERKS}/${id}`)
       .then((res) => res.data.data);
   };
 
@@ -139,13 +138,13 @@ export class Services {
 
   getAchievements = async () => {
     return apiClient
-      .get<{data: Achievements}>(Endpoints.ACHIEVEMENTS)
-      .then(res => res.data.data);
-  }
+      .get<{ data: Achievements }>(Endpoints.ACHIEVEMENTS)
+      .then((res) => res.data.data);
+  };
 
   claimAchievement = async (id: number) => {
     return apiClient
-      .post<{data: GameData}>(`${Endpoints.ACHIEVEMENTS}/${id}`)
-      .then(res => res.data.data);
-  }
+      .post<{ data: GameData }>(`${Endpoints.ACHIEVEMENTS}/${id}`)
+      .then((res) => res.data.data);
+  };
 }

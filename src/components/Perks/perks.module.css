@@ -1,0 +1,20 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.perksList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-height: 50vh;
+  overflow-x: scroll;
+}
+
+.perksItem {
+  padding: 10px;
+  border: 2px solid var(--stroke-default);
+  border-radius: var(--border-radius);
+}
