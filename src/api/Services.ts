@@ -19,6 +19,9 @@ export interface GameData {
   available_watch_count: number;
   max_watch_count: number;
   last_watched_at: string;
+  friends_count: number;
+  achievements_count: number;
+  not_claimed_achievements_count: number;
 }
 
 export interface GameUser {
