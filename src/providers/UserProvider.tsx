@@ -3,7 +3,7 @@ import { UseQueryResult, useQuery } from "@tanstack/react-query";
 import React from "react";
 import { GameUser } from "../api/Services";
 import { useServices } from "./ServicesProvider";
-import { FadeLoader } from "react-spinners";
+import Loader from "../components/Loader/Loader";
 
 // @ts-expect-error fix
 const UserContext = React.createContext<UseQueryResult<GameUser, Error>>();
@@ -19,7 +19,7 @@ export default function UserProvider({
     queryFn: getUser,
   });
 
-  if (userQuery.isLoading) return <FadeLoader color="#fff" />;
+  if (userQuery.isLoading) return <Loader />;
 
   return (
     <UserContext.Provider value={userQuery}>{children}</UserContext.Provider>

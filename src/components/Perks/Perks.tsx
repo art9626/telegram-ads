@@ -35,8 +35,6 @@ export function Perk({ perk }: { perk: IPerk }) {
   const mutation = useMutation({
     mutationFn: applyPerk,
     onSuccess: (data) => {
-      data[0].name = Math.random().toString();
-
       queryClient.setQueryData(["perks"], data);
       queryClient.invalidateQueries({ queryKey: ["user"] });
     },

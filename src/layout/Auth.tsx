@@ -1,9 +1,10 @@
 import { useInitData } from "@tma.js/sdk-react";
 import React from "react";
-import { Flex, Spinner, Text } from "@radix-ui/themes";
+import { Flex, Text } from "@radix-ui/themes";
 import { useServices } from "../providers/ServicesProvider";
 import { WebsocketMessage } from "../api/Services.ts";
 import { SOCKET_URL } from "../api";
+import Loader from "../components/Loader/Loader.tsx";
 
 export default function Auth({ children }: { children: React.ReactNode }) {
   const { authUser } = useServices();
@@ -41,7 +42,7 @@ export default function Auth({ children }: { children: React.ReactNode }) {
     // return () => socket.close();
   }, [initData, authUser]);
 
-  if (loading) return <Spinner size="3" />;
+  if (loading) return <Loader />;
 
   return (
     <>
