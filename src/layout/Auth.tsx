@@ -1,9 +1,9 @@
 import { useInitData } from "@tma.js/sdk-react";
 import React from "react";
-import {Flex, Spinner, Text } from "@radix-ui/themes";
+import { Flex, Spinner, Text } from "@radix-ui/themes";
 import { useServices } from "../providers/ServicesProvider";
-import {WebsocketMessage} from "../api/Services.ts";
-import {SOCKET_URL} from "../api";
+import { WebsocketMessage } from "../api/Services.ts";
+import { SOCKET_URL } from "../api";
 
 export default function Auth({ children }: { children: React.ReactNode }) {
   const { authUser } = useServices();
@@ -22,8 +22,8 @@ export default function Auth({ children }: { children: React.ReactNode }) {
     const socket = new WebSocket(`${SOCKET_URL}/events/${token}`);
 
     socket.onmessage = (message) => {
-    const data: WebsocketMessage = JSON.parse(message.data);
-    setWsMessage(data);
+      const data: WebsocketMessage = JSON.parse(message.data);
+      setWsMessage(data);
     };
 
     if (!token) {

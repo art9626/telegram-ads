@@ -52,10 +52,6 @@ export interface GameGlobalInfo {
   to_next_round: number;
 }
 
-export interface IPerksList {
-  perks: IPerk[];
-}
-
 export interface IPerk {
   id: number;
   name: string;
@@ -120,14 +116,14 @@ export class Services {
 
   getPerks = async () => {
     return apiClient
-      .get<{ data: IPerksList }>(Endpoints.PERKS)
-      .then((res) => res.data.data);
+      .get<{ data: { perks: IPerk[] } }>(Endpoints.PERKS)
+      .then((res) => res.data.data.perks);
   };
 
   applyPerk = async (id: number) => {
     return apiClient
-      .post<{ data: IPerksList }>(`${Endpoints.PERKS}/${id}`)
-      .then((res) => res.data.data);
+      .post<{ data: { perks: IPerk[] } }>(`${Endpoints.PERKS}/${id}`)
+      .then((res) => res.data.data.perks);
   };
 
   getUserFriends = async () => {

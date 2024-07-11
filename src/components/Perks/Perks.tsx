@@ -6,19 +6,21 @@ import s from "./perks.module.css";
 
 export default function Perks() {
   const { getPerks } = useServices();
-  const { data: perksList } = useQuery({
+  const { data: perks } = useQuery({
     queryKey: ["perks"],
     queryFn: getPerks,
   });
 
+  console.log(perks);
+
   return (
     <div className={s.container}>
       <UserInfo />
-      {!perksList ? (
+      {!perks ? (
         <div>Loading...</div>
       ) : (
         <ul className={s.perksList}>
-          {perksList.perks.map((perk: IPerk) => (
+          {perks.map((perk: IPerk) => (
             <Perk key={perk.id} perk={perk} />
           ))}
         </ul>
@@ -33,7 +35,10 @@ export function Perk({ perk }: { perk: IPerk }) {
   const mutation = useMutation({
     mutationFn: applyPerk,
     onSuccess: (data) => {
-      queryClient.setQueryData(["perks"], data.perks);
+      data[0].name = Math.random().toString();
+
+      queryClient.setQueryData(["perks"], data);
+      queryClient.invalidateQueries({ queryKey: ["user"] });
     },
   });
 
