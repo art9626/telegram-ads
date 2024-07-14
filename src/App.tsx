@@ -1,13 +1,12 @@
 import React from "react";
 import { SDKProvider } from "@tma.js/sdk-react";
 import { THEME, TonConnectUIProvider } from "@tonconnect/ui-react";
-import { Navigate, Route, Router, Routes } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import Auth from "./layout/Auth";
 import BaseLayout from "./layout/BaseLayout/BaseLayout";
 import MainPage from "./pages/MainPage";
 import PerkPage from "./pages/PerkPage";
-import useNavigator from "./hooks/useNavigator";
 import MiniAppLayout from "./layout/MiniAppLayout";
 import UserProvider from "./providers/UserProvider";
 import ServicesProvider from "./providers/ServicesProvider";
@@ -20,8 +19,6 @@ function App() {
     return new URL("tonconnect-manifest.json", window.location.href).toString();
   }, []);
 
-  const [location, reactNavigator] = useNavigator();
-
   return (
     <TonConnectUIProvider
       manifestUrl={manifestUrl}
@@ -33,7 +30,7 @@ function App() {
             <Auth>
               <UserProvider>
                 <MiniAppLayout>
-                  <Router location={location} navigator={reactNavigator}>
+                  <BrowserRouter>
                     <Routes>
                       <Route path="/" element={<BaseLayout />}>
                         <Route index element={<MainPage />} />
@@ -41,7 +38,7 @@ function App() {
                         <Route path="*" element={<Navigate to="/" />} />
                       </Route>
                     </Routes>
-                  </Router>
+                  </BrowserRouter>
                 </MiniAppLayout>
               </UserProvider>
             </Auth>

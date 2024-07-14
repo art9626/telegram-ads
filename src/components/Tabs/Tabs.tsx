@@ -13,7 +13,7 @@ import Friends from "../Friends.tsx";
 import Achievements from "../Achievements.tsx";
 import Perks from "../Perks/Perks.tsx";
 import s from "./tabs.module.css";
-import { useSearchParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 enum TabTypes {
   AD_GAME = "AD_GAME",
@@ -38,11 +38,16 @@ const tabs: ITab[] = [
 ];
 
 export default function Tabs() {
-  const [params, setParams] = useSearchParams();
+  const location = useLocation();
+  const defaultTab = location.state?.tab;
+
+  React.useEffect(() => {
+    if (location.state) window.history.replaceState({}, "");
+  }, [location]);
 
   return (
     <RTabs.Root
-      defaultValue={params.get("tab") ?? TabTypes.AD_GAME}
+      defaultValue={defaultTab ?? TabTypes.AD_GAME}
       className={s.root}
     >
       {tabs.map(({ key }) => {
@@ -55,12 +60,7 @@ export default function Tabs() {
       <RTabs.List className={s.list}>
         {tabs.map(({ key, icon, title }) => {
           return (
-            <RTabs.Trigger
-              key={key}
-              value={key}
-              onClick={() => setParams({ tab: encodeURI(key) })}
-              className={s.trigger}
-            >
+            <RTabs.Trigger key={key} value={key} className={s.trigger}>
               {icon}
               {title}
             </RTabs.Trigger>
