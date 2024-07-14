@@ -4,6 +4,7 @@
   --accent-red: #d22929;
   --accent-gold: #ffce68;
   --text-primary: #fff;
+
   --text-secondary: #9d99a9;
   --text-disabled: rgba(255, 255, 255, 0.3);
   --background-default: rgba(117, 122, 167, 0.1);
@@ -16,7 +17,7 @@
     120deg,
     #dc8707 0%,
     #fce099 50%,
-    #dc8707 100% /* #e59a2a 45.5%, */ /* #dc8707 100% */
+    #dc8707 100%
   );
   --button-primary-pressed: linear-gradient(
     180deg,
