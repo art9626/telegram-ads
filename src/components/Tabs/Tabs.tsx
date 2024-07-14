@@ -40,8 +40,6 @@ const tabs: ITab[] = [
 export default function Tabs() {
   const [params, setParams] = useSearchParams();
 
-  console.log(params);
-
   return (
     <RTabs.Root
       defaultValue={params.get("tab") ?? TabTypes.AD_GAME}
