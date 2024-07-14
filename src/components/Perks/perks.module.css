@@ -49,11 +49,11 @@
   transition: background 0.1s ease;
 }
 
-.upButton:active {
+.upButton:active:not(:disabled) {
   background: var(--button-primary-pressed);
 }
 
-.uoButton:disabled {
+.upButton:disabled {
   opacity: 0.5;
 }
 

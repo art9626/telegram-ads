@@ -3,6 +3,8 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useUser } from "../../providers/UserProvider";
 import { useServices } from "../../providers/ServicesProvider";
 import s from "./showAdButton.module.css";
+import { useHapticFeedback } from "@tma.js/sdk-react";
+import classNames from "classnames";
 
 interface ShowPromiseResult {
   done: boolean; // true if user watch till the end, otherwise false
@@ -14,6 +16,7 @@ interface ShowPromiseResult {
 export default function ShowAdButton() {
   const { data: user } = useUser();
   const { watched } = useServices();
+  const hf = useHapticFeedback();
   const [loading, setLoading] = React.useState(false);
 
   const queryClient = useQueryClient();
@@ -30,6 +33,7 @@ export default function ShowAdButton() {
   const counterIsOut = user?.game_data.available_watch_count === 0;
 
   const clickHandler = () => {
+    hf.impactOccurred("medium");
     setLoading(true);
 
     // @ts-expect-error Adsgram defined by script in index.html
@@ -55,13 +59,18 @@ export default function ShowAdButton() {
 
   return (
     <>
-      <button
-        disabled={loading || !user || counterIsOut}
-        onClick={clickHandler}
-        className={s.button}
-      >
-        Money button
-      </button>
+      <div className={s.coin} onClick={clickHandler}>
+        <div
+          className={classNames(s.front, {
+            [s.jump]: !counterIsOut || !loading,
+          })}
+        >
+          <span className={s.currency}>
+            <span>$</span>
+          </span>
+        </div>
+      </div>
+      <div className={s.shadow}></div>
     </>
   );
 }

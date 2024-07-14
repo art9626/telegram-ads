@@ -14,6 +14,7 @@ import Achievements from "../Achievements.tsx";
 import Perks from "../Perks/Perks.tsx";
 import s from "./tabs.module.css";
 import { useLocation } from "react-router-dom";
+import { useHapticFeedback } from "@tma.js/sdk-react";
 
 enum TabTypes {
   AD_GAME = "AD_GAME",
@@ -38,6 +39,7 @@ const tabs: ITab[] = [
 ];
 
 export default function Tabs() {
+  const hf = useHapticFeedback();
   const location = useLocation();
   const defaultTab = location.state?.tab;
 
@@ -60,7 +62,12 @@ export default function Tabs() {
       <RTabs.List className={s.list}>
         {tabs.map(({ key, icon, title }) => {
           return (
-            <RTabs.Trigger key={key} value={key} className={s.trigger}>
+            <RTabs.Trigger
+              key={key}
+              value={key}
+              className={s.trigger}
+              onClick={() => hf.selectionChanged()}
+            >
               {icon}
               {title}
             </RTabs.Trigger>

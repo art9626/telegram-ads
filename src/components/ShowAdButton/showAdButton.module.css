@@ -1,25 +1,128 @@
-.button {
-  width: 220px;
-  height: 220px;
-  border: none;
-  border-radius: 50%;
-  font-size: 35px;
-  color: var(--text-primary);
-  background: var(--button-primary-default);
-  background-size: 300%;
-  background-repeat: no-repeat;
-  box-shadow: 0px 0px 30px -5px var(--accent-gold);
-  animation: glow 6s linear infinite;
+.jump {
+  animation: jump 1.5s infinite ease;
 }
 
-@keyframes glow {
+@keyframes jump {
   0% {
-    background-position: 0%;
+    top: 0;
   }
   50% {
-    background-position: 100%;
+    top: -10px;
   }
   100% {
-    background-position: 0%;
+    top: 0;
+  }
+}
+
+.coin {
+  --coin-size: 60vw;
+
+  position: relative;
+  height: var(--coin-size);
+  width: var(--coin-size);
+}
+
+.coin:active {
+  transform: scale(0.98);
+  transition: transform 0.3s ease;
+}
+
+.coin .front {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  border-top: 7px solid #ffd84c;
+  border-left: 7px solid #ffd84c;
+  border-right: 7px solid #d57e08;
+  border-bottom: 7px solid #d57e08;
+  border-radius: 50%;
+  background: #ffbd0b;
+  transform: rotate(44deg);
+}
+
+.coin .front:before {
+  content: "";
+  width: 50%;
+  height: 50%;
+  border-bottom: 5px solid #ffd84c;
+  border-right: 5px solid #ffd84c;
+  border-left: 5px solid #d57e08;
+  border-top: 5px solid #d57e08;
+  border-radius: 50%;
+  background: #f0a608;
+  z-index: 2;
+}
+
+.coin .front .currency {
+  overflow: hidden;
+  position: absolute;
+  z-index: 3;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  transform: rotate(-44deg);
+  color: #ffbd0b;
+  text-align: center;
+  text-shadow: 0 3px 0 #cb7407;
+}
+
+.coin .front .currency span {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  font-size: 50px;
+  color: #ffbd0b;
+  text-shadow: 0 3px 0 #cb7407;
+}
+
+.coin .front .currency:after {
+  content: "";
+  position: absolute;
+  height: 150%;
+  width: 40px;
+  margin: 20px -65px;
+  box-shadow: 50px -23px 0 -10px rgba(255, 255, 255, 0.22),
+    85px -10px 0 -16px rgba(255, 255, 255, 0.19);
+  transform: rotate(-50deg);
+  animation: shine 1.5s infinite ease;
+}
+
+@keyframes shine {
+  0% {
+    margin: 20px -65px;
+  }
+  50% {
+    margin: 35px -85px;
+  }
+  100% {
+    margin: 20px -65px;
+  }
+}
+
+.shadow {
+  width: 50vw;
+  height: 20px;
+  border-radius: 50%;
+  margin-top: 20px;
+  background: rgba(0, 0, 0, 0.4);
+  animation: swift 1.5s infinite ease;
+}
+
+@keyframes swift {
+  0% {
+    opacity: 0.8;
+  }
+  50% {
+    opacity: 0.4;
+    transform: scale(0.9);
+  }
+  100% {
+    opacity: 0.8;
   }
 }

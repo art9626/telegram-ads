@@ -4,6 +4,7 @@ import { useServices } from "../../providers/ServicesProvider";
 import UserInfo from "../UserInfo/UserInfo";
 import s from "./perks.module.css";
 import { Link } from "react-router-dom";
+import { useHapticFeedback } from "@tma.js/sdk-react";
 
 export default function Perks() {
   const { getPerks } = useServices();
@@ -30,6 +31,7 @@ export default function Perks() {
 
 export function Perk({ perk }: { perk: IPerk }) {
   const { applyPerk } = useServices();
+  const hf = useHapticFeedback();
   const queryClient = useQueryClient();
   const mutation = useMutation({
     mutationFn: applyPerk,
@@ -52,6 +54,7 @@ export function Perk({ perk }: { perk: IPerk }) {
           className={s.upButton}
           disabled={!perk.available}
           onClick={() => {
+            hf.impactOccurred("medium");
             mutation.mutate(perk.id);
           }}
         >

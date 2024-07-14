@@ -13,33 +13,8 @@
   --background-drower: rgba(25, 27, 38, 0.96);
   --stroke-default: rgba(117, 122, 167, 0.2);
   --stroke-pressed: rgba(146, 153, 214, 0.4);
-  --button-primary-default: linear-gradient(
-    120deg,
-    #efac46 0%,
-    #efac46 50%,
-    #efac46 100%
-  );
-  --button-primary-pressed: linear-gradient(
-    180deg,
-    #dc8707 0%,
-    #dc8707 45.5%,
-    #dc8707 100%
-  );
-  --button-secondary-default: linear-gradient(
-    180deg,
-    #9e3fd9 0%,
-    #762da5 12%,
-    #571b8e 41%,
-    #31204e 100%
-  );
-  --button-secondary-pressed: linear-gradient(
-    180deg,
-    #8533ba 0%,
-    #641ea3 41%,
-    #3f2863 100%
-  );
-  --drower-elevate: 0px -8px 20px 0px rgba(0, 0, 0, 0.4);
-  --loader-main: linear-gradient(199deg, #fbba40 8.93%, #7028cd 92.21%);
+  --button-primary-default: #efac46;
+  --button-primary-pressed: #dc8707;
 }
 
 .roboto-light {
