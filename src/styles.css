@@ -1,20 +1,18 @@
 :root {
   --border-radius: 10px;
 
-  --accent-red: #d22929;
-  --accent-gold: #efac46;
-  --text-primary: #fff;
+  --accent-gold: #ffd84c;
 
+  --text-primary: #fff;
   --text-secondary: #9d99a9;
-  --text-disabled: rgba(255, 255, 255, 0.3);
-  --background-default: rgba(117, 122, 167, 0.1);
-  --background-pressed: rgba(117, 122, 167, 0.16);
-  --background-disabled: rgba(117, 122, 167, 0.08);
-  --background-drower: rgba(25, 27, 38, 0.96);
+
+  --background-default: rgba(0, 0, 0, 0.1);
+  --background-active: rgba(255, 206, 104, 0.05);
+
   --stroke-default: rgba(117, 122, 167, 0.2);
-  --stroke-pressed: rgba(146, 153, 214, 0.4);
-  --button-primary-default: #efac46;
-  --button-primary-pressed: #dc8707;
+
+  --button-primary-default: #ffbd0b;
+  --button-primary-pressed: #d57e08;
 }
 
 .roboto-light {
@@ -43,6 +41,7 @@
 
 * {
   box-sizing: border-box;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
 body {

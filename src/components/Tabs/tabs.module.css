@@ -26,9 +26,9 @@
   width: calc(100% / 5);
   min-width: 55px;
   height: 65px;
-  border: 1px solid var(--stroke-default);
+  border: 2px solid var(--stroke-default);
   border-radius: var(--border-radius);
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: var(--background-default);
   color: var(--text-primary);
 }
 
@@ -37,6 +37,6 @@
 }
 
 .trigger[data-state="active"] {
-  border-color: var(--accent-gold);
-  background-color: rgba(255, 206, 104, 0.05);
+  border-color: var(--button-primary-default);
+  background-color: var(--background-active);
 }

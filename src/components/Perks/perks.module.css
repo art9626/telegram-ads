@@ -21,7 +21,7 @@
   padding: 10px 0 10px 20px;
   border: 2px solid var(--stroke-default);
   border-radius: var(--border-radius);
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: var(--background-default);
 }
 
 .perksItem h4 {
@@ -38,19 +38,22 @@
 .upButton {
   position: relative;
   z-index: 1;
+  top: 0;
   width: 100px;
   padding: 5px;
   border: none;
   border-radius: var(--border-radius);
   background: var(--button-primary-default);
+  box-shadow: 0px 4px 0px var(--button-primary-pressed);
   color: var(--text-primary);
   font-size: 16px;
   line-height: 21px;
-  transition: background 0.1s ease;
+  transition: all 0.1s ease;
 }
 
 .upButton:active:not(:disabled) {
-  background: var(--button-primary-pressed);
+  top: 3px;
+  box-shadow: 0px 1px 0px var(--button-primary-pressed);
 }
 
 .upButton:disabled {
@@ -60,6 +63,7 @@
 .perkLink::before {
   content: "";
   position: absolute;
+  z-index: 0;
   top: 0;
   bottom: 0;
   right: 0;
