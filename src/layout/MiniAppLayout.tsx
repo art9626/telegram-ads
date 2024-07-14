@@ -11,8 +11,8 @@ export default function MiniAppLayout({
 
   React.useEffect(() => {
     viewPort?.expand();
-    app.setBgColor("#31204e");
-    app.setHeaderColor("#31204e");
+    app.setBgColor("#0b0f27");
+    app.setHeaderColor("#0b0f27");
     app.ready();
   }, [viewPort, app]);
 

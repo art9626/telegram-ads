@@ -6,6 +6,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import Auth from "./layout/Auth";
 import BaseLayout from "./layout/BaseLayout/BaseLayout";
 import MainPage from "./pages/MainPage";
+import PerkPage from "./pages/PerkPage";
 import useNavigator from "./hooks/useNavigator";
 import MiniAppLayout from "./layout/MiniAppLayout";
 import UserProvider from "./providers/UserProvider";
@@ -33,16 +34,13 @@ function App() {
               <UserProvider>
                 <MiniAppLayout>
                   <Router location={location} navigator={reactNavigator}>
-                    <BaseLayout>
-                      {/* <ThemeProvider attribute="class">
-                        <Theme accentColor="cyan"> */}
-                      <Routes>
-                        <Route path="/" element={<MainPage />} />
+                    <Routes>
+                      <Route path="/" element={<BaseLayout />}>
+                        <Route index element={<MainPage />} />
+                        <Route path="/perk" element={<PerkPage />} />
                         <Route path="*" element={<Navigate to="/" />} />
-                      </Routes>
-                      {/* </Theme>
-                      </ThemeProvider> */}
-                    </BaseLayout>
+                      </Route>
+                    </Routes>
                   </Router>
                 </MiniAppLayout>
               </UserProvider>

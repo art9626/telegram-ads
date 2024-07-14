@@ -2,7 +2,7 @@
   --border-radius: 10px;
 
   --accent-red: #d22929;
-  --accent-gold: #ffce68;
+  --accent-gold: #efac46;
   --text-primary: #fff;
 
   --text-secondary: #9d99a9;
@@ -15,14 +15,14 @@
   --stroke-pressed: rgba(146, 153, 214, 0.4);
   --button-primary-default: linear-gradient(
     120deg,
-    #dc8707 0%,
-    #fce099 50%,
-    #dc8707 100%
+    #efac46 0%,
+    #efac46 50%,
+    #efac46 100%
   );
   --button-primary-pressed: linear-gradient(
     180deg,
-    #efac46 0%,
-    #e59a2a 45.5%,
+    #dc8707 0%,
+    #dc8707 45.5%,
     #dc8707 100%
   );
   --button-secondary-default: linear-gradient(

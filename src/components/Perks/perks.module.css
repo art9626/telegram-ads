@@ -14,7 +14,54 @@
 }
 
 .perksItem {
-  padding: 10px;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0 10px 20px;
   border: 2px solid var(--stroke-default);
   border-radius: var(--border-radius);
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.perksItem h4 {
+  margin: 0;
+}
+
+.iconWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+}
+
+.upButton {
+  position: relative;
+  z-index: 1;
+  width: 100px;
+  padding: 5px;
+  border: none;
+  border-radius: var(--border-radius);
+  background: var(--button-primary-default);
+  color: var(--text-primary);
+  font-size: 16px;
+  line-height: 21px;
+  transition: background 0.1s ease;
+}
+
+.upButton:active {
+  background: var(--button-primary-pressed);
+}
+
+.uoButton:disabled {
+  opacity: 0.5;
+}
+
+.perkLink::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
 }
