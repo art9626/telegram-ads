@@ -20,7 +20,7 @@ export default function UserProvider({
   });
 
   if (userQuery.isLoading) return <Loader />;
-
+  if (userQuery.isError) return <div>{userQuery.error.message}</div>;
   return (
     <UserContext.Provider value={userQuery}>{children}</UserContext.Provider>
   );

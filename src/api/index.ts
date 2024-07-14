@@ -1,22 +1,9 @@
 import { retrieveLaunchParams } from "@tma.js/sdk-react";
 import axios, { AxiosResponse } from "axios";
-
-export const PROD_URL = "https://game.botsquad.win";
-// export const PROD_URL = "http://localhost:8000";
-export const BASE_URL = `${PROD_URL}/api/v1`;
-export const SOCKET_URL = `${PROD_URL}/api/ws`;
-export enum Endpoints {
-  AUTH = `/auth`,
-  USER = `${BASE_URL}/game/user`,
-  GAME_INFO = `${BASE_URL}/game/info`,
-  FRIENDS = `${BASE_URL}/game/user/friends`,
-  PERKS = `${BASE_URL}/game/perks`,
-  WATCHED = `${BASE_URL}/game/watched`,
-  ACHIEVEMENTS = `${BASE_URL}/game/achievements`,
-}
+import { Endpoints } from "./Endpoints";
 
 export const apiClient = axios.create({
-  baseURL: BASE_URL,
+  baseURL: Endpoints.BASE_URL,
   headers: { "Content-Type": "application/json" },
 });
 
@@ -62,7 +49,7 @@ apiClient.interceptors.response.use(
 
       try {
         const promise = axios.post<{ data: { token: string } }>(
-          `${BASE_URL}${Endpoints.AUTH}`,
+          `${Endpoints.BASE_URL}${Endpoints.AUTH}`,
           payload
         );
         refreshPromise = promise;

@@ -3,7 +3,7 @@ import { SDKProvider } from "@tma.js/sdk-react";
 import { THEME, TonConnectUIProvider } from "@tonconnect/ui-react";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import Auth from "./layout/Auth";
+import AuthProvider from "./providers/AuthProvider";
 import BaseLayout from "./layout/BaseLayout/BaseLayout";
 import MainPage from "./pages/MainPage";
 import PerkPage from "./pages/PerkPage";
@@ -27,7 +27,7 @@ function App() {
       <SDKProvider acceptCustomStyles debug>
         <QueryClientProvider client={queryClient}>
           <ServicesProvider>
-            <Auth>
+            <AuthProvider>
               <UserProvider>
                 <MiniAppLayout>
                   <BrowserRouter>
@@ -41,7 +41,7 @@ function App() {
                   </BrowserRouter>
                 </MiniAppLayout>
               </UserProvider>
-            </Auth>
+            </AuthProvider>
           </ServicesProvider>
           {/* <ReactQueryDevtools initialIsOpen={false} position="top" /> */}
         </QueryClientProvider>

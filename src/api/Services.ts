@@ -1,5 +1,6 @@
 import { InitData } from "@tma.js/sdk-react";
-import { Endpoints, apiClient } from ".";
+import { apiClient } from ".";
+import { Endpoints } from "./Endpoints";
 
 export interface WebsocketMessage {
   event: {
@@ -84,7 +85,9 @@ export interface Achievements {
 }
 
 export class Services {
-  authUser = async (initData: InitData) => {
+  authUser = async (initData?: InitData) => {
+    if (!initData) throw new Error("Init data is empty");
+
     const payload = {
       ...initData["initData"],
       authDate: new Date(initData.authDate).getTime(),
