@@ -58,7 +58,7 @@ export default function ShowAdButton() {
   };
 
   return (
-    <>
+    <div className={s.container}>
       <div className={s.coin} onClick={clickHandler}>
         <div
           className={classNames(s.front, {
@@ -71,6 +71,6 @@ export default function ShowAdButton() {
         </div>
       </div>
       <div className={s.shadow}></div>
-    </>
+    </div>
   );
 }

@@ -1,5 +1,6 @@
 import ShowAdButton from "../ShowAdButton/ShowAdButton";
 import UserInfo from "../UserInfo/UserInfo";
+import WatchCount from "../WatchCount";
 import s from "./adGame.module.css";
 
 export default function AdGame() {
@@ -7,17 +8,7 @@ export default function AdGame() {
     <div className={s.container}>
       <UserInfo />
       <ShowAdButton />
-      {/* <Text as="div" align="center">
-        Daily reward
-        <Box>
-          <StarIcon />
-          <StarIcon />
-          <StarIcon />
-          <StarIcon />
-          <StarIcon />
-        </Box>
-        <Button disabled={true}>Claim reward</Button>
-      </Text> */}
+      <WatchCount />
     </div>
   );
 }

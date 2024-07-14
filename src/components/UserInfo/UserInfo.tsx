@@ -20,11 +20,6 @@ export default function UserInfo() {
         <span>{balance}</span>
       </div>
       <span className={s.level}>Level {user?.game_data.level}</span>
-      {/* <div>
-        <div>
-          <Progress value={progress} max={100} size="3" />
-        </div>
-      </div> */}
     </div>
   );
 }
