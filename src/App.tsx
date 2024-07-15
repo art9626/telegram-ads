@@ -25,11 +25,11 @@ function App() {
       uiPreferences={{ theme: THEME.DARK }}
     >
       <SDKProvider acceptCustomStyles debug>
-        <QueryClientProvider client={queryClient}>
-          <ServicesProvider>
-            <AuthProvider>
-              <UserProvider>
-                <MiniAppLayout>
+        <MiniAppLayout>
+          <QueryClientProvider client={queryClient}>
+            <ServicesProvider>
+              <AuthProvider>
+                <UserProvider>
                   <BrowserRouter>
                     <Routes>
                       <Route path="/" element={<BaseLayout />}>
@@ -39,12 +39,12 @@ function App() {
                       </Route>
                     </Routes>
                   </BrowserRouter>
-                </MiniAppLayout>
-              </UserProvider>
-            </AuthProvider>
-          </ServicesProvider>
-          {/* <ReactQueryDevtools initialIsOpen={false} position="top" /> */}
-        </QueryClientProvider>
+                </UserProvider>
+              </AuthProvider>
+            </ServicesProvider>
+            {/* <ReactQueryDevtools initialIsOpen={false} position="top" /> */}
+          </QueryClientProvider>
+        </MiniAppLayout>
       </SDKProvider>
     </TonConnectUIProvider>
   );

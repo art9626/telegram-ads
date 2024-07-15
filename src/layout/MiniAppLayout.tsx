@@ -9,7 +9,7 @@ export default function MiniAppLayout({
   const app = useMiniApp();
   const viewPort = useViewport();
 
-  React.useEffect(() => {
+  React.useLayoutEffect(() => {
     viewPort?.expand();
     app.setBgColor("#0b0f27");
     app.setHeaderColor("#0b0f27");
