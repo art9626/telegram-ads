@@ -49,7 +49,7 @@ apiClient.interceptors.response.use(
 
       try {
         const promise = axios.post<{ data: { token: string } }>(
-          `${Endpoints.BASE_URL}${Endpoints.AUTH}`,
+          `${Endpoints.AUTH}`,
           payload
         );
         refreshPromise = promise;

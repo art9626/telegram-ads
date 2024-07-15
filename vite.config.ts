@@ -13,4 +13,7 @@ export default defineConfig({
       localsConvention: "camelCase",
     },
   },
+  build: {
+    target: "es2020",
+  },
 });
