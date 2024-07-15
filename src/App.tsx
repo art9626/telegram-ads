@@ -7,7 +7,7 @@ import AuthProvider from "./providers/AuthProvider";
 import BaseLayout from "./layout/BaseLayout/BaseLayout";
 import MainPage from "./pages/MainPage";
 import PerkPage from "./pages/PerkPage";
-import MiniAppLayout from "./layout/MiniAppLayout";
+// import MiniAppLayout from "./layout/MiniAppLayout";
 import UserProvider from "./providers/UserProvider";
 import ServicesProvider from "./providers/ServicesProvider";
 // import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
@@ -25,26 +25,26 @@ function App() {
       uiPreferences={{ theme: THEME.DARK }}
     >
       <SDKProvider acceptCustomStyles debug>
-        <MiniAppLayout>
-          <QueryClientProvider client={queryClient}>
-            <ServicesProvider>
-              <AuthProvider>
-                <UserProvider>
-                  <BrowserRouter>
-                    <Routes>
-                      <Route path="/" element={<BaseLayout />}>
-                        <Route index element={<MainPage />} />
-                        <Route path="/perk" element={<PerkPage />} />
-                        <Route path="*" element={<Navigate to="/" />} />
-                      </Route>
-                    </Routes>
-                  </BrowserRouter>
-                </UserProvider>
-              </AuthProvider>
-            </ServicesProvider>
-            {/* <ReactQueryDevtools initialIsOpen={false} position="top" /> */}
-          </QueryClientProvider>
-        </MiniAppLayout>
+        {/* <MiniAppLayout> */}
+        <QueryClientProvider client={queryClient}>
+          <ServicesProvider>
+            <AuthProvider>
+              <UserProvider>
+                <BrowserRouter>
+                  <Routes>
+                    <Route path="/" element={<BaseLayout />}>
+                      <Route index element={<MainPage />} />
+                      <Route path="/perk" element={<PerkPage />} />
+                      <Route path="*" element={<Navigate to="/" />} />
+                    </Route>
+                  </Routes>
+                </BrowserRouter>
+              </UserProvider>
+            </AuthProvider>
+          </ServicesProvider>
+          {/* <ReactQueryDevtools initialIsOpen={false} position="top" /> */}
+        </QueryClientProvider>
+        {/* </MiniAppLayout> */}
       </SDKProvider>
     </TonConnectUIProvider>
   );
