@@ -11,7 +11,7 @@ export default function WatchCount() {
   } = user;
 
   return (
-    <div style={{ marginTop: "auto" }}>
+    <div>
       <Progress max={max_watch_count} value={available_watch_count} />
     </div>
   );

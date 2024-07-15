@@ -1,10 +1,7 @@
 .container {
   display: flex;
   flex-direction: column;
+  justify-content: space-around;
   align-items: center;
   height: 100%;
-}
-
-.container > div:first-child {
-  margin-bottom: 60px;
 }

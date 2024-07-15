@@ -1,7 +1,7 @@
 import React from "react";
 import { useQueryClient } from "@tanstack/react-query";
 import { Outlet } from "react-router-dom";
-import Header from "../../components/Header";
+import Header from "../../components/Header/Header";
 import { Endpoints } from "../../api/Endpoints";
 import s from "./base-layout.module.css";
 import { GameUser } from "../../api/Services";

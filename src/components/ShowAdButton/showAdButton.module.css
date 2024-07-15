@@ -1,7 +1,10 @@
 .container {
+  --top-padding: 10px;
+
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding-top: var(--top-padding);
 }
 
 .jump {
@@ -13,7 +16,7 @@
     top: 0;
   }
   50% {
-    top: -10px;
+    top: var(--top-padding);
   }
   100% {
     top: 0;
