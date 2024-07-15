@@ -8,7 +8,7 @@ export const Endpoints = {
     return `${this.PROD_URL}/api/ws`;
   },
   get AUTH() {
-    return `${this.BASE_URL}/auth!!!`;
+    return `${this.BASE_URL}/auth`;
   },
   get USER() {
     return `${this.BASE_URL}/game/user`;
