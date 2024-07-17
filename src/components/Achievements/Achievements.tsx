@@ -16,10 +16,8 @@ export default function Achievements() {
     <div className={s.container}>
       <UserInfo/>
       <ul className={s.achievementsList}>
-        {achievements?.achievements
-          .sort((a, b) => a.id - b.id)
-          .map((achievement: IAchievement) => {
-            return <Achievement achievement={achievement} key={achievement.id} />;
+        {achievements?.achievements.map((achievement: IAchievement) => {
+          return <Achievement achievement={achievement} key={achievement.id} />;
         })}
       </ul>
     </div>

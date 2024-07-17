@@ -44,7 +44,7 @@ export function Perk({ perk }: { perk: IPerk }) {
   return (
     <li className={s.perksItem}>
       <div className={s.itemContent}>
-        <h4>{perk.name}</h4>
+        <h4>{perk.name} {perk.level}</h4>
         <div>
           <span>{Math.floor(perk.requirements.cost / 10e9)}$</span>
           <span>{perk.requirements.game_level} level</span>

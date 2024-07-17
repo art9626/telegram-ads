@@ -15,6 +15,7 @@ export default function Friends() {
     <div>
       <h3>Friends</h3>
       <div>Your ref link: {friendList?.ref_link}</div>
+      <div>Earned: {friendList?.earned_by_refs}</div>
       {hasFriends ? (
         friendList.friends.map((friend, index) => (
           <FriendElement key={index} friend={friend} />

@@ -46,6 +46,7 @@ export interface Friend {
 export interface UserFriends {
   friends: Friend[];
   ref_link: string;
+  earned_by_refs: number
 }
 
 export interface GameGlobalInfo {
