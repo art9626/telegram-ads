@@ -10,7 +10,7 @@ import * as RTabs from "@radix-ui/react-tabs";
 import AdGame from "../AdGame/AdGame.tsx";
 import Tasks from "../Tasks.tsx";
 import Friends from "../Friends.tsx";
-import Achievements from "../Achievements.tsx";
+import Achievements from "../Achievements/Achievements.tsx";
 import Perks from "../Perks/Perks.tsx";
 import s from "./tabs.module.css";
 import { useLocation } from "react-router-dom";

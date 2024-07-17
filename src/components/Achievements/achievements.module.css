@@ -1,0 +1,71 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.achievementsList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-height: 50vh;
+  overflow-x: scroll;
+}
+
+.achievementsItem {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0 10px 20px;
+  border: 2px solid var(--stroke-default);
+  border-radius: var(--border-radius);
+  background-color: var(--background-default);
+}
+
+.achievementsItem h4 {
+  margin: 0;
+}
+
+.iconWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+}
+
+.upButton {
+  position: relative;
+  z-index: 1;
+  top: 0;
+  width: 100px;
+  padding: 5px;
+  border: none;
+  border-radius: var(--border-radius);
+  background: var(--button-primary-default);
+  box-shadow: 0px 4px 0px var(--button-primary-pressed);
+  color: var(--text-primary);
+  font-size: 16px;
+  line-height: 21px;
+  transition: all 0.1s ease;
+}
+
+.upButton:active:not(:disabled) {
+  top: 3px;
+  box-shadow: 0px 1px 0px var(--button-primary-pressed);
+}
+
+.upButton:disabled {
+  opacity: 0.5;
+}
+
+.achievementLink::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+}

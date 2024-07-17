@@ -72,7 +72,7 @@ export interface PerkRequirements {
   cost: number;
 }
 
-export interface Achievement {
+export interface IAchievement {
   id: number;
   description: string;
   name: string;
@@ -80,8 +80,8 @@ export interface Achievement {
   claimed: boolean;
 }
 
-export interface Achievements {
-  achievements: Achievement[];
+export interface IAchievements {
+  achievements: IAchievement[];
 }
 
 export class Services {
@@ -140,7 +140,7 @@ export class Services {
 
   getAchievements = async () => {
     return apiClient
-      .get<{ data: Achievements }>(Endpoints.ACHIEVEMENTS)
+      .get<{ data: IAchievements }>(Endpoints.ACHIEVEMENTS)
       .then((res) => res.data.data);
   };
 
