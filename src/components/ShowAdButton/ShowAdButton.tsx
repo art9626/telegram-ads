@@ -34,27 +34,32 @@ export default function ShowAdButton() {
 
   const clickHandler = () => {
     hf.impactOccurred("medium");
-    setLoading(true);
 
-    // @ts-expect-error Adsgram defined by script in index.html
-    const AdController = window.Adsgram.init({
-      blockId: "239",
-      debug: true,
-    });
+    if (import.meta.env.DEV) {
+      mutation.mutate();
+    } else {
+      setLoading(true);
 
-    AdController.show()
-      .then((result: ShowPromiseResult) => {
-        // TODO: send to BE
-        console.log(result);
-        return mutation.mutate();
-      })
-      .catch((result: ShowPromiseResult) => {
-        AdController.destroy();
-        console.error(result);
-      })
-      .finally(() => {
-        setLoading(false);
+      // @ts-expect-error Adsgram defined by script in index.html
+      const AdController = window.Adsgram.init({
+        blockId: "239",
+        debug: true,
       });
+
+      AdController.show()
+        .then((result: ShowPromiseResult) => {
+          // TODO: send to BE
+          console.log(result);
+          return mutation.mutate();
+        })
+        .catch((result: ShowPromiseResult) => {
+          AdController.destroy();
+          console.error(result);
+        })
+        .finally(() => {
+          setLoading(false);
+        });
+    }
   };
 
   return (
