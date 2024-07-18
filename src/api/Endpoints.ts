@@ -1,6 +1,6 @@
 export const Endpoints = {
-  PROD_URL: "https://game.botsquad.win",
-  // PROD_URL:"http://localhost:8000",
+  // PROD_URL: "https://game.botsquad.win",
+  PROD_URL:"http://localhost:8000",
   get BASE_URL() {
     return `${this.PROD_URL}/api/v1`;
   },
@@ -28,4 +28,7 @@ export const Endpoints = {
   get ACHIEVEMENTS() {
     return `${this.BASE_URL}/game/achievements`;
   },
+  get DAILY() {
+    return `${this.BASE_URL}/game/daily`;
+  }
 };
