@@ -14,7 +14,12 @@ export default function Achievements() {
 
   // TODO tmp
   if (!achievements || achievements.achievements.length === 0) {
-    return <div>You have no achievements</div>;
+    return (
+      <div className={s.container}>
+        <UserInfo />
+        <div>You have no achievements</div>
+      </div>
+    );
   }
 
   const newAchievements: IAchievement[] = [];
