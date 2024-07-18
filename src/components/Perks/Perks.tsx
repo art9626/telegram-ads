@@ -46,9 +46,7 @@ export function Perk({ perk }: { perk: IPerk }) {
       <div className={s.itemContent}>
         <h4>{perk.name} {perk.level}</h4>
         <div>
-          <span>{Math.floor(perk.requirements.cost / 10e9)}$</span>
-          <span>{perk.requirements.game_level} level</span>
-          <span>{perk.requirements.friends_count} friends</span>
+          <span>{perk.effect}</span>
         </div>
         <button
           className={s.upButton}
@@ -58,7 +56,7 @@ export function Perk({ perk }: { perk: IPerk }) {
             mutation.mutate(perk.id);
           }}
         >
-          UP
+          {Math.floor(perk.requirements.cost / 10e9)}$
         </button>
         <Link className={s.perkLink} to="/perk" state={perk} />
       </div>

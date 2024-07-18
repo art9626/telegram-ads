@@ -54,6 +54,8 @@ export interface IPerk {
   id: number;
   name: string;
   description: string;
+  effect: string;
+  synergy: string;
   available: boolean;
   level: number;
   max_level: number;
