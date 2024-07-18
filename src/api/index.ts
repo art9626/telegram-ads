@@ -40,7 +40,7 @@ apiClient.interceptors.response.use(
       if (!initData) throw new Error("Init data is empty");
       const payload = {
         ...initData,
-        authDate: new Date(initData.authDate).getTime(),
+        authDate: initData.authDate.getTime(),
       };
       if (initData["chatInstance"]) {
         // @ts-expect-error fix
