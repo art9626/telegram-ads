@@ -2,13 +2,6 @@ import { InitData } from "@tma.js/sdk-react";
 import { apiClient } from ".";
 import { Endpoints } from "./Endpoints";
 
-export interface WebsocketMessage {
-  event: {
-    type: string;
-    message: object;
-  };
-}
-
 export interface GameData {
   balance: number;
   total: number;
@@ -91,11 +84,13 @@ export class Services {
 
     const payload = {
       ...initData["initData"],
-      authDate: new Date(initData.authDate).getTime(),
+      authDate: initData.authDate.getTime(),
     };
+
     if (initData["chatInstance"]) {
       payload.chatInstance = parseInt(initData["chatInstance"]);
     }
+
     return apiClient
       .post<{ data: { token: string } }>(Endpoints.AUTH, payload, {})
       .then((res) => {

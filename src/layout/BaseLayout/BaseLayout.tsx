@@ -4,7 +4,7 @@ import { Outlet } from "react-router-dom";
 import Header from "../../components/Header/Header";
 import { Endpoints } from "../../api/Endpoints";
 import s from "./base-layout.module.css";
-import { GameUser } from "../../api/Services";
+import {handleWebsocketMessage} from "../../api/Websocket.ts";
 
 export default function BaseLayout() {
   const queryClient = useQueryClient();
@@ -15,23 +15,7 @@ export default function BaseLayout() {
 
   React.useEffect(() => {
     const ws = socket.current;
-
-    ws.onmessage = (message) => {
-      const data = JSON.parse(message.data);
-      if (data.event.type === "new_ad") {
-        queryClient.setQueryData<GameUser>(["user"], (oldData) => {
-          if (!oldData) return;
-          return {
-            ...oldData,
-            game_data: {
-              ...oldData.game_data,
-              available_watch_count: data.event.message.available_count,
-            },
-          };
-        });
-      }
-    };
-
+    ws.onmessage = (message) => handleWebsocketMessage(message, queryClient)
     return () => ws.close();
   }, [queryClient]);
 
