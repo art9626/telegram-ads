@@ -4,7 +4,7 @@ import { useBackButton } from "@tma.js/sdk-react";
 import React from "react";
 
 export default function PerkPage() {
-  const { name, description, effect, synergy } = useLocation().state as IPerk;
+  const { name, description, effect, synergy, requirements } = useLocation().state as IPerk;
   const navigate = useNavigate();
   const bb = useBackButton();
 
@@ -24,6 +24,11 @@ export default function PerkPage() {
   return (
     <div>
       <h1>{name}</h1>
+      <p>
+        Requirements:
+        <span>Level: {requirements.game_level}</span>
+        <span>Friends invited: {requirements.friends_count}</span>
+      </p>
       <p>{description}</p>
       <p>{effect}</p>
       <p>{synergy}</p>
