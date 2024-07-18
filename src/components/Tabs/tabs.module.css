@@ -19,6 +19,7 @@
 }
 
 .trigger {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -30,6 +31,20 @@
   border-radius: var(--border-radius);
   background-color: var(--background-default);
   color: var(--text-primary);
+}
+
+.trigger.indicate::before {
+  --d: 12px;
+
+  content: "";
+  position: absolute;
+  top: calc(var(--d) / 2.5 * -1);
+  right: calc(var(--d) / 2.5 * -1);
+  width: var(--d);
+  height: var(--d);
+  border-radius: 50%;
+  /* TODO tmp */
+  background-color: red;
 }
 
 .trigger > svg {

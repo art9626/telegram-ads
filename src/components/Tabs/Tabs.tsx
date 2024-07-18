@@ -15,6 +15,8 @@ import Perks from "../Perks/Perks.tsx";
 import s from "./tabs.module.css";
 import { useLocation } from "react-router-dom";
 import { useHapticFeedback } from "@tma.js/sdk-react";
+import { useAchievements } from "../../providers/AchievementsProvider.tsx";
+import classNames from "classnames";
 
 enum TabTypes {
   AD_GAME = "AD_GAME",
@@ -39,7 +41,6 @@ const tabs: ITab[] = [
 ];
 
 export default function Tabs() {
-  const hf = useHapticFeedback();
   const location = useLocation();
   const defaultTab = location.state?.tab;
 
@@ -60,23 +61,35 @@ export default function Tabs() {
         );
       })}
       <RTabs.List className={s.list}>
-        {tabs.map(({ key, icon, title }) => {
-          return (
-            <RTabs.Trigger
-              key={key}
-              value={key}
-              className={s.trigger}
-              onClick={() => hf.selectionChanged()}
-            >
-              {icon}
-              {title}
-            </RTabs.Trigger>
-          );
+        {tabs.map((tab) => {
+          return <Trigger key={tab.key} tab={tab} />;
         })}
       </RTabs.List>
     </RTabs.Root>
   );
 }
+
+const Trigger = React.memo(({ tab: { key, icon, title } }: { tab: ITab }) => {
+  const hf = useHapticFeedback();
+  const { data: achievements } = useAchievements();
+
+  const hasNewAchievements = achievements?.some((a) => !a.claimed);
+
+  const className = classNames(s.trigger, {
+    [s.indicate]: hasNewAchievements && key === TabTypes.ACHIEVEMENTS,
+  });
+
+  return (
+    <RTabs.Trigger
+      value={key}
+      className={className}
+      onClick={() => hf.selectionChanged()}
+    >
+      {icon}
+      {title}
+    </RTabs.Trigger>
+  );
+});
 
 const Content = React.memo(({ type }: { type: TabTypes }) => {
   switch (type) {

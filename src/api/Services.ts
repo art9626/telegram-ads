@@ -148,13 +148,15 @@ export class Services {
   getAchievements = async () => {
     return apiClient
       .get<{ data: { achievements: IAchievement[] } }>(Endpoints.ACHIEVEMENTS)
-      .then((res) => res.data.data);
+      .then((res) => res.data.data.achievements);
   };
 
   claimAchievement = async (id: number) => {
     return apiClient
-      .post<{ data: GameData }>(`${Endpoints.ACHIEVEMENTS}/${id}`)
-      .then((res) => res.data.data);
+      .post<{ data: { achievements: IAchievement[] } }>(
+        `${Endpoints.ACHIEVEMENTS}/${id}`
+      )
+      .then((res) => res.data.data.achievements);
   };
 
   getDailyRewards = async () => {

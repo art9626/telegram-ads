@@ -78,8 +78,7 @@ export default function useWS() {
             ["achievements"],
             (oldData) => {
               if (!oldData) return;
-              oldData.push(event.message);
-              return oldData;
+              return [...oldData, event.message];
             }
           );
 
