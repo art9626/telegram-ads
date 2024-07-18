@@ -91,19 +91,16 @@ export function handleWebsocketMessage(message: MessageEvent, queryClient: Query
   if (isNewAchievementMessage(data)) {
     queryClient.setQueryData<IAchievements>(["achievements"], (oldData) => {
       if (!oldData) return;
-      return {
-        ...oldData,
-        achievements: {
-          ...oldData.achievements,
-          [oldData.achievements.length]: {
-            id: data.event.message.id,
-            name: data.event.message.name,
-            description: data.event.message.description,
-            reward: data.event.message.reward,
-            claimed: data.event.message.claimed,
-          },
-        },
-      }
+
+      oldData.achievements.push({
+        id: data.event.message.id,
+        name: data.event.message.name,
+        description: data.event.message.description,
+        reward: data.event.message.reward,
+        claimed: data.event.message.claimed,
+      })
+
+      return oldData
     })
   }
 
