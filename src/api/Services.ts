@@ -76,6 +76,19 @@ export interface IAchievement {
   claimed: boolean;
 }
 
+export interface DailyRewards {
+  current_streak: number;
+  last_claim_date: number;
+  can_claim: boolean;
+  rewards: DailyReward[];
+}
+
+export interface DailyReward {
+  day: number;
+  coins: number;
+  xp: number;
+}
+
 export class Services {
   authUser = async (initData?: InitData) => {
     if (!initData) throw new Error("Init data is empty");
@@ -141,6 +154,18 @@ export class Services {
   claimAchievement = async (id: number) => {
     return apiClient
       .post<{ data: GameData }>(`${Endpoints.ACHIEVEMENTS}/${id}`)
+      .then((res) => res.data.data);
+  };
+
+  getDailyRewards = async () => {
+    return apiClient
+      .get<{ data: DailyRewards }>(Endpoints.DAILY)
+      .then((res) => res.data.data);
+  };
+
+  claimDailyReward = async () => {
+    return apiClient
+      .post<{ data: DailyRewards }>(Endpoints.DAILY)
       .then((res) => res.data.data);
   };
 }

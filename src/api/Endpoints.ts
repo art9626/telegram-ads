@@ -28,4 +28,7 @@ export const Endpoints = {
   get ACHIEVEMENTS() {
     return `${this.BASE_URL}/game/achievements`;
   },
+  get DAILY() {
+    return `${this.BASE_URL}/game/daily`;
+  }
 };
