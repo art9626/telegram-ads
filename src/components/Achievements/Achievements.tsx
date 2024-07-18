@@ -1,8 +1,8 @@
-import {IAchievement} from "../../api/Services";
-import {useServices} from "../../providers/ServicesProvider.tsx";
-import {useMutation, useQuery, useQueryClient} from "@tanstack/react-query";
+import { IAchievement } from "../../api/Services";
+import { useServices } from "../../providers/ServicesProvider.tsx";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import s from "./achievements.module.css";
-import {useHapticFeedback} from "@tma.js/sdk-react";
+import { useHapticFeedback } from "@tma.js/sdk-react";
 import UserInfo from "../UserInfo/UserInfo.tsx";
 
 export default function Achievements() {
@@ -12,13 +12,33 @@ export default function Achievements() {
     queryFn: getAchievements,
   });
 
+  // TODO tmp
+  if (!achievements || achievements.achievements.length === 0) {
+    return <div>You have no achievements</div>;
+  }
+
+  const newAchievements: IAchievement[] = [];
+  const claimedAchievements: IAchievement[] = [];
+
+  for (const a of achievements.achievements) {
+    if (a.claimed) {
+      claimedAchievements.push(a);
+    } else {
+      newAchievements.push(a);
+    }
+  }
+
   return (
     <div className={s.container}>
-      <UserInfo/>
+      <UserInfo />
       <ul className={s.achievementsList}>
-        {achievements?.achievements.map((achievement: IAchievement) => {
-          return <Achievement achievement={achievement} key={achievement.id} />;
-        })}
+        {newAchievements
+          .concat(claimedAchievements)
+          .map((achievement: IAchievement) => {
+            return (
+              <Achievement achievement={achievement} key={achievement.id} />
+            );
+          })}
       </ul>
     </div>
   );

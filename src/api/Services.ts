@@ -39,7 +39,7 @@ export interface Friend {
 export interface UserFriends {
   friends: Friend[];
   ref_link: string;
-  earned_by_refs: number
+  earned_by_refs: number;
 }
 
 export interface GameGlobalInfo {
@@ -74,10 +74,6 @@ export interface IAchievement {
   name: string;
   reward: number;
   claimed: boolean;
-}
-
-export interface IAchievements {
-  achievements: IAchievement[];
 }
 
 export class Services {
@@ -138,7 +134,7 @@ export class Services {
 
   getAchievements = async () => {
     return apiClient
-      .get<{ data: IAchievements }>(Endpoints.ACHIEVEMENTS)
+      .get<{ data: { achievements: IAchievement[] } }>(Endpoints.ACHIEVEMENTS)
       .then((res) => res.data.data);
   };
 
