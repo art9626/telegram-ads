@@ -1,6 +1,6 @@
 import ShowAdButton from "../ShowAdButton/ShowAdButton";
 import UserInfo from "../UserInfo/UserInfo";
-import WatchCount from "../WatchCount";
+import WatchProgress from "../WatchProgress.tsx";
 import s from "./adGame.module.css";
 
 export default function AdGame() {
@@ -8,7 +8,7 @@ export default function AdGame() {
     <div className={s.container}>
       <UserInfo />
       <ShowAdButton />
-      <WatchCount />
+      <WatchProgress />
     </div>
   );
 }

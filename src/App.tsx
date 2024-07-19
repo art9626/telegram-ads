@@ -11,6 +11,7 @@ import MiniAppLayout from "./layout/MiniAppLayout";
 import UserProvider from "./providers/UserProvider";
 import ServicesProvider from "./providers/ServicesProvider";
 import AchievementsProvider from "./providers/AchievementsProvider";
+import InfoPage from "./pages/InfoPage.tsx";
 // import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 const queryClient = new QueryClient();
@@ -37,6 +38,7 @@ function App() {
                         <Route path="/" element={<BaseLayout />}>
                           <Route index element={<MainPage />} />
                           <Route path="/perk" element={<PerkPage />} />
+                          <Route path="/info" element={<InfoPage />} />
                           <Route path="*" element={<Navigate to="/" />} />
                         </Route>
                       </Routes>
