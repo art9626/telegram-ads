@@ -76,14 +76,14 @@ export interface IAchievement {
   claimed: boolean;
 }
 
-export interface DailyRewards {
+export interface IDailyRewards {
   current_streak: number;
   last_claim_date: number;
   can_claim: boolean;
-  rewards: DailyReward[];
+  rewards: IDailyReward[];
 }
 
-export interface DailyReward {
+export interface IDailyReward {
   day: number;
   coins: number;
   xp: number;
@@ -161,13 +161,13 @@ export class Services {
 
   getDailyRewards = async () => {
     return apiClient
-      .get<{ data: DailyRewards }>(Endpoints.DAILY)
+      .get<{ data: IDailyRewards }>(Endpoints.DAILY)
       .then((res) => res.data.data);
   };
 
   claimDailyReward = async () => {
     return apiClient
-      .post<{ data: DailyRewards }>(Endpoints.DAILY)
+      .post<{ data: IDailyRewards }>(Endpoints.DAILY)
       .then((res) => res.data.data);
   };
 }
