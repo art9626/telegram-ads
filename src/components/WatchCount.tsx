@@ -1,7 +1,7 @@
 import { useUser } from "../providers/UserProvider";
 import Progress from "./ui/Progress/Progress";
 
-export default function WatchProgress() {
+export default function WatchCount() {
   const { data: user } = useUser();
 
   if (!user) return null;
@@ -12,7 +12,7 @@ export default function WatchProgress() {
 
   return (
     <div>
-      <Progress max={max_watch_count} value={available_watch_count} showLabel={true}/>
+      <Progress max={max_watch_count} value={available_watch_count} />
     </div>
   );
 }

@@ -13,15 +13,6 @@
 
   --button-primary-default: #ffbd0b;
   --button-primary-pressed: #d57e08;
-  --font-size-sm: 10px;
-  --font-size-md: 14px;
-  --font-size-lg: 18px;
-  --font-size-xl: 22px;
-}
-
-a {
-  text-decoration: none;
-  color: var(--text-primary);
 }
 
 .roboto-light {
