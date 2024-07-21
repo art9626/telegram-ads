@@ -7,7 +7,6 @@ import UserInfo from "../UserInfo/UserInfo.tsx";
 import { useAchievements } from "../../providers/AchievementsProvider.tsx";
 import { numberSeparatedBySpaces } from "../../utils/convert.ts";
 import s from "./achievements.module.css";
-import classNames from "classnames";
 import Dialog from "../ui/Dialog/Dialog.tsx";
 
 export default function Achievements() {
@@ -51,11 +50,8 @@ export default function Achievements() {
   );
 }
 
-export function Achievement({
-  achievement: { name, reward, claimed, id, description },
-}: {
-  achievement: IAchievement;
-}) {
+export function Achievement({ achievement }: { achievement: IAchievement }) {
+  const { name, reward, claimed, id, description } = achievement;
   const { claimAchievement } = useServices();
   const hf = useHapticFeedback();
   const queryClient = useQueryClient();
@@ -81,9 +77,10 @@ export function Achievement({
 
   const trigger = (
     <button
-      className={classNames(s.claimButton, { [s.claimed]: claimed })}
+      className={s.claimButton}
       onMouseDown={() => hf.impactOccurred("medium")}
       onClick={clickHandler}
+      disabled={claimed}
     >
       <div className={s.content}>
         <div className={s.info}>
@@ -97,24 +94,36 @@ export function Achievement({
     </button>
   );
 
-  const content = (
-    <div>
-      <p>{description}</p>
-      <div></div> {numberSeparatedBySpaces(Math.floor(reward / 10e9))}
-    </div>
-  );
-
   return (
     <li className={s.achievementsItem}>
       <Dialog
         open={open}
         trigger={trigger}
         onOpenChange={(o) => o === false && setOpen(o)}
-        title={name}
+        // title={name}
       >
-        {content}
+        <DialogContent achievement={achievement} />
       </Dialog>
     </li>
+  );
+}
+
+function DialogContent({
+  achievement: { reward },
+}: {
+  achievement: IAchievement;
+}) {
+  const hf = useHapticFeedback();
+
+  React.useEffect(() => {
+    hf.impactOccurred("rigid");
+  }, [hf]);
+
+  return (
+    <div className={s.dialogContent}>
+      {/* <p>{description}</p> */}+
+      {numberSeparatedBySpaces(Math.floor(reward / 10e9))}
+    </div>
   );
 }
 
