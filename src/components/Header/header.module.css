@@ -10,10 +10,11 @@
   text-transform: none;
 }
 
-.info {
+.infoLink {
   border-color: var(--button-primary-default);
   background-color: var(--background-active);
   border: 2px solid var(--stroke-default);
   border-radius: var(--border-radius);
   padding: 10px;
+  color: var(--text-primary);
 }
