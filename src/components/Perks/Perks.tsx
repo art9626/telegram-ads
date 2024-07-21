@@ -33,7 +33,7 @@ export function Perk({ perk }: { perk: IPerk }) {
   const { applyPerk } = useServices();
   const hf = useHapticFeedback();
   const queryClient = useQueryClient();
-  const mutation = useMutation({
+  const { mutate, isPending } = useMutation({
     mutationFn: applyPerk,
     onSuccess: (data) => {
       queryClient.setQueryData(["perks"], data);
@@ -44,16 +44,19 @@ export function Perk({ perk }: { perk: IPerk }) {
   return (
     <li className={s.perksItem}>
       <div className={s.itemContent}>
-        <h4>{perk.name} {perk.level}</h4>
+        <h4>
+          {perk.name} {perk.level}
+        </h4>
         <div>
           <span>{perk.effect}</span>
         </div>
         <button
           className={s.upButton}
           disabled={!perk.available}
+          onMouseDown={() => hf.impactOccurred("medium")}
           onClick={() => {
-            hf.impactOccurred("medium");
-            mutation.mutate(perk.id);
+            if (isPending) return;
+            mutate(perk.id);
           }}
         >
           {Math.floor(perk.requirements.cost / 10e9)}$
