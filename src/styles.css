@@ -1,13 +1,28 @@
 :root {
   --border-radius: 10px;
 
-  --accent-gold: #f9de7c;
+  --gold: #f9de7c;
 
   --text-primary: #fff;
   --text-secondary: #413d51;
+  --orange: #ffbd0b;
+  --orange-dark: #d57e08;
 
-  --background: #0b0f27;
-  --background-secondary: #efefef;
+  --background: linear-gradient(0deg, #5e54001f, #5e54001f),
+    radial-gradient(
+      209.53% 77.55% at 50% 117.48%,
+      #3d3447c4 21.44%,
+      #0b0f2700 69.66%
+    ),
+    radial-gradient(
+      302.81% 225.94% at 120.64% -30.92%,
+      #3d3447c4 12.81%,
+      #0b0f2700 58.46%
+    ),
+    #90769c;
+
+  --background-color-secondary: #efefef;
+
   --background-default: rgba(0, 0, 0, 0.1);
   --background-active: rgba(255, 206, 104, 0.05);
 
@@ -61,18 +76,7 @@ body {
   line-height: 1.5;
   font-weight: 400;
   color: var(--text-primary);
-  background: linear-gradient(0deg, #5e54001f, #5e54001f),
-    radial-gradient(
-      209.53% 77.55% at 50% 117.48%,
-      #472b6ac4 21.44%,
-      #0b0f2700 69.66%
-    ),
-    radial-gradient(
-      302.81% 225.94% at 120.64% -30.92%,
-      #472b6ac4 12.81%,
-      #0b0f2700 58.46%
-    ),
-    #0b0f27;
+  background: var(--background);
 }
 
 #root {

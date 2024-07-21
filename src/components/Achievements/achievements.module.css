@@ -16,6 +16,7 @@
 .claimButton {
   top: 0;
   width: 100%;
+  padding: 5px 10px;
   overflow: hidden;
   color: var(--text-secondary);
 }
@@ -46,7 +47,7 @@
 }
 
 .claimButton:disabled {
-  border: 2px solid var(--button-primary-default);
+  border: 2px solid var(--orange);
   background-color: var(--background-active);
   color: var(--text-primary);
   box-shadow: none;

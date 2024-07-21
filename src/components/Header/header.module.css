@@ -11,7 +11,7 @@
 }
 
 .infoLink {
-  border-color: var(--button-primary-default);
+  border-color: var(--orange);
   background-color: var(--background-active);
   border: 2px solid var(--stroke-default);
   border-radius: var(--border-radius);

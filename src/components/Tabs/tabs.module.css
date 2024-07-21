@@ -52,6 +52,6 @@
 }
 
 .trigger[data-state="active"] {
-  border-color: var(--button-primary-default);
+  border-color: var(--orange);
   background-color: var(--background-active);
 }

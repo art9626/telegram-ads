@@ -114,11 +114,11 @@ function DialogContent({
 }: {
   achievement: IAchievement;
 }) {
-  const hf = useHapticFeedback();
+  // const hf = useHapticFeedback();
 
-  React.useEffect(() => {
-    hf.impactOccurred("rigid");
-  }, [hf]);
+  // React.useEffect(() => {
+  //   hf.impactOccurred("heavy");
+  // }, [hf]);
 
   return (
     <div className={s.dialogContent}>

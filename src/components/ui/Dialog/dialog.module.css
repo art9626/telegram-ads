@@ -23,7 +23,7 @@
   left: 0;
   padding: 25px;
   border-radius: var(--border-radius);
-  background-color: var(--background);
+  background: var(--background);
   animation: contentShow 0.2s ease-out;
 }
 
@@ -53,6 +53,6 @@
   width: 35px;
   border: none;
   border-radius: 100%;
-  background-color: var(--background-secondary);
+  background-color: var(--background-color-secondary);
   color: var(--text-secondary);
 }
