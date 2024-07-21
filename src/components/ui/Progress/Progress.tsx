@@ -1,26 +1,34 @@
 import * as RProgress from "@radix-ui/react-progress";
 import s from "./progress.module.css";
+import classNames from "classnames";
+
+type TVariants = "sm" | "md" | "lg";
 
 interface IProgressProps extends RProgress.ProgressProps {
-  size?: "sm" | "md" | "lg";
-  showLabel?: boolean;
+  size?: TVariants;
+  label?: string;
 }
 
-export default function Progress(props: IProgressProps) {
+const variants: Record<TVariants, string> = {
+  sm: s.sm,
+  lg: s.lg,
+  md: s.md,
+};
+
+export default function Progress({ size, label, ...props }: IProgressProps) {
+  const variantClass = size ? variants[size] : variants.md;
   const max = props.max ?? 10;
   const value = props.value ?? 5;
-  const size = props.size ?? 'md'
-  const showLabel = props.showLabel ?? false;
 
   return (
-    <RProgress.Root {...props} className={`${s.root} ${s[size]}`}>
+    <RProgress.Root {...props} className={classNames(s.root, variantClass)}>
       <RProgress.Indicator
         className={s.indicator}
         style={{
           transform: `translateX(-${100 - (value * 100) / max}%)`,
         }}
       />
-      <div className={s.progressLabel}>{showLabel ? `${value}/${max}` : ""}</div>
+      {!!label && <div className={s.label}>{label}</div>}
     </RProgress.Root>
   );
 }

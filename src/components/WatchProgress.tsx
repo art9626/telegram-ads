@@ -11,8 +11,11 @@ export default function WatchProgress() {
   } = user;
 
   return (
-    <div>
-      <Progress max={max_watch_count} value={available_watch_count} showLabel={true}/>
-    </div>
+    <Progress
+      max={max_watch_count}
+      value={available_watch_count}
+      label={`${available_watch_count}/${max_watch_count}`}
+      style={{ maxWidth: "80vw" }}
+    />
   );
 }

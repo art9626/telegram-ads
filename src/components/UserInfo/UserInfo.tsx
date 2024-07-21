@@ -1,7 +1,7 @@
 import { useUser } from "../../providers/UserProvider";
 import s from "./userInfo.module.css";
 import { numberSeparatedBySpaces } from "../../utils/convert";
-import LevelProgress from "../LevelProgress.tsx";
+// import LevelProgress from "../LevelProgress.tsx";
 
 export default function UserInfo() {
   const { data: user } = useUser();
@@ -19,7 +19,7 @@ export default function UserInfo() {
         <span>{balance}</span>
       </div>
       <span className={s.level}>Level {user?.game_data.level}</span>
-      <LevelProgress/>
+      {/* <LevelProgress/> */}
     </div>
   );
 }
