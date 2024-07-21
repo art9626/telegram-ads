@@ -1,10 +1,10 @@
-import {useServices} from "../../providers/ServicesProvider.tsx";
-import {useMutation, useQuery, useQueryClient} from "@tanstack/react-query";
+import { useServices } from "../../providers/ServicesProvider.tsx";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import s from "./rewards.module.css";
-import {IDailyReward} from "../../api/Services.ts";
+import { IDailyReward } from "../../api/Services.ts";
 
 function dayClaimed(reward: IDailyReward, streak: number) {
-  return reward.day <= streak
+  return reward.day <= streak;
 }
 
 export default function DailyRewards() {
@@ -26,10 +26,16 @@ export default function DailyRewards() {
   return (
     <div className={s.container}>
       <h1>Daily rewards</h1>
-      <div>Visit AdVenture every day and get extra rewarded!</div>
+      <p>Visit AdVenture every day and get extra rewarded!</p>
       <div className={s.days}>
-        {rewards?.rewards.map((reward, index) => {
-          return <DailyReward reward={reward} key={index} streak={rewards.current_streak}/>;
+        {rewards?.rewards.map((reward) => {
+          return (
+            <DailyReward
+              key={reward.day}
+              reward={reward}
+              streak={rewards.current_streak}
+            />
+          );
         })}
       </div>
       <button
@@ -42,13 +48,19 @@ export default function DailyRewards() {
         Claim
       </button>
     </div>
-  )
+  );
 }
 
-export function DailyReward({reward, streak}: { reward: IDailyReward, streak: number }) {
+export function DailyReward({
+  reward,
+  streak,
+}: {
+  reward: IDailyReward;
+  streak: number;
+}) {
   return (
     <div className={dayClaimed(reward, streak) ? s.dayClaimed : s.day}>
       {reward.day}
     </div>
-  )
+  );
 }
