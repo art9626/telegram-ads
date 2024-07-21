@@ -1,7 +1,7 @@
 import { useUser } from "../../providers/UserProvider";
-import coin from "../../assets/coin.png";
 import s from "./userInfo.module.css";
 import { numberSeparatedBySpaces } from "../../utils/convert";
+// import LevelProgress from "../LevelProgress.tsx";
 
 export default function UserInfo() {
   const { data: user } = useUser();
@@ -16,10 +16,10 @@ export default function UserInfo() {
   return (
     <div className={s.info}>
       <div className={s.balance}>
-        <img src={coin} />
         <span>{balance}</span>
       </div>
       <span className={s.level}>Level {user?.game_data.level}</span>
+      {/* <LevelProgress/> */}
     </div>
   );
 }

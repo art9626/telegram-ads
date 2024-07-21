@@ -1,6 +1,20 @@
 .header {
   display: flex;
   align-items: center;
-  height: 50px;
-  min-height: 50px;
+  justify-content: space-between;
+  padding: 20px 15px;
+}
+
+.logo {
+  font-size: var(--font-size-xl);
+  text-transform: none;
+}
+
+.infoLink {
+  border-color: var(--button-primary-default);
+  background-color: var(--background-active);
+  border: 2px solid var(--stroke-default);
+  border-radius: var(--border-radius);
+  padding: 10px;
+  color: var(--text-primary);
 }

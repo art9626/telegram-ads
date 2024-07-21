@@ -1,18 +1,18 @@
 import { useUser } from "../providers/UserProvider";
 import Progress from "./ui/Progress/Progress";
 
-export default function WatchCount() {
+export default function LevelProgress() {
   const { data: user } = useUser();
 
   if (!user) return null;
 
   const {
-    game_data: { max_watch_count, available_watch_count },
+    game_data: { xp, xp_to_next_level },
   } = user;
 
   return (
     <div>
-      <Progress max={max_watch_count} value={available_watch_count} />
+      <Progress max={xp_to_next_level} value={xp} size={"sm"}/>
     </div>
   );
 }
