@@ -44,7 +44,7 @@ export default function Dialog({
           {children}
           <RDialog.Close asChild>
             <button className={s.closeButton} aria-label="Close">
-              <Cross2Icon />
+              <Cross2Icon fontSize={20} />
             </button>
           </RDialog.Close>
         </RDialog.Content>
