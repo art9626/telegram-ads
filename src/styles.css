@@ -1,11 +1,13 @@
 :root {
   --border-radius: 10px;
 
-  --accent-gold: #ffd84c;
+  --accent-gold: #f9de7c;
 
   --text-primary: #fff;
-  --text-secondary: #9d99a9;
+  --text-secondary: #413d51;
 
+  --background: #0b0f27;
+  --background-secondary: #efefef;
   --background-default: rgba(0, 0, 0, 0.1);
   --background-active: rgba(255, 206, 104, 0.05);
 
@@ -13,15 +15,11 @@
 
   --button-primary-default: #ffbd0b;
   --button-primary-pressed: #d57e08;
+
   --font-size-sm: 10px;
   --font-size-md: 14px;
   --font-size-lg: 18px;
   --font-size-xl: 22px;
-}
-
-a {
-  text-decoration: none;
-  color: var(--text-primary);
 }
 
 .roboto-light {

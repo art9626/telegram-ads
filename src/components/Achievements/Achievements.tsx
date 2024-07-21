@@ -5,7 +5,10 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useHapticFeedback } from "@tma.js/sdk-react";
 import UserInfo from "../UserInfo/UserInfo.tsx";
 import { useAchievements } from "../../providers/AchievementsProvider.tsx";
+import { numberSeparatedBySpaces } from "../../utils/convert.ts";
 import s from "./achievements.module.css";
+import classNames from "classnames";
+import Dialog from "../ui/Dialog/Dialog.tsx";
 
 export default function Achievements() {
   const { data: achievements, isLoading } = useAchievements();
@@ -63,27 +66,54 @@ export function Achievement({
       queryClient.invalidateQueries({ queryKey: ["user"] });
     },
   });
+  const [open, setOpen] = React.useState(false);
+
+  const clickHandler = () => {
+    if (claimed) {
+      setOpen(true);
+    } else {
+      if (isPending) return;
+      mutate(id, {
+        onSuccess: () => setOpen(true),
+      });
+    }
+  };
+
+  const trigger = (
+    <button
+      className={classNames(s.claimButton, { [s.claimed]: claimed })}
+      onMouseDown={() => hf.impactOccurred("medium")}
+      onClick={clickHandler}
+    >
+      <div className={s.content}>
+        <div className={s.info}>
+          <h4>{name}</h4>
+          <p className={s.description}>{description}</p>
+        </div>
+        <div className={s.reward}>
+          + {numberSeparatedBySpaces(Math.floor(reward / 10e9))}
+        </div>
+      </div>
+    </button>
+  );
+
+  const content = (
+    <div>
+      <p>{description}</p>
+      <div></div> {numberSeparatedBySpaces(Math.floor(reward / 10e9))}
+    </div>
+  );
 
   return (
     <li className={s.achievementsItem}>
-      <div className={s.itemContent}>
-        <h4>{name}</h4>
-        <div>
-          <span>{description}</span>
-          <div>Reward: {Math.floor(reward / 10e9)}</div>
-        </div>
-        <button
-          className={s.upButton}
-          disabled={claimed}
-          onClick={() => {
-            if (isPending) return;
-            hf.impactOccurred("medium");
-            mutate(id);
-          }}
-        >
-          Claim
-        </button>
-      </div>
+      <Dialog
+        open={open}
+        trigger={trigger}
+        onOpenChange={(o) => o === false && setOpen(o)}
+        title={name}
+      >
+        {content}
+      </Dialog>
     </li>
   );
 }
