@@ -8,28 +8,16 @@
 .achievementsList {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 10px;
   max-height: 55vh;
   overflow-x: scroll;
 }
 
 .claimButton {
-  position: relative;
   top: 0;
   width: 100%;
-  padding: 5px 10px;
-  border: none;
-  border-radius: var(--border-radius);
-  background-color: var(--button-primary-default);
-  box-shadow: 0px 4px 0px var(--button-primary-pressed);
-  transition: all 0.1s ease;
   overflow: hidden;
   color: var(--text-secondary);
-}
-
-.claimButton:not(:disabled):active {
-  top: 3px;
-  box-shadow: 0px 1px 0px var(--button-primary-pressed);
 }
 
 .claimButton:not(:disabled)::after {
@@ -55,6 +43,14 @@
   100% {
     transform: rotateZ(20deg) translate(1em, -20em);
   }
+}
+
+.claimButton:disabled {
+  border: 2px solid var(--button-primary-default);
+  background-color: var(--background-active);
+  color: var(--text-primary);
+  box-shadow: none;
+  opacity: 1;
 }
 
 .content {
@@ -86,13 +82,6 @@
   white-space: nowrap;
   font-size: var(--font-size-lg);
   font-weight: 700;
-}
-
-.claimButton:disabled {
-  border: 1px solid var(--button-primary-default);
-  background-color: var(--background-active);
-  color: var(--text-primary);
-  box-shadow: none;
 }
 
 .dialogContent {

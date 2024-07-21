@@ -1,5 +1,5 @@
 .container {
-  --top-padding: 10px;
+  --top-padding: 5px;
 
   display: flex;
   flex-direction: column;
@@ -8,7 +8,7 @@
 }
 
 .jump {
-  animation: jump 1.5s infinite ease;
+  animation: jump 2s infinite ease;
 }
 
 @keyframes jump {
@@ -32,8 +32,8 @@
 }
 
 .coin:active {
-  transform: scale(0.98);
-  transition: transform 0.3s ease;
+  transform: scale(0.95);
+  transition: transform 0.5s ease;
 }
 
 .coin .front {
@@ -99,7 +99,7 @@
   box-shadow: 50px -23px 0 -10px rgba(255, 255, 255, 0.22),
     85px -10px 0 -16px rgba(255, 255, 255, 0.19);
   transform: rotate(-50deg);
-  animation: shine 1.5s infinite ease;
+  animation: shine 2s infinite ease;
 }
 
 @keyframes shine {
@@ -107,7 +107,7 @@
     margin: 20px -65px;
   }
   50% {
-    margin: 35px -85px;
+    margin: 35px -75px;
   }
   100% {
     margin: 20px -65px;
@@ -120,7 +120,7 @@
   border-radius: 50%;
   margin-top: 20px;
   background: rgba(0, 0, 0, 0.4);
-  animation: swift 1.5s infinite ease;
+  animation: swift 2s infinite ease;
 }
 
 @keyframes swift {

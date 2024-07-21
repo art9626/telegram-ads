@@ -2,9 +2,10 @@ import { IPerk } from "../../api/Services";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useServices } from "../../providers/ServicesProvider";
 import UserInfo from "../UserInfo/UserInfo";
-import s from "./perks.module.css";
 import { Link } from "react-router-dom";
 import { useHapticFeedback } from "@tma.js/sdk-react";
+import Button from "../ui/Button/Button";
+import s from "./perks.module.css";
 
 export default function Perks() {
   const { getPerks } = useServices();
@@ -50,7 +51,7 @@ export function Perk({ perk }: { perk: IPerk }) {
         <div>
           <span>{perk.effect}</span>
         </div>
-        <button
+        <Button
           className={s.upButton}
           disabled={!perk.available}
           onMouseDown={() => hf.impactOccurred("medium")}
@@ -60,7 +61,7 @@ export function Perk({ perk }: { perk: IPerk }) {
           }}
         >
           {Math.floor(perk.requirements.cost / 10e9)}$
-        </button>
+        </Button>
         <Link className={s.perkLink} to="/perk" state={perk} />
       </div>
       <span className={s.iconWrapper}>

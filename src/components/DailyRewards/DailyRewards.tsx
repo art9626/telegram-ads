@@ -2,6 +2,7 @@ import { useServices } from "../../providers/ServicesProvider.tsx";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import s from "./rewards.module.css";
 import { IDailyReward } from "../../api/Services.ts";
+import Button from "../ui/Button/Button.tsx";
 
 function dayClaimed(reward: IDailyReward, streak: number) {
   return reward.day <= streak;
@@ -38,7 +39,7 @@ export default function DailyRewards() {
           );
         })}
       </div>
-      <button
+      <Button
         className={s.upButton}
         disabled={!rewards?.can_claim}
         onClick={() => {
@@ -46,7 +47,7 @@ export default function DailyRewards() {
         }}
       >
         Claim
-      </button>
+      </Button>
     </div>
   );
 }

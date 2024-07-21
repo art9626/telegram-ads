@@ -6,8 +6,9 @@ import { useHapticFeedback } from "@tma.js/sdk-react";
 import UserInfo from "../UserInfo/UserInfo.tsx";
 import { useAchievements } from "../../providers/AchievementsProvider.tsx";
 import { numberSeparatedBySpaces } from "../../utils/convert.ts";
-import s from "./achievements.module.css";
 import Dialog from "../ui/Dialog/Dialog.tsx";
+import Button from "../ui/Button/Button.tsx";
+import s from "./achievements.module.css";
 
 export default function Achievements() {
   const { data: achievements, isLoading } = useAchievements();
@@ -76,7 +77,7 @@ export function Achievement({ achievement }: { achievement: IAchievement }) {
   };
 
   const trigger = (
-    <button
+    <Button
       className={s.claimButton}
       onMouseDown={() => hf.impactOccurred("medium")}
       onClick={clickHandler}
@@ -91,7 +92,7 @@ export function Achievement({ achievement }: { achievement: IAchievement }) {
           + {numberSeparatedBySpaces(Math.floor(reward / 10e9))}
         </div>
       </div>
-    </button>
+    </Button>
   );
 
   return (
