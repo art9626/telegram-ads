@@ -11,15 +11,15 @@
   --background: linear-gradient(0deg, #5e54001f, #5e54001f),
     radial-gradient(
       209.53% 77.55% at 50% 117.48%,
-      #3d3447c4 21.44%,
+      #472b6ac4 21.44%,
       #0b0f2700 69.66%
     ),
     radial-gradient(
       302.81% 225.94% at 120.64% -30.92%,
-      #3d3447c4 12.81%,
+      #472b6ac4 12.81%,
       #0b0f2700 58.46%
     ),
-    #90769c;
+    #0b0f27;
 
   --background-color-secondary: #efefef;
 
