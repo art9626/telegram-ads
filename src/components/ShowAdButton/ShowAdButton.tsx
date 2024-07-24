@@ -5,6 +5,7 @@ import { useServices } from "../../providers/ServicesProvider";
 import s from "./showAdButton.module.css";
 import { useHapticFeedback } from "@tma.js/sdk-react";
 import classNames from "classnames";
+import { toast } from "react-toastify";
 
 interface ShowPromiseResult {
   done: boolean; // true if user watch till the end, otherwise false
@@ -28,6 +29,7 @@ export default function ShowAdButton() {
         game_data: data.data.data,
       });
     },
+    onError: (e) => toast(e.message, { type: "error" }),
   });
 
   const counterIsOut = user?.game_data.available_watch_count === 0;
