@@ -7,16 +7,16 @@ import {
   TimerIcon,
 } from "@radix-ui/react-icons";
 import * as RTabs from "@radix-ui/react-tabs";
-import AdGame from "../AdGame/AdGame.tsx";
-import Tasks from "../Tasks.tsx";
-import Friends from "../Friends.tsx";
-import Achievements from "../Achievements/Achievements.tsx";
-import Perks from "../Perks/Perks.tsx";
-import s from "./tabs.module.css";
+import classNames from "classnames";
 import { useLocation } from "react-router-dom";
 import { useHapticFeedback } from "@tma.js/sdk-react";
 import { useAchievements } from "../../providers/AchievementsProvider.tsx";
-import classNames from "classnames";
+import AdGame from "../AdGame/AdGame.tsx";
+import Tasks from "../Tasks.tsx";
+import Friends from "../Friends/Friends.tsx";
+import Perks from "../Perks/Perks.tsx";
+import Achievements from "../Achievements/Achievements.tsx";
+import s from "./tabs.module.css";
 
 enum TabTypes {
   AD_GAME = "AD_GAME",

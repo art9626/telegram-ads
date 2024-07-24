@@ -1,0 +1,24 @@
+.linkContainer {
+  padding: 10px 15px;
+  background-color: var(--background-default);
+  border-radius: var(--border-radius);
+}
+
+.linkHeader {
+  margin: 0;
+  margin-bottom: 5px;
+  font-size: var(--font-size-lg);
+}
+
+.link {
+  font-size: var(--font-size-md);
+  color: var(--text-transparent);
+}
+
+.buttons {
+  padding: 10px 0;
+}
+
+.buttons button:not(:last-child) {
+  margin-right: 10px;
+}

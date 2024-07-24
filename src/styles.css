@@ -5,6 +5,7 @@
 
   --text-primary: #fff;
   --text-secondary: #413d51;
+  --text-transparent: rgba(255, 255, 255, 0.5);
   --orange: #ffbd0b;
   --orange-dark: #d57e08;
 
@@ -38,7 +39,7 @@
   --font-size-xxl: 20vw;
 }
 
-.roboto-light {
+/* .roboto-light {
   font-family: "Roboto", sans-serif;
   font-weight: 300;
   font-style: normal;
@@ -60,9 +61,10 @@
   font-family: "Roboto", sans-serif;
   font-weight: 700;
   font-style: normal;
-}
+} */
 
 * {
+  font-family: "Rubik", sans-serif;
   box-sizing: border-box;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
