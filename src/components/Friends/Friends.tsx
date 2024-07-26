@@ -20,7 +20,7 @@ export default function Friends() {
     <div>
       <h1>Friends</h1>
       {friendList?.ref_link && <InviteLink url={friendList.ref_link} />}
-      <div>Earned: {(friendList?.earned_by_refs || 0) / 10e9}</div>
+      <div>Earned: {(friendList?.earned_by_refs || 0)}</div>
       {hasFriends ? (
         friendList.friends.map((friend, index) => (
           <FriendElement key={index} friend={friend} />

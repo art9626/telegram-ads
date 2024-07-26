@@ -19,7 +19,7 @@ export default function GameInfo() {
 
   return (
     <ul>
-      <li>Total coins: {(gameInfo?.total_balance || 0) / 10e9}</li>
+      <li>Total coins: {(gameInfo?.total_balance || 0)}</li>
       <li>Total users: {gameInfo?.users_count}</li>
       <li>Total views: {gameInfo?.total_watched}</li>
     </ul>

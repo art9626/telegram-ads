@@ -6,7 +6,7 @@ import { GameUser, IAchievement } from "../api/Services";
 
 enum WebsocketMessageTypes {
   NEW_AD = "new_ad",
-  NEW_ACHIEVEMENT = "new_achievement",
+  NEW_ACHIEVEMENTS = "new_achievements",
   NEW_LEVEL = "new_level",
   DIAMOND_AD = "diamond_ad",
 }
@@ -20,10 +20,12 @@ interface INewAdMessage {
   };
 }
 
-interface INewAchievementMessage {
+interface INewAchievementsMessage {
   event: {
-    type: WebsocketMessageTypes.NEW_ACHIEVEMENT;
-    message: IAchievement;
+    type: WebsocketMessageTypes.NEW_ACHIEVEMENTS;
+    message: {
+      achievements: IAchievement[];
+    }
   };
 }
 
@@ -47,7 +49,7 @@ interface IDiamondAdMessage {
 
 type TWebsocketMessage =
   | INewAdMessage
-  | INewAchievementMessage
+  | INewAchievementsMessage
   | INewLevelMessage
   | IDiamondAdMessage;
 
@@ -73,12 +75,13 @@ export default function useWS() {
             };
           });
 
-        case WebsocketMessageTypes.NEW_ACHIEVEMENT:
+        case WebsocketMessageTypes.NEW_ACHIEVEMENTS:
           return queryClient.setQueryData<IAchievement[]>(
             ["achievements"],
             (oldData) => {
               if (!oldData) return;
-              return [...oldData, event.message];
+
+              return [...oldData, ...event.message.achievements];
             }
           );
 
