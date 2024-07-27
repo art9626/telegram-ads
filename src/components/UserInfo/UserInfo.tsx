@@ -19,7 +19,7 @@ export default function UserInfo() {
 
 function Balance() {
   const { data: user } = useUser();
-  const getBalance = () => (user?.game_data.balance ?? 0) / 10e9;
+  const getBalance = () => (user?.game_data.balance ?? 0);
   const [startBalance] = React.useState(() => getBalance());
   const balance = getBalance();
 

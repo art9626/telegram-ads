@@ -89,7 +89,7 @@ export function Achievement({ achievement }: { achievement: IAchievement }) {
           <p className={s.description}>{description}</p>
         </div>
         <div className={s.reward}>
-          + {numberSeparatedBySpaces(Math.floor(reward / 10e9))}
+          + {numberSeparatedBySpaces(Math.floor(reward))}
         </div>
       </div>
     </Button>
@@ -123,7 +123,7 @@ function DialogContent({
   return (
     <div className={s.dialogContent}>
       {/* <p>{description}</p> */}+
-      {numberSeparatedBySpaces(Math.floor(reward / 10e9))}
+      {numberSeparatedBySpaces(Math.floor(reward))}
     </div>
   );
 }

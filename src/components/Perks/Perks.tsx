@@ -60,7 +60,7 @@ export function Perk({ perk }: { perk: IPerk }) {
             mutate(perk.id);
           }}
         >
-          {Math.floor(perk.requirements.cost / 10e9)}$
+          {Math.floor(perk.requirements.cost)}$
         </Button>
         <Link className={s.perkLink} to="/perk" state={perk} />
       </div>
