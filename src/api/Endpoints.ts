@@ -11,13 +11,16 @@ export const Endpoints = {
     return `${this.BASE_URL}/auth`;
   },
   get USER() {
-    return `${this.BASE_URL}/game/user`;
+    return `${this.BASE_URL}/user`;
   },
-  get GAME_INFO() {
-    return `${this.BASE_URL}/game/info`;
+  get USER_STATS() {
+    return `${this.BASE_URL}/user/stats`;
   },
-  get FRIENDS() {
-    return `${this.BASE_URL}/game/user/friends`;
+  get USER_FRIENDS() {
+    return `${this.BASE_URL}/user/friends`;
+  },
+  get GLOBAL_GAME_STATS() {
+    return `${this.BASE_URL}/game/stats`;
   },
   get PERKS() {
     return `${this.BASE_URL}/game/perks`;
