@@ -4,18 +4,12 @@ import { Endpoints } from "./Endpoints";
 
 export interface GameData {
   balance: number;
-  total: number;
-  spent: number;
-  watched: number;
   xp: number;
   level: number;
   xp_to_next_level: number;
   available_watch_count: number;
   max_watch_count: number;
   last_watched_at: string;
-  friends_count: number;
-  achievements_count: number;
-  not_claimed_achievements_count: number;
 }
 
 export interface GameUser {
@@ -26,6 +20,19 @@ export interface GameUser {
   ref_link: string;
   wallet_id: string;
   game_data: GameData;
+}
+
+export interface GameUserStats {
+  coins_per_watch: number;
+  xp_per_watch: number;
+  coins_per_ref: number;
+  auto_mining_speed: number;
+  ads_available: number;
+  total_balance: number;
+  total_spent: number;
+  total_watched: number
+  total_friends: number
+  total_achievements: number
 }
 
 export interface Friend {
@@ -39,6 +46,7 @@ export interface Friend {
 export interface UserFriends {
   friends: Friend[];
   ref_link: string;
+  friends_count: number;
   earned_by_refs: number;
 }
 
@@ -121,9 +129,15 @@ export class Services {
       .then((res) => res.data.data);
   };
 
-  getGameInfo = async () => {
+  getUserStats = async () => {
     return apiClient
-      .get<{ data: GameGlobalInfo }>(Endpoints.GAME_INFO)
+      .get<{ data: GameUserStats }>(Endpoints.USER_STATS)
+      .then((res) => res.data.data);
+  };
+
+  getGameStats = async () => {
+    return apiClient
+      .get<{ data: GameGlobalInfo }>(Endpoints.GLOBAL_GAME_STATS)
       .then((res) => res.data.data);
   };
 
@@ -141,7 +155,7 @@ export class Services {
 
   getUserFriends = async () => {
     return apiClient
-      .get<{ data: UserFriends }>(Endpoints.FRIENDS)
+      .get<{ data: UserFriends }>(Endpoints.USER_FRIENDS)
       .then((res) => res.data.data);
   };
 
