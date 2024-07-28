@@ -22,7 +22,7 @@ export interface GameUser {
   game_data: GameData;
 }
 
-export interface GameUserStats {
+export interface IGameUserStats {
   coins_per_watch: number;
   xp_per_watch: number;
   coins_per_ref: number;
@@ -30,9 +30,9 @@ export interface GameUserStats {
   ads_available: number;
   total_balance: number;
   total_spent: number;
-  total_watched: number
-  total_friends: number
-  total_achievements: number
+  total_watched: number;
+  total_friends: number;
+  total_achievements: number;
 }
 
 export interface Friend {
@@ -131,7 +131,7 @@ export class Services {
 
   getUserStats = async () => {
     return apiClient
-      .get<{ data: GameUserStats }>(Endpoints.USER_STATS)
+      .get<{ data: IGameUserStats }>(Endpoints.USER_STATS)
       .then((res) => res.data.data);
   };
 
