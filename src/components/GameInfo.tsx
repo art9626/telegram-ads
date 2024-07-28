@@ -40,6 +40,7 @@ export default function GameInfo() {
         <li>XP per watch: {userStats?.xp_per_watch}</li>
         <li>Total friends: {userStats?.total_friends}</li>
         <li>Total achievements: {userStats?.total_achievements}</li>
+        <li>Double coins chance: {userStats?.double_coins_chance}%</li>
       </ul>
 
       <h1>Global stats</h1>
@@ -57,6 +58,5 @@ export default function GameInfo() {
         <li>Total views: {gameStats?.total_watched}</li>
       </ul>
     </>
-
   );
 }

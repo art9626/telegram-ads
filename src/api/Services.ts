@@ -33,6 +33,7 @@ export interface IGameUserStats {
   total_watched: number;
   total_friends: number;
   total_achievements: number;
+  double_coins_chance: number;
 }
 
 export interface Friend {

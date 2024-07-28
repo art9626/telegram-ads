@@ -8,7 +8,7 @@ enum WebsocketMessageTypes {
   NEW_AD = "new_ad",
   NEW_ACHIEVEMENTS = "new_achievements",
   NEW_LEVEL = "new_level",
-  DIAMOND_AD = "diamond_ad",
+  DOUBLE_COINS = "double_coins",
 }
 
 interface INewAdMessage {
@@ -38,11 +38,11 @@ interface INewLevelMessage {
   };
 }
 
-interface IDiamondAdMessage {
+interface IDoubleCoinsMessage {
   event: {
-    type: WebsocketMessageTypes.DIAMOND_AD;
+    type: WebsocketMessageTypes.DOUBLE_COINS;
     message: {
-      amount: number;
+      double_coins: boolean;
     };
   };
 }
@@ -51,7 +51,7 @@ type TWebsocketMessage =
   | INewAdMessage
   | INewAchievementsMessage
   | INewLevelMessage
-  | IDiamondAdMessage;
+  | IDoubleCoinsMessage;
 
 export default function useWS() {
   const queryClient = useQueryClient();
@@ -97,8 +97,8 @@ export default function useWS() {
             };
           });
 
-        case WebsocketMessageTypes.DIAMOND_AD:
-          console.log("You got doubled reward!", event.message.amount);
+        case WebsocketMessageTypes.DOUBLE_COINS:
+          console.log("You got doubled reward!");
           return;
 
         default:
