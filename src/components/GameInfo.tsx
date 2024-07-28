@@ -34,6 +34,7 @@ export default function GameInfo() {
         <li>Total Earned: {userStats?.total_balance}</li>
         <li>Total Watched: {userStats?.total_watched}</li>
         <li>Mining Speed (per hour): {userStats?.auto_mining_speed}</li>
+        <li>Mining Speed (per second): {Math.round((userStats?.auto_mining_speed || 0) / 3600 * 100)/100 }</li>
         <li>Coins per watch: {userStats?.coins_per_watch}</li>
         <li>Coins per ref: {userStats?.coins_per_ref}</li>
         <li>XP per watch: {userStats?.xp_per_watch}</li>
