@@ -1,5 +1,5 @@
 import React from "react";
-import { IAchievement } from "../../api/Services";
+import {IAchievement, IAchievements} from "../../api/Services";
 import { useServices } from "../../providers/ServicesProvider.tsx";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useHapticFeedback } from "@tma.js/sdk-react";
@@ -11,11 +11,11 @@ import Button from "../ui/Button/Button.tsx";
 import s from "./achievements.module.css";
 
 export default function Achievements() {
-  const { data: achievements, isLoading } = useAchievements();
+  const { data: achievementsResponse, isLoading } = useAchievements();
 
   if (isLoading) return <div>Loading...</div>;
   // TODO tmp
-  if (!achievements || achievements.length === 0) {
+  if (!achievementsResponse || achievementsResponse.achievements.length === 0) {
     return (
       <div className={s.container}>
         <UserInfo />
@@ -24,10 +24,21 @@ export default function Achievements() {
     );
   }
 
+  const map = new Map<string, IAchievement[]>
+
   const newAchievements: IAchievement[] = [];
   const claimedAchievements: IAchievement[] = [];
 
-  for (const a of achievements) {
+  for (const a of achievementsResponse.achievements) {
+    if (!map.has(a.category)) {
+      map.set(a.category, []);
+    }
+
+    // should be sorted by /claimed/ then by reward
+    // not used yet just check how map works in TS
+    // @ts-expect-error should be initialized, stupid TS
+    map.set(a.category, [...map.get(a.category), a]);
+
     if (a.claimed) {
       claimedAchievements.push(a);
     } else {
@@ -38,6 +49,7 @@ export default function Achievements() {
   return (
     <div className={s.container}>
       <UserInfo />
+      <h3 className={s.counter}>{achievementsResponse.claimed_count}/{achievementsResponse.total_count}</h3>
       <ul className={s.achievementsList}>
         {newAchievements
           .concat(claimedAchievements)
@@ -59,7 +71,7 @@ export function Achievement({ achievement }: { achievement: IAchievement }) {
   const { mutate, isPending } = useMutation({
     mutationFn: claimAchievement,
     onSuccess: (data) => {
-      queryClient.setQueryData<IAchievement[]>(["achievements"], data);
+      queryClient.setQueryData<IAchievements>(["achievements"], data);
       queryClient.invalidateQueries({ queryKey: ["user"] });
     },
   });

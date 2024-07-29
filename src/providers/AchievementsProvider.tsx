@@ -1,12 +1,12 @@
 /* eslint-disable react-refresh/only-export-components */
 import { UseQueryResult, useQuery } from "@tanstack/react-query";
 import React from "react";
-import { IAchievement } from "../api/Services";
+import { IAchievements } from "../api/Services";
 import { useServices } from "./ServicesProvider";
 
 const AchievementsContext =
   // @ts-expect-error fix
-  React.createContext<UseQueryResult<IAchievement[], Error>>();
+  React.createContext<UseQueryResult<IAchievements, Error>>();
 
 export default function AchievementsProvider({
   children,

@@ -2,7 +2,7 @@ import React from "react";
 import { useQueryClient } from "@tanstack/react-query";
 import useWebSocket from "react-use-websocket";
 import { Endpoints } from "../api/Endpoints";
-import { GameUser, IAchievement } from "../api/Services";
+import {GameUser, IAchievement, IAchievements} from "../api/Services";
 
 enum WebsocketMessageTypes {
   NEW_AD = "new_ad",
@@ -76,12 +76,13 @@ export default function useWS() {
           });
 
         case WebsocketMessageTypes.NEW_ACHIEVEMENTS:
-          return queryClient.setQueryData<IAchievement[]>(
+          return queryClient.setQueryData<IAchievements>(
             ["achievements"],
             (oldData) => {
               if (!oldData) return;
+              const oldAchievements = oldData.achievements;
 
-              return [...oldData, ...event.message.achievements];
+              return {...oldData, achievements: [...oldAchievements, ...event.message.achievements]};
             }
           );
 

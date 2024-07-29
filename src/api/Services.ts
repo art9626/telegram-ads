@@ -83,6 +83,13 @@ export interface IAchievement {
   name: string;
   reward: number;
   claimed: boolean;
+  category: string;
+}
+
+export interface IAchievements {
+  achievements: IAchievement[];
+  total_count: number;
+  claimed_count: number;
 }
 
 export interface IDailyRewards {
@@ -162,16 +169,16 @@ export class Services {
 
   getAchievements = async () => {
     return apiClient
-      .get<{ data: { achievements: IAchievement[] } }>(Endpoints.ACHIEVEMENTS)
-      .then((res) => res.data.data.achievements);
+      .get<{ data: IAchievements }>(Endpoints.ACHIEVEMENTS)
+      .then((res) => res.data.data);
   };
 
   claimAchievement = async (id: number) => {
     return apiClient
-      .post<{ data: { achievements: IAchievement[] } }>(
+      .post<{ data: IAchievements }>(
         `${Endpoints.ACHIEVEMENTS}/${id}`
       )
-      .then((res) => res.data.data.achievements);
+      .then((res) => res.data.data);
   };
 
   getDailyRewards = async () => {
