@@ -83,8 +83,19 @@ export interface IAchievement {
   name: string;
   reward: number;
   claimed: boolean;
-  category: string;
+  category: TAchievementCategory;
 }
+
+export type TAchievementCategory =
+  | "balance"
+  | "spending"
+  | "friends"
+  | "level"
+  | "perks"
+  | "referral_earnings"
+  | "achievements"
+  | "ads"
+  | "unknown";
 
 export interface IAchievements {
   achievements: IAchievement[];
@@ -175,9 +186,7 @@ export class Services {
 
   claimAchievement = async (id: number) => {
     return apiClient
-      .post<{ data: IAchievements }>(
-        `${Endpoints.ACHIEVEMENTS}/${id}`
-      )
+      .post<{ data: IAchievements }>(`${Endpoints.ACHIEVEMENTS}/${id}`)
       .then((res) => res.data.data);
   };
 

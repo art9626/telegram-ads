@@ -1,5 +1,9 @@
 import React from "react";
-import {IAchievement, IAchievements} from "../../api/Services";
+import {
+  IAchievement,
+  IAchievements,
+  TAchievementCategory,
+} from "../../api/Services";
 import { useServices } from "../../providers/ServicesProvider.tsx";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useHapticFeedback } from "@tma.js/sdk-react";
@@ -9,13 +13,15 @@ import { numberSeparatedBySpaces } from "../../utils/convert.ts";
 import Dialog from "../ui/Dialog/Dialog.tsx";
 import Button from "../ui/Button/Button.tsx";
 import s from "./achievements.module.css";
+import * as Tabs from "@radix-ui/react-tabs";
 
 export default function Achievements() {
-  const { data: achievementsResponse, isLoading } = useAchievements();
+  const { data, isLoading } = useAchievements();
 
   if (isLoading) return <div>Loading...</div>;
+
   // TODO tmp
-  if (!achievementsResponse || achievementsResponse.achievements.length === 0) {
+  if (!data || data.achievements.length === 0) {
     return (
       <div className={s.container}>
         <UserInfo />
@@ -24,41 +30,42 @@ export default function Achievements() {
     );
   }
 
-  const map = new Map<string, IAchievement[]>
-
-  const newAchievements: IAchievement[] = [];
-  const claimedAchievements: IAchievement[] = [];
-
-  for (const a of achievementsResponse.achievements) {
-    if (!map.has(a.category)) {
-      map.set(a.category, []);
-    }
-
-    // should be sorted by /claimed/ then by reward
-    // not used yet just check how map works in TS
-    // @ts-expect-error should be initialized, stupid TS
-    map.set(a.category, [...map.get(a.category), a]);
-
-    if (a.claimed) {
-      claimedAchievements.push(a);
-    } else {
-      newAchievements.push(a);
-    }
-  }
+  const achievementsByCategory = groupByCategories(data.achievements);
 
   return (
     <div className={s.container}>
       <UserInfo />
-      <h3 className={s.counter}>{achievementsResponse.claimed_count}/{achievementsResponse.total_count}</h3>
-      <ul className={s.achievementsList}>
-        {newAchievements
-          .concat(claimedAchievements)
-          .map((achievement: IAchievement) => {
+      <span className={s.counter}>
+        {data.claimed_count}/{data.total_count}
+      </span>
+      <Tabs.Root defaultValue={achievementsByCategory[0][0]}>
+        <Tabs.List>
+          {achievementsByCategory.map(([category]) => {
             return (
-              <AchievementMemo achievement={achievement} key={achievement.id} />
+              <Tabs.Trigger key={category} value={category}>
+                {category}
+              </Tabs.Trigger>
             );
           })}
-      </ul>
+        </Tabs.List>
+        {achievementsByCategory.map(([category, achievements]) => {
+          const sortedAchievements = sortByClaimed(achievements);
+          return (
+            <Tabs.Content key={category} value={category} className={s.content}>
+              <ul className={s.achievementsList}>
+                {sortedAchievements.map((achievement) => {
+                  return (
+                    <AchievementMemo
+                      achievement={achievement}
+                      key={achievement.id}
+                    />
+                  );
+                })}
+              </ul>
+            </Tabs.Content>
+          );
+        })}
+      </Tabs.Root>
     </div>
   );
 }
@@ -126,18 +133,33 @@ function DialogContent({
 }: {
   achievement: IAchievement;
 }) {
-  // const hf = useHapticFeedback();
-
-  // React.useEffect(() => {
-  //   hf.impactOccurred("heavy");
-  // }, [hf]);
-
   return (
     <div className={s.dialogContent}>
-      {/* <p>{description}</p> */}+
-      {numberSeparatedBySpaces(Math.floor(reward))}
+      +{numberSeparatedBySpaces(Math.floor(reward))}
     </div>
   );
 }
 
 const AchievementMemo = React.memo(Achievement);
+
+function groupByCategories(achievements: IAchievement[]) {
+  return Array.from(
+    achievements.reduce((acc: Map<TAchievementCategory, IAchievement[]>, a) => {
+      const categoryAchievements = acc.get(a.category);
+      if (!categoryAchievements) {
+        acc.set(a.category, [a]);
+      } else {
+        categoryAchievements.push(a);
+      }
+      return acc;
+    }, new Map<TAchievementCategory, IAchievement[]>())
+  );
+}
+
+function sortByClaimed(achievements: IAchievement[]) {
+  return [...achievements].sort((a, b) => {
+    if (a.claimed && !b.claimed) return 1;
+    if (!a.claimed && b.claimed) return -1;
+    return 0;
+  });
+}

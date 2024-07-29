@@ -1,7 +1,6 @@
 .container {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   height: 100%;
 }
 
@@ -62,7 +61,7 @@
 }
 
 .counter {
-  text-align: center;
+  align-self: center;
 }
 
 .info {
