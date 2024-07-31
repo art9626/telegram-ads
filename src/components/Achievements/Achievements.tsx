@@ -12,6 +12,19 @@ import { useAchievements } from "../../providers/AchievementsProvider.tsx";
 import Button from "../ui/Button/Button.tsx";
 import s from "./achievements.module.css";
 import * as Tabs from "@radix-ui/react-tabs";
+import classNames from "classnames";
+
+const AchievementCategoryMap = new Map<TAchievementCategory, string>([
+  ["achievements", "Achievements"],
+  ["ads", "Ads"],
+  ["balance", "Balance"],
+  ["friends", "Friends"],
+  ["level", "Level"],
+  ["perks", "Perks"],
+  ["referral_earnings", "Ref"],
+  ["spending", "Spending"],
+  ["unknown", "Other"],
+]);
 
 export default function Achievements() {
   const { data, isLoading } = useAchievements();
@@ -37,11 +50,17 @@ export default function Achievements() {
         {data.claimed_count}/{data.total_count}
       </span>
       <Tabs.Root defaultValue={achievementsByCategory[0][0]}>
-        <Tabs.List>
-          {achievementsByCategory.map(([category]) => {
+        <Tabs.List className={s.tabsList}>
+          {achievementsByCategory.map(([category, achievements]) => {
             return (
-              <Tabs.Trigger key={category} value={category}>
-                {category}
+              <Tabs.Trigger
+                key={category}
+                value={category}
+                className={classNames(s.trigger, {
+                  [s.indicate]: achievements.some((a) => !a.claimed),
+                })}
+              >
+                {AchievementCategoryMap.get(category)}
               </Tabs.Trigger>
             );
           })}

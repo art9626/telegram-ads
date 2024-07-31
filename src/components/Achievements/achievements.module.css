@@ -1,15 +1,65 @@
 .container {
   display: flex;
   flex-direction: column;
+  justify-content: space-around;
   height: 100%;
+}
+
+.counter {
+  align-self: center;
+}
+
+.tabsList {
+  display: flex;
+  gap: 5px;
+  border: 1px solid var(--stroke-default);
+  border-radius: var(--border-radius);
+  margin-bottom: 15px;
+  padding: 3px;
+}
+
+.trigger {
+  position: relative;
+  padding: 10px;
+  border: none;
+  border-radius: calc(var(--border-radius) - 3px);
+  background-color: inherit;
+  color: var(--text-primary);
+}
+
+.trigger[data-state="active"] {
+  background-color: var(--stroke-default);
+}
+
+.trigger.indicate::before {
+  --d: 12px;
+
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: var(--d);
+  height: var(--d);
+  border-radius: 50%;
+  /* TODO tmp */
+  background-color: red;
+}
+
+.content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  border-radius: var(--border-radius);
+  overflow-y: scroll;
 }
 
 .achievementsList {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  max-height: 55vh;
-  overflow-x: scroll;
+  height: 45vh;
+  width: 100%;
 }
 
 .claimButton {
@@ -53,17 +103,6 @@
   opacity: 1;
 }
 
-.content {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-}
-
-.counter {
-  align-self: center;
-}
-
 .info {
   display: flex;
   flex-direction: column;
@@ -86,13 +125,4 @@
   white-space: nowrap;
   font-size: var(--font-size-lg);
   font-weight: 700;
-}
-
-.dialogContent {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100%;
-  font-size: var(--font-size-xxl);
 }

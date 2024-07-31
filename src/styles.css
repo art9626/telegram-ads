@@ -1,11 +1,14 @@
 :root {
-  --border-radius: 10px;
+  --header-height: 73px;
+  --footer-tabs-height: 105px;
 
-  --gold: #f9de7c;
+  --border-radius: 10px;
 
   --text-primary: #fff;
   --text-secondary: #413d51;
   --text-transparent: rgba(255, 255, 255, 0.5);
+
+  --gold: #f9de7c;
   --orange: #ffbd0b;
   --orange-dark: #d57e08;
 
@@ -38,30 +41,6 @@
   --font-size-xl: 22px;
   --font-size-xxl: 20vw;
 }
-
-/* .roboto-light {
-  font-family: "Roboto", sans-serif;
-  font-weight: 300;
-  font-style: normal;
-}
-
-.roboto-regular {
-  font-family: "Roboto", sans-serif;
-  font-weight: 400;
-  font-style: normal;
-}
-
-.roboto-medium {
-  font-family: "Roboto", sans-serif;
-  font-weight: 500;
-  font-style: normal;
-}
-
-.roboto-bold {
-  font-family: "Roboto", sans-serif;
-  font-weight: 700;
-  font-style: normal;
-} */
 
 * {
   font-family: "Rubik", sans-serif;
