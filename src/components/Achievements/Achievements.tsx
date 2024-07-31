@@ -75,7 +75,7 @@ export function Achievement({ achievement }: { achievement: IAchievement }) {
   const { claimAchievement } = useServices();
   const hf = useHapticFeedback();
   const queryClient = useQueryClient();
-  const { mutate, isPending } = useMutation({
+  const { mutate } = useMutation({
     mutationFn: claimAchievement,
     onSuccess: (data) => {
       queryClient.setQueryData<IAchievements>(["achievements"], data);
@@ -85,14 +85,7 @@ export function Achievement({ achievement }: { achievement: IAchievement }) {
   const [open, setOpen] = React.useState(false);
 
   const clickHandler = () => {
-    if (claimed) {
-      setOpen(true);
-    } else {
-      if (isPending) return;
-      mutate(id, {
-        onSuccess: () => setOpen(true),
-      });
-    }
+    mutate(id);
   };
 
   const trigger = (

@@ -24,8 +24,10 @@ export interface GameUser {
 
 export interface IGameUserStats {
   coins_per_watch: number;
+  coins_multiplier: number;
   xp_per_watch: number;
   coins_per_ref: number;
+  ref_multiplier: number;
   auto_mining_speed: number;
   ads_available: number;
   total_balance: number;
