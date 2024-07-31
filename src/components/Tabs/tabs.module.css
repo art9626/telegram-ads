@@ -1,7 +1,6 @@
 .root {
   height: 100%;
-  padding-top: 15px;
-  padding-bottom: 105px;
+  padding-bottom: var(--footer-tabs-height);
 }
 
 .content {
@@ -15,6 +14,7 @@
   right: 0;
   display: flex;
   gap: 5px;
+  max-height: var(--footer-tabs-height);
   padding: 20px 15px;
 }
 

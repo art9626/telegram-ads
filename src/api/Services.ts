@@ -24,8 +24,10 @@ export interface GameUser {
 
 export interface IGameUserStats {
   coins_per_watch: number;
+  coins_multiplier: number;
   xp_per_watch: number;
   coins_per_ref: number;
+  ref_multiplier: number;
   auto_mining_speed: number;
   ads_available: number;
   total_balance: number;
@@ -83,6 +85,24 @@ export interface IAchievement {
   name: string;
   reward: number;
   claimed: boolean;
+  category: TAchievementCategory;
+}
+
+export type TAchievementCategory =
+  | "balance"
+  | "spending"
+  | "friends"
+  | "level"
+  | "perks"
+  | "referral_earnings"
+  | "achievements"
+  | "ads"
+  | "unknown";
+
+export interface IAchievements {
+  achievements: IAchievement[];
+  total_count: number;
+  claimed_count: number;
 }
 
 export interface IDailyRewards {
@@ -162,16 +182,14 @@ export class Services {
 
   getAchievements = async () => {
     return apiClient
-      .get<{ data: { achievements: IAchievement[] } }>(Endpoints.ACHIEVEMENTS)
-      .then((res) => res.data.data.achievements);
+      .get<{ data: IAchievements }>(Endpoints.ACHIEVEMENTS)
+      .then((res) => res.data.data);
   };
 
   claimAchievement = async (id: number) => {
     return apiClient
-      .post<{ data: { achievements: IAchievement[] } }>(
-        `${Endpoints.ACHIEVEMENTS}/${id}`
-      )
-      .then((res) => res.data.data.achievements);
+      .post<{ data: IAchievements }>(`${Endpoints.ACHIEVEMENTS}/${id}`)
+      .then((res) => res.data.data);
   };
 
   getDailyRewards = async () => {

@@ -33,5 +33,5 @@ export const Endpoints = {
   },
   get DAILY() {
     return `${this.BASE_URL}/game/daily`;
-  }
+  },
 };
