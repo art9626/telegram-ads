@@ -16,6 +16,9 @@
   border-radius: var(--border-radius);
   margin-bottom: 15px;
   padding: 3px;
+  overflow-x: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 .trigger {
