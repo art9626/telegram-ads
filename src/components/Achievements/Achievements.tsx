@@ -9,8 +9,6 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useHapticFeedback } from "@tma.js/sdk-react";
 import UserInfo from "../UserInfo/UserInfo.tsx";
 import { useAchievements } from "../../providers/AchievementsProvider.tsx";
-import { numberSeparatedBySpaces } from "../../utils/convert.ts";
-import Dialog from "../ui/Dialog/Dialog.tsx";
 import Button from "../ui/Button/Button.tsx";
 import s from "./achievements.module.css";
 import * as Tabs from "@radix-ui/react-tabs";
@@ -75,61 +73,36 @@ export function Achievement({ achievement }: { achievement: IAchievement }) {
   const { claimAchievement } = useServices();
   const hf = useHapticFeedback();
   const queryClient = useQueryClient();
-  const { mutate } = useMutation({
+  const { mutate, isPending } = useMutation({
     mutationFn: claimAchievement,
     onSuccess: (data) => {
       queryClient.setQueryData<IAchievements>(["achievements"], data);
       queryClient.invalidateQueries({ queryKey: ["user"] });
     },
   });
-  const [open, setOpen] = React.useState(false);
 
   const clickHandler = () => {
+    if (isPending) return;
     mutate(id);
   };
 
-  const trigger = (
-    <Button
-      className={s.claimButton}
-      onMouseDown={() => hf.impactOccurred("medium")}
-      onClick={clickHandler}
-      disabled={claimed}
-    >
-      <div className={s.content}>
-        <div className={s.info}>
-          <h4>{name}</h4>
-          <p className={s.description}>{description}</p>
-        </div>
-        <div className={s.reward}>
-          + {numberSeparatedBySpaces(Math.floor(reward))}
-        </div>
-      </div>
-    </Button>
-  );
-
   return (
     <li className={s.achievementsItem}>
-      <Dialog
-        open={open}
-        trigger={trigger}
-        onOpenChange={(o) => o === false && setOpen(o)}
-        // title={name}
+      <Button
+        className={s.claimButton}
+        onMouseDown={() => hf.impactOccurred("medium")}
+        onClick={clickHandler}
+        disabled={claimed}
       >
-        <DialogContent achievement={achievement} />
-      </Dialog>
+        <div className={s.content}>
+          <div className={s.info}>
+            <h4>{name}</h4>
+            <p className={s.description}>{description}</p>
+          </div>
+          <div className={s.reward}>+ {reward}</div>
+        </div>
+      </Button>
     </li>
-  );
-}
-
-function DialogContent({
-  achievement: { reward },
-}: {
-  achievement: IAchievement;
-}) {
-  return (
-    <div className={s.dialogContent}>
-      +{numberSeparatedBySpaces(Math.floor(reward))}
-    </div>
   );
 }
 
