@@ -26,8 +26,9 @@ export default function PerkPage() {
       <h1>{name}</h1>
       <p>
         Requirements:
-        <span>Level: {requirements.game_level}</span>
-        <span>Friends invited: {requirements.friends_count}</span>
+        <p>Level: {requirements.game_level}</p>
+        <p>Friends invited: {requirements.friends_count}</p>
+        <p>Cost: {requirements.cost}</p>
       </p>
       <p>{description}</p>
       <p>{effect}</p>
