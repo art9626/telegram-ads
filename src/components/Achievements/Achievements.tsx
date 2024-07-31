@@ -28,6 +28,7 @@ const AchievementCategoryMap = new Map<TAchievementCategory, string>([
 
 export default function Achievements() {
   const { data, isLoading } = useAchievements();
+  const hf = useHapticFeedback();
 
   if (isLoading) return <div>Loading...</div>;
 
@@ -59,6 +60,7 @@ export default function Achievements() {
                 className={classNames(s.trigger, {
                   [s.indicate]: achievements.some((a) => !a.claimed),
                 })}
+                onMouseDown={() => hf.selectionChanged()}
               >
                 {AchievementCategoryMap.get(category)}
               </Tabs.Trigger>
