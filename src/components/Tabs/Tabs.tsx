@@ -85,7 +85,7 @@ const Trigger = React.memo(({ tab: { key, icon, title } }: { tab: ITab }) => {
     <RTabs.Trigger
       value={key}
       className={className}
-      onTouchStart={() => hf.selectionChanged()}
+      onClick={() => hf.selectionChanged()}
     >
       {icon}
       {title}

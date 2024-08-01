@@ -54,8 +54,8 @@ export function Perk({ perk }: { perk: IPerk }) {
         <Button
           className={s.upButton}
           disabled={!perk.available}
-          onTouchStart={() => hf.impactOccurred("medium")}
           onClick={() => {
+            hf.impactOccurred("medium");
             if (isPending) return;
             mutate(perk.id);
           }}
