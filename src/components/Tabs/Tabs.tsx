@@ -73,7 +73,9 @@ const Trigger = React.memo(({ tab: { key, icon, title } }: { tab: ITab }) => {
   const hf = useHapticFeedback();
   const { data: achievementsResponse } = useAchievements();
 
-  const hasNewAchievements = achievementsResponse?.achievements?.some((a) => !a.claimed);
+  const hasNewAchievements = achievementsResponse?.achievements?.some(
+    (a) => !a.claimed
+  );
 
   const className = classNames(s.trigger, {
     [s.indicate]: hasNewAchievements && key === TabTypes.ACHIEVEMENTS,
@@ -83,7 +85,7 @@ const Trigger = React.memo(({ tab: { key, icon, title } }: { tab: ITab }) => {
     <RTabs.Trigger
       value={key}
       className={className}
-      onClick={() => hf.selectionChanged()}
+      onTouchStart={() => hf.selectionChanged()}
     >
       {icon}
       {title}

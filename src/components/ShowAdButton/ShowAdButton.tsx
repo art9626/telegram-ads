@@ -35,8 +35,6 @@ export default function ShowAdButton() {
   const counterIsOut = user?.game_data.available_watch_count === 0;
 
   const clickHandler = () => {
-    hf.impactOccurred("medium");
-
     if (import.meta.env.DEV) {
       mutation.mutate();
     } else {
@@ -66,7 +64,11 @@ export default function ShowAdButton() {
 
   return (
     <div className={s.container}>
-      <div className={s.coin} onClick={clickHandler}>
+      <div
+        className={s.coin}
+        onClick={clickHandler}
+        onTouchStart={() => hf.impactOccurred("medium")}
+      >
         <div
           className={classNames(s.front, {
             [s.jump]: !counterIsOut || !loading,
