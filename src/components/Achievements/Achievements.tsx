@@ -147,6 +147,11 @@ function sortByClaimed(achievements: IAchievement[]) {
   return [...achievements].sort((a, b) => {
     if (a.claimed && !b.claimed) return 1;
     if (!a.claimed && b.claimed) return -1;
+    if (!a.claimed && !b.claimed && a.reward < b.reward) return 1;
+    if (!a.claimed && !b.claimed && a.reward > b.reward) return -1;
+    if (a.claimed && b.claimed && a.reward < b.reward) return 1;
+    if (a.claimed && b.claimed && a.reward > b.reward) return -1;
+
     return 0;
   });
 }
