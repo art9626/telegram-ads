@@ -20,7 +20,7 @@ export default function Friends() {
     <div>
       <h1>Friends</h1>
       {friendList?.ref_link && <InviteLink url={friendList.ref_link} />}
-      <div>Earned: {(friendList?.earned_by_refs || 0)}</div>
+      <div>Earned: {friendList?.earned_by_refs || 0}</div>
       {hasFriends ? (
         friendList.friends.map((friend, index) => (
           <FriendElement key={index} friend={friend} />
@@ -44,15 +44,15 @@ export function FriendElement({ friend }: { friend: Friend }) {
 function InviteLink({ url }: { url: string }) {
   const hf = useHapticFeedback();
 
-  const mouseDownHandler = () => hf.impactOccurred("medium");
-
   const shareHandler = () => {
+    hf.impactOccurred("medium");
     window.open(
       `https://t.me/share/url?url=${url}&text=${"Заходи в приложение"}`
     );
   };
 
   const copyHandler = async () => {
+    hf.impactOccurred("medium");
     if (navigator.clipboard) {
       await navigator.clipboard.writeText(url);
     } else {
@@ -66,12 +66,8 @@ function InviteLink({ url }: { url: string }) {
       <h3 className={s.linkHeader}>Invite link</h3>
       <span className={s.link}>{url}</span>
       <div className={s.buttons}>
-        <Button onClick={shareHandler} onMouseDown={mouseDownHandler}>
-          Share
-        </Button>
-        <Button onClick={copyHandler} onMouseDown={mouseDownHandler}>
-          Copy
-        </Button>
+        <Button onClick={shareHandler}>Share</Button>
+        <Button onClick={copyHandler}>Copy</Button>
       </div>
     </div>
   );

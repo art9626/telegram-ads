@@ -36,7 +36,6 @@ export default function ShowAdButton() {
 
   const clickHandler = () => {
     hf.impactOccurred("medium");
-
     if (import.meta.env.DEV) {
       mutation.mutate();
     } else {

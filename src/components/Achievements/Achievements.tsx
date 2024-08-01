@@ -60,7 +60,7 @@ export default function Achievements() {
                 className={classNames(s.trigger, {
                   [s.indicate]: achievements.some((a) => !a.claimed),
                 })}
-                onMouseDown={() => hf.selectionChanged()}
+                onClick={() => hf.selectionChanged()}
               >
                 {AchievementCategoryMap.get(category)}
               </Tabs.Trigger>
@@ -103,6 +103,7 @@ export function Achievement({ achievement }: { achievement: IAchievement }) {
   });
 
   const clickHandler = () => {
+    hf.impactOccurred("medium");
     if (isPending) return;
     mutate(id);
   };
@@ -111,7 +112,6 @@ export function Achievement({ achievement }: { achievement: IAchievement }) {
     <li className={s.achievementsItem}>
       <Button
         className={s.claimButton}
-        onMouseDown={() => hf.impactOccurred("medium")}
         onClick={clickHandler}
         disabled={claimed}
       >

@@ -21,6 +21,10 @@
   scrollbar-width: none;
 }
 
+.tabsList::-webkit-scrollbar {
+  display: none;
+}
+
 .trigger {
   position: relative;
   padding: 10px;
