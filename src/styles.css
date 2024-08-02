@@ -11,6 +11,8 @@
   --gold: #f9de7c;
   --orange: #ffbd0b;
   --orange-dark: #d57e08;
+  --danger: red;
+  --success: green;
 
   --background: linear-gradient(0deg, #5e54001f, #5e54001f),
     radial-gradient(
@@ -78,4 +80,12 @@ ul {
   list-style: none;
   margin: 0;
   padding: 0;
+}
+
+.danger {
+  color: var(--danger);
+}
+
+.success {
+  color: var(--success);
 }

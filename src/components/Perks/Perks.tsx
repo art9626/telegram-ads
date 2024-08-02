@@ -42,15 +42,41 @@ export function Perk({ perk }: { perk: IPerk }) {
     },
   });
 
+  function buildEffect(perk: IPerk): string {
+    const effect = Math.round(perk.effect * 100) / 100
+    switch (perk.id) {
+      // ref perk
+      case 1:
+        return `${effect}% from ref earnings`;
+      // coins perk
+      case 2:
+        return `${effect} coins per watch`;
+      // ads perk
+      case 3:
+        return `${effect} ads`;
+      // exp perk
+      case 4:
+        return `${effect * 100}%`;
+      // robot perk
+      case 5:
+        return `${effect} coins per hour`;
+      // friends perk
+      case 6:
+        return `${effect} friends assigned`;
+      // double chance perk
+      case 7:
+        return `${effect}% chance`;
+    }
+
+    return ""
+  }
+
   return (
     <li className={s.perksItem}>
       <div className={s.itemContent}>
-        <h4>
-          {perk.name} {perk.level}
-        </h4>
-        <div>
-          <span>{perk.effect}</span>
-        </div>
+        <h4>{perk.name} {perk.level}</h4>
+        <div>{perk.effect_desc}</div>
+        <div>Current effect: {buildEffect(perk)}</div>
         <Button
           className={s.upButton}
           disabled={!perk.available}

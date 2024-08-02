@@ -4,7 +4,7 @@ import { useBackButton } from "@tma.js/sdk-react";
 import React from "react";
 
 export default function PerkPage() {
-  const { name, description, effect, synergy, requirements } = useLocation().state as IPerk;
+  const { name, desc, effect_desc, synergy_desc, requirements, actual_data } = useLocation().state as IPerk;
   const navigate = useNavigate();
   const bb = useBackButton();
 
@@ -21,18 +21,31 @@ export default function PerkPage() {
     };
   }, [bb, navigate]);
 
+  function checkActual(type: string): boolean {
+    switch(type) {
+      case "friends":
+        return actual_data.friends_count < requirements.friends_count
+      case "cost":
+        return actual_data.balance < requirements.cost;
+      case "level":
+        return actual_data.game_level < requirements.game_level
+    }
+
+    return false
+  }
+
   return (
     <div>
       <h1>{name}</h1>
       <p>
         Requirements:
-        <p>Level: {requirements.game_level}</p>
-        <p>Friends invited: {requirements.friends_count}</p>
-        <p>Cost: {requirements.cost}</p>
+        <p className={checkActual("level") ? "danger" : "success"}>Level: {requirements.game_level}</p>
+        <p className={checkActual("friends") ? "danger" : "success"}>Friends invited: {requirements.friends_count}</p>
+        <p className={checkActual("cost") ? "danger" : "success"}>Cost: {requirements.cost}</p>
       </p>
-      <p>{description}</p>
-      <p>{effect}</p>
-      <p>{synergy}</p>
+      <p>{desc}</p>
+      <p>{effect_desc}</p>
+      <p>{synergy_desc}</p>
     </div>
   );
 }

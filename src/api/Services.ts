@@ -64,19 +64,27 @@ export interface GameGlobalInfo {
 export interface IPerk {
   id: number;
   name: string;
-  description: string;
-  effect: string;
-  synergy: string;
+  desc: string;
+  effect_desc: string;
+  synergy_desc: string;
   available: boolean;
   level: number;
   max_level: number;
+  effect: number;
   requirements: PerkRequirements;
+  actual_data: IPerkActual;
 }
 
 export interface PerkRequirements {
   friends_count: number;
   game_level: number;
   cost: number;
+}
+
+export interface IPerkActual {
+  friends_count: number;
+  game_level: number;
+  balance: number;
 }
 
 export interface IAchievement {
