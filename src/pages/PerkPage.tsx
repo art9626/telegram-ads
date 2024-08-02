@@ -39,9 +39,9 @@ export default function PerkPage() {
       <h1>{name}</h1>
       <p>
         Requirements:
-        <p className={checkActual("level") ? "danger" : "success"}>Level: {requirements.game_level}</p>
-        <p className={checkActual("friends") ? "danger" : "success"}>Friends invited: {requirements.friends_count}</p>
-        <p className={checkActual("cost") ? "danger" : "success"}>Cost: {requirements.cost}</p>
+        <p className={checkActual("level") ? "danger" : "success"}>Level: {actual_data.game_level} / {requirements.game_level} </p>
+        <p className={checkActual("friends") ? "danger" : "success"}>Friends invited: {actual_data.friends_count} / {requirements.friends_count}</p>
+        <p className={checkActual("cost") ? "danger" : "success"}>Cost: {actual_data.balance} / {requirements.cost}</p>
       </p>
       <p>{desc}</p>
       <p>{effect_desc}</p>
