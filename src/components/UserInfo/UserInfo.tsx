@@ -10,7 +10,7 @@ export default function UserInfo() {
 
   return (
     <div className={s.info}>
-      <BalanceWithMemo />
+      <BalanceMemo />
       <span className={s.level}>Level {user?.game_data.level}</span>
       {/* <LevelProgress/> */}
     </div>
@@ -19,7 +19,7 @@ export default function UserInfo() {
 
 function Balance() {
   const { data: user } = useUser();
-  const getBalance = () => (user?.game_data.balance ?? 0);
+  const getBalance = () => user?.game_data.balance ?? 0;
   const [startBalance] = React.useState(() => getBalance());
   const balance = getBalance();
 
@@ -46,4 +46,4 @@ function Number({ start, n }: { start: number; n: number }) {
   );
 }
 
-const BalanceWithMemo = React.memo(Balance);
+const BalanceMemo = React.memo(Balance);

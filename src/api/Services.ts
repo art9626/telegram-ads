@@ -61,9 +61,19 @@ export interface GameGlobalInfo {
   to_next_round: number;
 }
 
+export enum PerkTypes {
+  REF_PERK,
+  COIN_PERK,
+  ADS_PERK,
+  EXP_PERK,
+  ROBOT_PERK,
+  FRIENDS_PERK,
+  DOUBLE_CHANCE_PERK,
+}
+
 export interface IPerk {
   id: number;
-  type: number;
+  type: PerkTypes;
   name: string;
   desc: string;
   effect_desc: string;
@@ -72,11 +82,11 @@ export interface IPerk {
   level: number;
   max_level: number;
   effect: number;
-  requirements: PerkRequirements;
+  requirements: IPerkRequirements;
   actual_data: IPerkActual;
 }
 
-export interface PerkRequirements {
+export interface IPerkRequirements {
   friends_count: number;
   game_level: number;
   cost: number;
@@ -150,7 +160,9 @@ export class Services {
   };
 
   watched = async (clicked: boolean) => {
-    return apiClient.post<{ data: GameData }>(Endpoints.WATCHED, {clicked: clicked});
+    return apiClient.post<{ data: GameData }>(Endpoints.WATCHED, {
+      clicked: clicked,
+    });
   };
 
   getUser = async () => {

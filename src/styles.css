@@ -37,11 +37,11 @@
   --button-primary-default: #ffbd0b;
   --button-primary-pressed: #d57e08;
 
-  --font-size-sm: 10px;
-  --font-size-md: 14px;
-  --font-size-lg: 18px;
-  --font-size-xl: 22px;
-  --font-size-xxl: 20vw;
+  --font-size-sm: 14px;
+  --font-size-md: 16px;
+  --font-size-lg: 22px;
+  --font-size-xl: 30px;
+  --font-size-xxl: 50px;
 }
 
 * {

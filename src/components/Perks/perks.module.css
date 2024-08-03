@@ -1,7 +1,7 @@
 .container {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-around;
   height: 100%;
 }
 
@@ -10,6 +10,7 @@
   flex-direction: column;
   gap: 10px;
   max-height: 50vh;
+  border-radius: calc(var(--border-radius) - 2px);
   overflow-x: scroll;
 }
 
@@ -26,6 +27,20 @@
 
 .perksItem h4 {
   margin: 0;
+  font-size: var(--font-size-lg);
+}
+
+.perksItem b {
+  font-size: var(--font-size-md);
+  font-weight: 400;
+  color: var(--text-transparent);
+}
+
+.perksItem p {
+  margin: 0;
+  margin-bottom: 15px;
+  font-size: var(--font-size-md);
+  font-weight: 400;
 }
 
 .iconWrapper {
@@ -35,16 +50,37 @@
   padding: 10px;
 }
 
-.perkLink::before {
-  content: "";
-  position: absolute;
-  z-index: 0;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  left: 0;
+.perkDialogContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  flex: 1 1 100%;
 }
 
 .upButton {
-  z-index: 1;
+  width: 100%;
+  padding: 10px;
+}
+
+.requirementsList {
+  display: flex;
+}
+
+.requirementsItem {
+  padding: 0 5px;
+  font-size: var(--font-size-md);
+  line-height: 1;
+}
+
+.requirementsItem:first-child {
+  padding-left: 0;
+}
+
+.requirementsItem:last-child {
+  padding-right: 0;
+}
+
+.requirementsItem:not(:last-child) {
+  border-right: 2px solid var(--stroke-default);
 }
