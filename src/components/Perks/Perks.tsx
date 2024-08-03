@@ -7,6 +7,16 @@ import { useHapticFeedback } from "@tma.js/sdk-react";
 import Button from "../ui/Button/Button";
 import s from "./perks.module.css";
 
+export enum PerkType {
+  RefPerk = 1,
+  CoinsPerk,
+  AdsPerk,
+  ExpPerk,
+  RobotPerk,
+  FriendsPerk,
+  DoubleChancePerk
+}
+
 export default function Perks() {
   const { getPerks } = useServices();
   const { data: perks } = useQuery({
@@ -46,25 +56,25 @@ export function Perk({ perk }: { perk: IPerk }) {
     const effect = Math.round(perk.effect * 100) / 100
     switch (perk.id) {
       // ref perk
-      case 1:
+      case PerkType.RefPerk:
         return `${effect}% from ref earnings`;
       // coins perk
-      case 2:
+      case PerkType.CoinsPerk:
         return `${effect} coins per watch`;
       // ads perk
-      case 3:
+      case PerkType.AdsPerk:
         return `${effect} ads`;
       // exp perk
-      case 4:
+      case PerkType.ExpPerk:
         return `${effect * 100}%`;
       // robot perk
-      case 5:
+      case PerkType.RobotPerk:
         return `${effect} coins per hour`;
       // friends perk
-      case 6:
+      case PerkType.FriendsPerk:
         return `${effect} friends assigned`;
       // double chance perk
-      case 7:
+      case PerkType.DoubleChancePerk:
         return `${effect}% chance`;
     }
 
