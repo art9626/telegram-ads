@@ -63,6 +63,7 @@ export interface GameGlobalInfo {
 
 export interface IPerk {
   id: number;
+  type: number;
   name: string;
   desc: string;
   effect_desc: string;
@@ -148,8 +149,8 @@ export class Services {
       });
   };
 
-  watched = async () => {
-    return apiClient.post<{ data: GameData }>(Endpoints.WATCHED);
+  watched = async (clicked: boolean) => {
+    return apiClient.post<{ data: GameData }>(Endpoints.WATCHED, {clicked: clicked});
   };
 
   getUser = async () => {

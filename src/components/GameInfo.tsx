@@ -35,7 +35,7 @@ export default function GameInfo() {
         <li>Total Watched: {userStats?.total_watched}</li>
         <li>Mining Speed (per hour): {userStats?.auto_mining_speed}</li>
         <li>Mining Speed (per second): {Math.round((userStats?.auto_mining_speed || 0) / 3600 * 100) / 100}</li>
-        <li>Coins per watch: {userStats?.coins_per_watch}</li>
+        <li>Coins per watch: {userStats?.coins_per_watch} (x2 when you click ad)</li>
         <li>Coins multiplier: {Math.round((userStats?.coins_multiplier || 0) * 100)}%</li>
         <li>Coins per ref: {userStats?.coins_per_ref}</li>
         <li>Ref multiplier: {Math.round((userStats?.ref_multiplier || 0) * 100) / 100}%</li>

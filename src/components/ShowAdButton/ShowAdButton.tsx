@@ -37,7 +37,7 @@ export default function ShowAdButton() {
   const clickHandler = () => {
     hf.impactOccurred("medium");
     if (import.meta.env.DEV) {
-      mutation.mutate();
+      mutation.mutate(true);
     } else {
       setLoading(true);
 
@@ -51,7 +51,7 @@ export default function ShowAdButton() {
         .then((result: ShowPromiseResult) => {
           // TODO: send to BE
           console.log(result);
-          return mutation.mutate();
+          return mutation.mutate(false);
         })
         .catch((result: ShowPromiseResult) => {
           AdController.destroy();

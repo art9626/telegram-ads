@@ -8,7 +8,7 @@ import Button from "../ui/Button/Button";
 import s from "./perks.module.css";
 
 export enum PerkType {
-  RefPerk = 1,
+  RefPerk,
   CoinsPerk,
   AdsPerk,
   ExpPerk,
@@ -54,13 +54,13 @@ export function Perk({ perk }: { perk: IPerk }) {
 
   function buildEffect(perk: IPerk): string {
     const effect = Math.round(perk.effect * 100) / 100
-    switch (perk.id) {
+    switch (perk.type) {
       // ref perk
       case PerkType.RefPerk:
         return `${effect}% from ref earnings`;
       // coins perk
       case PerkType.CoinsPerk:
-        return `${effect} coins per watch`;
+        return `${effect} coins per watch (x2 when you click ad)`;
       // ads perk
       case PerkType.AdsPerk:
         return `${effect} ads`;
