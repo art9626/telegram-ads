@@ -49,7 +49,6 @@ export default function Dialog({
             {children}
             <RDialog.Close asChild>
               <button className={s.closeButton} aria-label="Close">
-                {/* TODO replace icon */}
                 <MdClose size={20} />
               </button>
             </RDialog.Close>
