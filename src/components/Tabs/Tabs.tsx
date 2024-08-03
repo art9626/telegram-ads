@@ -1,11 +1,4 @@
 import React from "react";
-import {
-  DoubleArrowUpIcon,
-  IdCardIcon,
-  PersonIcon,
-  TargetIcon,
-  TimerIcon,
-} from "@radix-ui/react-icons";
 import * as RTabs from "@radix-ui/react-tabs";
 import classNames from "classnames";
 import { useLocation } from "react-router-dom";
@@ -33,11 +26,11 @@ interface ITab {
 }
 
 const tabs: ITab[] = [
-  { key: TabTypes.FRIENDS, title: "Friends", icon: <PersonIcon /> },
-  { key: TabTypes.PERKS, title: "Perks", icon: <DoubleArrowUpIcon /> },
-  { key: TabTypes.AD_GAME, title: "Earn", icon: <TargetIcon /> },
-  { key: TabTypes.ACHIEVEMENTS, title: "Prizes", icon: <IdCardIcon /> },
-  { key: TabTypes.TASKS, title: "Tasks", icon: <TimerIcon /> },
+  { key: TabTypes.FRIENDS, title: "Friends", icon: <span /> },
+  { key: TabTypes.PERKS, title: "Perks", icon: <span /> },
+  { key: TabTypes.AD_GAME, title: "Earn", icon: <span /> },
+  { key: TabTypes.ACHIEVEMENTS, title: "Prizes", icon: <span /> },
+  { key: TabTypes.TASKS, title: "Tasks", icon: <span /> },
 ];
 
 export default function Tabs() {

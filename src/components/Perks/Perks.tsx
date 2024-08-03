@@ -1,6 +1,12 @@
 import React from "react";
-import { IPerk, IPerkRequirements, PerkTypes } from "../../api/Services";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import {
+  FaUserFriends,
+  FaTrophy,
+  FaCoins,
+  FaChevronRight,
+} from "react-icons/fa";
+import { IPerk, IPerkRequirements, PerkTypes } from "../../api/Services";
 import { useServices } from "../../providers/ServicesProvider";
 import UserInfo from "../UserInfo/UserInfo";
 import { useHapticFeedback } from "@tma.js/sdk-react";
@@ -48,22 +54,7 @@ export function Perk({ perk }: { perk: IPerk }) {
             <p>Current effect: {getBuildEffect(perk)}</p>
             <RequirementsMemo requirements={requirements} />
           </div>
-          <span className={s.iconWrapper}>
-            <svg
-              width="30"
-              height="30"
-              viewBox="0 0 30 30"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M6.1584 3.13508C6.35985 2.94621 6.67627 2.95642 6.86514 3.15788L10.6151 7.15788C10.7954 7.3502 10.7954 7.64949 10.6151 7.84182L6.86514 11.8418C6.67627 12.0433 6.35985 12.0535 6.1584 11.8646C5.95694 11.6757 5.94673 11.3593 6.1356 11.1579L9.565 7.49985L6.1356 3.84182C5.94673 3.64036 5.95694 3.32394 6.1584 3.13508Z"
-                fill="currentColor"
-                fillRule="evenodd"
-                clipRule="evenodd"
-              ></path>
-            </svg>
-          </span>
+          <FaChevronRight size={20} />
         </li>
       }
     >
@@ -122,17 +113,17 @@ function Requirements({ requirements }: { requirements: IPerkRequirements }) {
     {
       id: 0,
       value: numberSeparatedBySpaces(cost),
-      icon: null,
+      icon: <FaCoins />,
     },
     {
       id: 1,
       value: friends_count,
-      icon: null,
+      icon: <FaUserFriends />,
     },
     {
       id: 2,
       value: game_level,
-      icon: null,
+      icon: <FaTrophy />,
     },
   ];
 

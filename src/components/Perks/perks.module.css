@@ -19,10 +19,14 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 0 10px 20px;
+  padding: 10px 20px;
   border: 2px solid var(--stroke-default);
   border-radius: var(--border-radius);
   background-color: var(--background-default);
+}
+
+.itemContent {
+  margin-right: 15px;
 }
 
 .perksItem h4 {
@@ -43,13 +47,6 @@
   font-weight: 400;
 }
 
-.iconWrapper {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 10px;
-}
-
 .perkDialogContent {
   display: flex;
   flex-direction: column;
@@ -68,9 +65,15 @@
 }
 
 .requirementsItem {
+  display: flex;
+  align-items: center;
   padding: 0 5px;
   font-size: var(--font-size-md);
   line-height: 1;
+}
+
+.requirementsItem svg {
+  margin-right: 5px;
 }
 
 .requirementsItem:first-child {

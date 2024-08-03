@@ -1,9 +1,9 @@
 import React from "react";
 import * as RDialog from "@radix-ui/react-dialog";
 import * as VisuallyHidden from "@radix-ui/react-visually-hidden";
-import { Cross2Icon } from "@radix-ui/react-icons";
-import s from "./dialog.module.css";
 import classNames from "classnames";
+import { MdClose } from "react-icons/md";
+import s from "./dialog.module.css";
 
 export default function Dialog({
   trigger,
@@ -50,7 +50,7 @@ export default function Dialog({
             <RDialog.Close asChild>
               <button className={s.closeButton} aria-label="Close">
                 {/* TODO replace icon */}
-                <Cross2Icon fontSize={20} />
+                <MdClose size={20} />
               </button>
             </RDialog.Close>
           </RDialog.Content>
