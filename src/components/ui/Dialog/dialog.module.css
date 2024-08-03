@@ -1,6 +1,9 @@
 .overlay {
   position: fixed;
   inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
   background-color: rgba(0, 0, 0, 0.7);
   animation: overlayShow 0.2s ease-out;
 }
@@ -15,14 +18,14 @@
 }
 
 .content {
-  position: fixed;
-  top: 2%;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  left: 0;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 60%;
   padding: 25px;
-  border-radius: var(--border-radius);
+  border-top-left-radius: var(--border-radius);
+  border-top-right-radius: var(--border-radius);
   background: var(--background);
   animation: contentShow 0.2s ease-out;
 }
@@ -40,6 +43,22 @@
     opacity: 1;
     transform: translateY(0%);
   }
+}
+
+.title {
+  font-size: var(--font-size-xl);
+  font-weight: 500;
+  color: var(--text-primary);
+  text-align: center;
+  margin: 0;
+  margin-bottom: 15px;
+}
+
+.description {
+  font-size: var(--font-size-md);
+  color: var(--text-transparent);
+  text-align: center;
+  margin: 0;
 }
 
 .closeButton {

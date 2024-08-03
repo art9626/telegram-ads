@@ -7,7 +7,7 @@
 .linkHeader {
   margin: 0;
   margin-bottom: 5px;
-  font-size: var(--font-size-lg);
+  font-size: var(--font-size-md);
 }
 
 .link {

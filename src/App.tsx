@@ -6,7 +6,6 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import AuthProvider from "./providers/AuthProvider";
 import BaseLayout from "./layout/BaseLayout/BaseLayout";
 import MainPage from "./pages/MainPage";
-import PerkPage from "./pages/PerkPage";
 import MiniAppLayout from "./layout/MiniAppLayout";
 import UserProvider from "./providers/UserProvider";
 import ServicesProvider from "./providers/ServicesProvider";
@@ -37,7 +36,6 @@ function App() {
                       <Routes>
                         <Route path="/" element={<BaseLayout />}>
                           <Route index element={<MainPage />} />
-                          <Route path="/perk" element={<PerkPage />} />
                           <Route path="/info" element={<InfoPage />} />
                           <Route path="*" element={<Navigate to="/" />} />
                         </Route>
