@@ -2,7 +2,7 @@
 import React from "react";
 import { Services } from "../api/Services";
 
-const ServicesContext = React.createContext<Services>(new Services());
+const ServicesContext = React.createContext<Services | null>(null);
 
 export default function ServicesProvider({
   children,
@@ -19,5 +19,7 @@ export default function ServicesProvider({
 }
 
 export function useServices() {
-  return React.useContext(ServicesContext);
+  const services = React.useContext(ServicesContext);
+  if (!services) throw new Error("Use services context within provider!");
+  return services;
 }
