@@ -7,12 +7,13 @@ import {
 import { useServices } from "../../providers/ServicesProvider.tsx";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useHapticFeedback } from "@tma.js/sdk-react";
+import classNames from "classnames";
+import * as Tabs from "@radix-ui/react-tabs";
 import UserInfo from "../UserInfo/UserInfo.tsx";
 import { useAchievements } from "../../providers/AchievementsProvider.tsx";
 import Button from "../ui/Button/Button.tsx";
+import { TabTypes } from "../Tabs/Tabs.tsx";
 import s from "./achievements.module.css";
-import * as Tabs from "@radix-ui/react-tabs";
-import classNames from "classnames";
 
 const AchievementCategoryMap = new Map<TAchievementCategory, string>([
   ["achievements", "Achievements"],
@@ -36,7 +37,7 @@ export default function Achievements() {
   if (!data || data.achievements.length === 0) {
     return (
       <div className={s.container}>
-        <UserInfo />
+        <UserInfo tab={TabTypes.ACHIEVEMENTS} />
         <div>You have no achievements</div>
       </div>
     );
@@ -46,7 +47,7 @@ export default function Achievements() {
 
   return (
     <div className={s.container}>
-      <UserInfo />
+      <UserInfo tab={TabTypes.ACHIEVEMENTS} />
       <span className={s.counter}>
         {data.claimed_count}/{data.total_count}
       </span>

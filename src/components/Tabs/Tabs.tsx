@@ -11,7 +11,7 @@ import Perks from "../Perks/Perks.tsx";
 import Achievements from "../Achievements/Achievements.tsx";
 import s from "./tabs.module.css";
 
-enum TabTypes {
+export enum TabTypes {
   AD_GAME = "AD_GAME",
   ACHIEVEMENTS = "ACHIEVEMENTS",
   TASKS = "TASKS",

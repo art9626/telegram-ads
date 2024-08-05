@@ -5,15 +5,16 @@ import { FaTrophy, FaChevronRight } from "react-icons/fa";
 import { useUser } from "../../providers/UserProvider";
 import { numberSeparatedBySpaces } from "../../utils/convert";
 import s from "./userInfo.module.css";
+import { TabTypes } from "../Tabs/Tabs";
 // import LevelProgress from "../LevelProgress.tsx";
 
-export default function UserInfo() {
+export default function UserInfo({ tab }: { tab?: TabTypes }) {
   const { data: user } = useUser();
 
   return (
     <div className={s.info}>
       <BalanceMemo />
-      <Link to="/user-stats" className={s.userInfoLink}>
+      <Link to="/user-stats" state={{ tab }} className={s.userInfoLink}>
         <FaTrophy size={25} />
         Level {user?.game_data.level}
         <FaChevronRight size={20} />
