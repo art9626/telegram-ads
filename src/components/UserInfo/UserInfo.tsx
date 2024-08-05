@@ -6,7 +6,7 @@ import { useUser } from "../../providers/UserProvider";
 import { numberSeparatedBySpaces } from "../../utils/convert";
 import s from "./userInfo.module.css";
 import { TabTypes } from "../Tabs/Tabs";
-// import LevelProgress from "../LevelProgress.tsx";
+import LevelProgress from "../LevelProgress.tsx";
 
 export default function UserInfo({ tab }: { tab?: TabTypes }) {
   const { data: user } = useUser();
@@ -19,7 +19,7 @@ export default function UserInfo({ tab }: { tab?: TabTypes }) {
         Level {user?.game_data.level}
         <FaChevronRight size={20} />
       </Link>
-      {/* <LevelProgress/> */}
+      <LevelProgress/>
     </div>
   );
 }

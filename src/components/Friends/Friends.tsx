@@ -17,37 +17,48 @@ export default function Friends() {
   const hasFriends = friendList && friendList.friends.length > 0;
 
   return (
-    <div>
-      <h1>Friends</h1>
-      {friendList?.ref_link && <InviteLink url={friendList.ref_link} />}
-      <div>Earned: {friendList?.earned_by_refs || 0}</div>
-      {hasFriends ? (
-        friendList.friends.map((friend, index) => (
-          <FriendElement key={index} friend={friend} />
-        ))
-      ) : (
-        <div>No Friends</div>
-      )}
+    <div className={s.container}>
+      <div>
+        <h1 style={{margin: 0}}>Friends</h1>
+        <div>Invite more friends and increase your income!</div>
+        {friendList?.ref_link && <InviteLink url={friendList.ref_link}/>}
+      </div>
+      <h2>Earned: {friendList?.earned_by_refs || 0}</h2>
+      <div>
+        <h3>Your friends</h3>
+        <div className={s.friendsList}>
+          {hasFriends ? (
+            friendList.friends.map((friend, index) => (
+              <FriendElement key={index} friend={friend}/>
+            ))
+          ) : (
+            <div>No Friends</div>
+          )}
+        </div>
+      </div>
     </div>
   );
 }
 
-export function FriendElement({ friend }: { friend: Friend }) {
+export function FriendElement({friend}: { friend: Friend }) {
   return (
-    <div>
-      <div>Name: {friend.first_name}</div>
-      <div>Username: {friend.username}</div>
-    </div>
+    <div>Username: {friend.username}</div>
   );
 }
 
-function InviteLink({ url }: { url: string }) {
+const inviteText = "🎮💰 Hey! Want to earn crypto while gaming? Join me on AdVenture!\n " +
+  "\n" +
+  "Watch ads, play fun games, get paid in real crypto. Use my link for a 1000 coin bonus!\n " +
+  "\n" +
+  "Let's get rich gaming together! 🚀"
+
+function InviteLink({url}: { url: string }) {
   const hf = useHapticFeedback();
 
   const shareHandler = () => {
     hf.impactOccurred("medium");
     window.open(
-      `https://t.me/share/url?url=${url}&text=${"Заходи в приложение"}`
+      `https://t.me/share/url?url=${url}&text=${inviteText}`
     );
   };
 

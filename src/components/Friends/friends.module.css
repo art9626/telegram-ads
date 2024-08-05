@@ -1,3 +1,10 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 100%;
+}
+
 .linkContainer {
   padding: 10px 15px;
   background-color: var(--background-default);
@@ -21,4 +28,13 @@
 
 .buttons button:not(:last-child) {
   margin-right: 10px;
+}
+
+.friendsList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-height: 30vh;
+  border-radius: calc(var(--border-radius) - 2px);
+  overflow-x: scroll;
 }
