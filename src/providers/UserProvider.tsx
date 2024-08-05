@@ -5,8 +5,9 @@ import { GameUser } from "../api/Services";
 import { useServices } from "./ServicesProvider";
 import Loader from "../components/Loader/Loader";
 
-// @ts-expect-error fix
-const UserContext = React.createContext<UseQueryResult<GameUser, Error>>();
+const UserContext = React.createContext<UseQueryResult<GameUser, Error> | null>(
+  null
+);
 
 export default function UserProvider({
   children,
@@ -27,5 +28,7 @@ export default function UserProvider({
 }
 
 export function useUser() {
-  return React.useContext(UserContext);
+  const user = React.useContext(UserContext);
+  if (!user) throw new Error("Use user context within provider!");
+  return user;
 }

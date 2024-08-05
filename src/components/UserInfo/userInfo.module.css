@@ -19,7 +19,18 @@
   font-weight: 500;
 }
 
-.level {
+.userInfoLink {
+  display: flex;
+  align-items: center;
   font-size: 30px;
   font-weight: 500;
+  color: var(--text-primary);
+}
+
+.userInfoLink svg:first-child {
+  margin-right: 10px;
+}
+
+.userInfoLink svg:last-child {
+  margin-left: 5px;
 }

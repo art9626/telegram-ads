@@ -4,9 +4,10 @@ import React from "react";
 import { IAchievements } from "../api/Services";
 import { useServices } from "./ServicesProvider";
 
-const AchievementsContext =
-  // @ts-expect-error fix
-  React.createContext<UseQueryResult<IAchievements, Error>>();
+const AchievementsContext = React.createContext<UseQueryResult<
+  IAchievements,
+  Error
+> | null>(null);
 
 export default function AchievementsProvider({
   children,
@@ -27,5 +28,9 @@ export default function AchievementsProvider({
 }
 
 export function useAchievements() {
-  return React.useContext(AchievementsContext);
+  const achievements = React.useContext(AchievementsContext);
+  if (!achievements) {
+    throw new Error("Use achievements context within provider!");
+  }
+  return achievements;
 }

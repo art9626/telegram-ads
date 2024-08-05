@@ -1,0 +1,29 @@
+.statsList {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0;
+  padding: 10px 0;
+}
+
+.statsItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.statsItem:not(:last-child) {
+  margin-bottom: 10px;
+}
+
+.statsItem > dt {
+  font-size: var(--font-size-sm);
+  line-height: 1.3;
+  color: var(--text-transparent);
+}
+
+.statsItem > dd {
+  margin: 0;
+  font-size: var(--font-size-md);
+  color: var(--text-primary);
+}

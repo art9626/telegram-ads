@@ -6,7 +6,7 @@ export default function Header() {
     <header className={s.header}>
       <div className={s.logo}>AdVenture(beta)</div>
       <nav>
-        <Link to="/info" className={s.infoLink}>
+        <Link to="/global-stats" className={s.infoLink}>
           Info
         </Link>
       </nav>

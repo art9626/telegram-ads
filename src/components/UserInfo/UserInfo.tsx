@@ -1,17 +1,24 @@
 import React from "react";
 import { useSpringValue, animated } from "@react-spring/web";
+import { Link } from "react-router-dom";
+import { FaTrophy, FaChevronRight } from "react-icons/fa";
 import { useUser } from "../../providers/UserProvider";
 import { numberSeparatedBySpaces } from "../../utils/convert";
 import s from "./userInfo.module.css";
+import { TabTypes } from "../Tabs/Tabs";
 // import LevelProgress from "../LevelProgress.tsx";
 
-export default function UserInfo() {
+export default function UserInfo({ tab }: { tab?: TabTypes }) {
   const { data: user } = useUser();
 
   return (
     <div className={s.info}>
       <BalanceMemo />
-      <span className={s.level}>Level {user?.game_data.level}</span>
+      <Link to="/user-stats" state={{ tab }} className={s.userInfoLink}>
+        <FaTrophy size={25} />
+        Level {user?.game_data.level}
+        <FaChevronRight size={20} />
+      </Link>
       {/* <LevelProgress/> */}
     </div>
   );

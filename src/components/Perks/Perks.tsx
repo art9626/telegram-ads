@@ -14,6 +14,7 @@ import Button from "../ui/Button/Button";
 import Dialog from "../ui/Dialog/Dialog";
 import Progress from "../ui/Progress/Progress";
 import { numberSeparatedBySpaces } from "../../utils/convert";
+import { TabTypes } from "../Tabs/Tabs";
 import s from "./perks.module.css";
 
 export default function Perks() {
@@ -25,7 +26,7 @@ export default function Perks() {
 
   return (
     <div className={s.container}>
-      <UserInfo />
+      <UserInfo tab={TabTypes.PERKS} />
       {!perks ? (
         <div>Loading...</div>
       ) : (
