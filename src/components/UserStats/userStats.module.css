@@ -1,0 +1,13 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: calc(100vh - var(--header-height));
+  padding: 15px 0;
+  overflow-y: scroll;
+}
+
+.container > h1 {
+  margin: 0;
+}

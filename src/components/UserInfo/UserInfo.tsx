@@ -1,5 +1,7 @@
 import React from "react";
 import { useSpringValue, animated } from "@react-spring/web";
+import { Link } from "react-router-dom";
+import { FaTrophy, FaChevronRight } from "react-icons/fa";
 import { useUser } from "../../providers/UserProvider";
 import { numberSeparatedBySpaces } from "../../utils/convert";
 import s from "./userInfo.module.css";
@@ -11,7 +13,11 @@ export default function UserInfo() {
   return (
     <div className={s.info}>
       <BalanceMemo />
-      <span className={s.level}>Level {user?.game_data.level}</span>
+      <Link to="/user-stats" className={s.userInfoLink}>
+        <FaTrophy size={25} />
+        Level {user?.game_data.level}
+        <FaChevronRight size={20} />
+      </Link>
       {/* <LevelProgress/> */}
     </div>
   );
