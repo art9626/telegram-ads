@@ -32,6 +32,7 @@
 .perksItem h4 {
   margin: 0;
   font-size: var(--font-size-lg);
+  color: var(--orange);
 }
 
 .perksItem b {
@@ -86,4 +87,8 @@
 
 .requirementsItem:not(:last-child) {
   border-right: 2px solid var(--stroke-default);
+}
+
+.perkDialog > h2 {
+  color: var(--orange);
 }

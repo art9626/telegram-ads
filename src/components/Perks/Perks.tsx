@@ -44,6 +44,7 @@ export function Perk({ perk }: { perk: IPerk }) {
 
   return (
     <Dialog
+      className={s.perkDialog}
       title={name}
       description={effect_desc}
       trigger={
