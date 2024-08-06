@@ -3,7 +3,7 @@ import axios, { AxiosResponse } from "axios";
 import { Endpoints } from "./Endpoints";
 
 export const apiClient = axios.create({
-  baseURL: Endpoints.BASE_URL,
+  baseURL: import.meta.env.VITE_BASE_URL,
   headers: { "Content-Type": "application/json" },
 });
 
@@ -49,7 +49,7 @@ apiClient.interceptors.response.use(
 
       try {
         const promise = axios.post<{ data: { token: string } }>(
-          `${Endpoints.AUTH}`,
+          `${import.meta.env.VITE_BASE_URL}${Endpoints.AUTH}`,
           payload
         );
         refreshPromise = promise;

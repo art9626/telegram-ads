@@ -5,6 +5,14 @@ import react from "@vitejs/plugin-react";
 export default defineConfig({
   server: {
     host: true,
+    proxy: {
+      "/api": {
+        target: "https://adventuregame.win",
+        changeOrigin: true,
+        ws: true,
+        rewrite: (path) => path.replace(/^\/api/, "/api"),
+      },
+    },
   },
   plugins: [react()],
   css: {
@@ -12,8 +20,5 @@ export default defineConfig({
       scopeBehaviour: "local",
       localsConvention: "camelCase",
     },
-  },
-  build: {
-    target: "es2020",
   },
 });
