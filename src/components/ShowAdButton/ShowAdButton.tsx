@@ -44,7 +44,7 @@ export default function ShowAdButton() {
       // @ts-expect-error Adsgram defined by script in index.html
       const AdController = window.Adsgram.init({
         blockId: "1607",
-        debug: false,
+        debug: true,
       });
 
       AdController.show()
