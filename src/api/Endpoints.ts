@@ -1,5 +1,5 @@
 export const Endpoints = {
-  PROD_URL: "https://game.botsquad.win",
+  PROD_URL: "https://adventuregame.win",
   // PROD_URL:"http://localhost:8000",
   get BASE_URL() {
     return `${this.PROD_URL}/api/v1`;
