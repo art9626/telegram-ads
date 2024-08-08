@@ -152,9 +152,9 @@ function getBuildEffect(perk: IPerk): string {
     case PerkTypes.REF_PERK:
       return `${effect}% from ref earnings`;
     case PerkTypes.COIN_PERK:
-      return `${effect} coins per watch (x2 when you click ad)`;
+      return `${effect} coins per gold nugget`;
     case PerkTypes.ADS_PERK:
-      return `${effect} ads`;
+      return `${effect} nuggets`;
     case PerkTypes.EXP_PERK:
       return `${effect * 100}%`;
     case PerkTypes.ROBOT_PERK:
