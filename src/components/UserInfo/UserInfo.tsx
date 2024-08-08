@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import { useSpringValue, animated } from "@react-spring/web";
 import { Link } from "react-router-dom";
 import { FaTrophy, FaChevronRight } from "react-icons/fa";
@@ -26,9 +26,20 @@ export default function UserInfo({ tab }: { tab?: TabTypes }) {
 
 function Balance() {
   const { data: user } = useUser();
-  const getBalance = () => user?.game_data.balance ?? 0;
+  const getBalance = () => Math.floor(user?.game_data.balance ?? 0);
+  const miningSpeed = () => Math.floor(user?.game_data.mining_speed ?? 0)
   const [startBalance] = React.useState(() => getBalance());
-  const balance = getBalance();
+  const speed = miningSpeed();
+
+  const [balance, setBalance] = useState(startBalance)
+
+  useEffect(() => {
+    const id = setInterval(() => {
+      setBalance(balance + speed)
+    }, 1000)
+    return () => clearInterval(id);
+  }, [balance]);
+
 
   return (
     <div className={s.balance}>

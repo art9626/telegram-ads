@@ -42,6 +42,13 @@
   --font-size-lg: 22px;
   --font-size-xl: 30px;
   --font-size-xxl: 50px;
+
+  --coin-size: 30px;
+  --coin-color: #ffd700;
+  --coin-speed: 16s;
+  --coin-delay: 0s;
+  --screen-height: 100vh;
+  --sceen-width: 100vw;
 }
 
 * {
@@ -55,7 +62,6 @@ body {
   height: 100vh;
   margin: 0;
   padding: 0;
-  font-family: Roboto;
   line-height: 1.5;
   font-weight: 400;
   color: var(--text-primary);
@@ -97,4 +103,124 @@ ul {
   align-items: center;
   width: 100%;
   height: 100%;
+  overflow: hidden;
+}
+
+.coins-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: -1;
+}
+
+/* Define the coin styles */
+.fallin-coin {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #FFD700; /* Gold color */
+  animation: fall 10s linear infinite;
+  opacity: 0;
+}
+
+/* Animate the coins */
+@keyframes fall {
+  0% {
+    transform: translateY(-100px);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.75;
+  }
+  100% {
+    transform: translateY(calc(100vh + 100px));
+    opacity: 0;
+  }
+}
+
+.gold-mining-pan {
+  position: relative;
+  width: 400px;
+  height: 250px;
+  background-color: #8c6239; /* коричневый цвет дерева */
+  border: 10px solid #4d2600; /* более темный коричневый цвет */
+  border-radius: 50% 50% 30% 30%;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5); /* тень для реалистичности */
+  transform: perspective(400px) rotateX(20deg) rotateZ(10deg); /* поворот лотка */
+  overflow: hidden;
+}
+
+.gold-mining-pan::before {
+  content: "";
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  right: 20px;
+  bottom: 20px;
+  background-color: cornflowerblue; /* более светлый серый цвет для дна лотка */
+  border-radius: 45% 45% 25% 25%;
+  box-shadow: inset 0 5px 10px rgba(0, 0, 0, 0.5); /* внутренняя тень */
+  transform: translateZ(20px); /* сдвиг дна вперед */
+}
+
+.gold-flakes {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.gold-flake {
+  position: absolute;
+  top: 100px;
+  left: 100px;
+  width: 15px;
+  height: 15px;
+  background-image: radial-gradient(
+          circle at center,
+          #FFD700 30%,
+          #FFDF73 60%,
+          transparent 90%
+  ); /* градиент для реалистичности */
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.5); /* блики на золоте */
+  /*animation: float 8s linear infinite;*/
+}
+
+@keyframes float {
+  0% {
+    transform: translate(-10%, -20%) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(110%, 120%) rotate(360deg);
+    opacity: 1;
+  }
+}
+
+.large-gold-nugget {
+  position: absolute;
+  left: 100px;
+  top: 100px;
+  width: 100px;
+  height: 80px;
+  background-image: radial-gradient(
+          ellipse at center,
+          #FFD700 30%,
+          #FFDF73 60%,
+          #B8860B 90%
+  );
+  border-radius: 30% 70% 65% 35% / 60% 50% 50% 40%;
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.8), inset 0 0 10px rgba(0, 0, 0, 0.3);
+  transform-origin: bottom center;
+  animation: nugget-move 10s ease-in-out infinite;
+  z-index: 2;
 }
