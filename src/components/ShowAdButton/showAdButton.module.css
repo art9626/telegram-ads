@@ -24,11 +24,12 @@
 }
 
 .coin {
-  --coin-size: 60vw;
+  --coin-size: 30vw;
 
   position: relative;
   height: var(--coin-size);
   width: var(--coin-size);
+  z-index: 1;
 }
 
 .coin:active {
