@@ -18,7 +18,9 @@ export default function BalanceProvider({
   );
 
   React.useEffect(() => {
-    setBalance(user?.game_data.balance ?? 0);
+    if (typeof user?.game_data.balance === "number") {
+      setBalance(user.game_data.balance);
+    }
   }, [user?.game_data.balance]);
 
   React.useEffect(() => {
