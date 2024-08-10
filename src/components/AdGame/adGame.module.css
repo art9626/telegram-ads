@@ -23,7 +23,7 @@
   width: 20px;
   height: 20px;
   border-radius: 50%;
-  background-color: #ffd700; /* Gold color */
+  background-color: var(--gold); /* Gold color */
   animation: fall 10s linear infinite;
   opacity: 0;
 }
