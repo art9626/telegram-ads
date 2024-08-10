@@ -1,12 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useSpringValue, animated } from "@react-spring/web";
 import { Link } from "react-router-dom";
 import { FaTrophy, FaChevronRight } from "react-icons/fa";
 import { useUser } from "../../providers/UserProvider";
 import { numberSeparatedBySpaces } from "../../utils/convert";
-import s from "./userInfo.module.css";
+import { useBalance } from "../../providers/BalanceProvider.tsx";
 import { TabTypes } from "../Tabs/Tabs";
 import LevelProgress from "../LevelProgress.tsx";
+import s from "./userInfo.module.css";
 
 export default function UserInfo({ tab }: { tab?: TabTypes }) {
   const { data: user } = useUser();
@@ -25,25 +26,12 @@ export default function UserInfo({ tab }: { tab?: TabTypes }) {
 }
 
 function Balance() {
-  const { data: user } = useUser();
-  const speed = Math.floor(user?.game_data.mining_speed ?? 0);
-  const [startBalance] = React.useState(() =>
-    Math.floor(user?.game_data.balance ?? 0)
-  );
-  const [balance, setBalance] = useState(startBalance);
-
-  useEffect(() => {
-    const id = setInterval(() => {
-      setBalance((b) => b + speed);
-    }, 1000);
-    return () => {
-      clearInterval(id);
-    };
-  }, [speed]);
+  const { currentBalance, speed } = useBalance();
+  const [startBalance] = React.useState(() => currentBalance - speed);
 
   return (
     <div className={s.balance}>
-      <Number start={startBalance} n={balance} />
+      <Number start={startBalance} n={currentBalance} />
     </div>
   );
 }
