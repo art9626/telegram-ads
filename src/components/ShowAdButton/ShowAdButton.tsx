@@ -7,12 +7,12 @@ import { useHapticFeedback } from "@tma.js/sdk-react";
 import classNames from "classnames";
 import { toast } from "react-toastify";
 
-interface ShowPromiseResult {
-  done: boolean; // true if user watch till the end, otherwise false
-  description: string; // event description
-  state: "load" | "render" | "playing" | "destroy"; // banner state
-  error: boolean; // true if event was emitted due to error, otherwise false
-}
+// interface ShowPromiseResult {
+//   done: boolean; // true if user watch till the end, otherwise false
+//   description: string; // event description
+//   state: "load" | "render" | "playing" | "destroy"; // banner state
+//   error: boolean; // true if event was emitted due to error, otherwise false
+// }
 
 export default function ShowAdButton() {
   const { data: user } = useUser();
@@ -41,25 +41,27 @@ export default function ShowAdButton() {
     } else {
       setLoading(true);
 
-      // @ts-expect-error Adsgram defined by script in index.html
-      const AdController = window.Adsgram.init({
-        blockId: "1607",
-        debug: true,
-      });
-
-      AdController.show()
-        .then((result: ShowPromiseResult) => {
-          // TODO: send to BE
-          console.log(result);
-          return mutation.mutate(false);
-        })
-        .catch((result: ShowPromiseResult) => {
-          AdController.destroy();
-          console.error(result);
-        })
-        .finally(() => {
-          setLoading(false);
-        });
+      // // @ts-expect-error Adsgram defined by script in index.html
+      // const AdController = window.Adsgram.init({
+      //   blockId: "1607",
+      //   debug: true,
+      // });
+      //
+      // AdController.show()
+      //   .then((result: ShowPromiseResult) => {
+      //     // TODO: send to BE
+      //     console.log(result);
+      //     return mutation.mutate(false);
+      //   })
+      //   .catch((result: ShowPromiseResult) => {
+      //     AdController.destroy();
+      //     console.error(result);
+      //   })
+      //   .finally(() => {
+      //     setLoading(false);
+      //   });
+      mutation.mutate(false);
+      setLoading(false);
     }
   };
 
