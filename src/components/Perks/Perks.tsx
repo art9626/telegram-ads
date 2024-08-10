@@ -6,6 +6,7 @@ import {
   FaCoins,
   FaChevronRight,
 } from "react-icons/fa";
+import { toast } from "react-toastify";
 import { IPerk, IPerkRequirements, PerkTypes } from "../../api/Services";
 import { useServices } from "../../providers/ServicesProvider";
 import UserInfo from "../UserInfo/UserInfo";
@@ -95,7 +96,9 @@ function PerkDialogContent({ perk }: { perk: IPerk }) {
         onClick={() => {
           hf.impactOccurred("medium");
           if (isPending) return;
-          mutate(perk.id);
+          mutate(perk.id, {
+            onError: (e) => toast(e.message, { type: "error" }),
+          });
         }}
       >
         Get it!
