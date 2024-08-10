@@ -1,99 +1,88 @@
+import React from "react";
 import UserInfo from "../UserInfo/UserInfo";
-import s from "./adGame.module.css";
-import {useEffect, useState} from "react";
-import {useUser} from "../../providers/UserProvider.tsx";
+import { useUser } from "../../providers/UserProvider.tsx";
 import ShowAdButton from "../ShowAdButton/ShowAdButton.tsx";
+import s from "./adGame.module.css";
 
 export default function AdGame() {
   return (
     <div className={s.container}>
-        <Coins/>
-        <UserInfo/>
-        <GoldMiningPan/>
-        {/*<ShowAdButton/>*/}
-        {/*<WatchProgress/>*/}
+      <CoinsMemo />
+      <UserInfo />
+      <GoldMiningPanMemo />
     </div>
   );
 }
 
-interface Coin {
-    left: string;
-    animationDelay: string
+interface ICoin {
+  left: string;
+  animationDelay: string;
 }
 
-interface GoldFlakes {
-    left: string;
-    top: string;
-    size: string;
-}
+const COINS_NUMBER = 500;
 
 function Coins() {
-    const [coins, setCoins] = useState<Coin[]>([]);
+  const coins: ICoin[] = new Array(COINS_NUMBER).fill("").map(() => ({
+    left: `${Math.random() * 100}%`,
+    animationDelay: `${Math.random() * 20}s`,
+  }));
 
-    useEffect(() => {
-        const numCoins = 500; // Set the desired number of coins
-        const newCoins = Array.from({ length: numCoins }, () => ({
-            left: `${Math.random() * 100}%`,
-            animationDelay: `${Math.random() * 20}s`,
-        }));
-        setCoins(newCoins);
-    }, []);
-
-    return (
-      <div className="coins-container">
-          {coins.map((coin, index) => (
-            <div
-              key={index}
-              className="fallin-coin"
-              style={{
-                  left: coin.left,
-                  animationDelay: coin.animationDelay,
-              }}
-            />
-          ))}
-      </div>
-    );
+  return (
+    <div className={s.coinsContainer}>
+      {coins.map(({ animationDelay, left }, index) => (
+        <div
+          key={index}
+          className={s.fallenCoin}
+          style={{ left, animationDelay }}
+        />
+      ))}
+    </div>
+  );
 }
 
-const GoldMiningPan = ({ numGoldFlakes = 200, maxFlakeSize = 10 }) => {
-    const [goldFlakes, setGoldFlakes] = useState<GoldFlakes[]>([]);
-    const { data: user } = useUser();
-    useEffect(() => {
-        const newFlakes = Array.from({ length: numGoldFlakes }, () => ({
-            left: `${Math.random() * 95}%`,
-            top: `${Math.random() * 95}%`,
-            size: `${Math.random() * maxFlakeSize}px`,
-        }));
-        setGoldFlakes(newFlakes);
-    }, [numGoldFlakes, maxFlakeSize]);
+const CoinsMemo = React.memo(Coins);
 
-    const isAdAvailable: boolean = (user?.game_data.available_watch_count && user?.game_data.available_watch_count > 0 || false) ;
+interface IGoldFlakes {
+  left: string;
+  top: string;
+  size: string;
+}
 
-    return (
-      <div className="gold-mining-pan">
-          <div className="gold-flakes">
-              {goldFlakes.map((flake, index) => (
-                <div
-                  key={index}
-                  className="gold-flake"
-                  style={{
-                      left: flake.left,
-                      top: flake.top,
-                      width: flake.size,
-                      height: flake.size,
-                  }}
-                />
-              ))}
-          </div>
-          <GoldenNugget available={isAdAvailable}/>
+const GOLD_FLAKES_NUMBER = 200;
+const MAX_FLAKE_SIZE = 10;
+
+const GoldMiningPan = () => {
+  const { data: user } = useUser();
+
+  const goldFlakes: IGoldFlakes[] = React.useMemo(
+    () =>
+      new Array(GOLD_FLAKES_NUMBER).fill("").map(() => ({
+        left: `${Math.random() * 95}%`,
+        top: `${Math.random() * 95}%`,
+        size: `${Math.random() * MAX_FLAKE_SIZE}px`,
+      })),
+    []
+  );
+
+  const isAdAvailable: boolean =
+    (user?.game_data.available_watch_count &&
+      user?.game_data.available_watch_count > 0) ||
+    false;
+
+  return (
+    <div className={s.goldMiningPan}>
+      <div className={s.goldFlakes}>
+        {goldFlakes.map(({ left, top, size }, index) => (
+          <div
+            key={index}
+            className={s.goldFlake}
+            style={{ left, top, width: size, height: size }}
+          />
+        ))}
       </div>
-    );
+      {isAdAvailable && <ShowAdButton />}
+    </div>
+  );
 };
 
-const GoldenNugget = ({available}: {available: boolean}) => {
-    if (available) {
-        return <ShowAdButton/>
-    }
-
-    return <div></div>
-}
+const GoldMiningPanMemo = React.memo(GoldMiningPan);
