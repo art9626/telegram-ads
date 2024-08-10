@@ -17,7 +17,7 @@ import s from "./achievements.module.css";
 
 const AchievementCategoryMap = new Map<TAchievementCategory, string>([
   ["achievements", "Achievements"],
-  ["ads", "Ads"],
+  ["ads", "Gold"],
   ["balance", "Balance"],
   ["friends", "Friends"],
   ["level", "Level"],

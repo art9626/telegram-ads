@@ -76,7 +76,6 @@ export default function ShowAdButton() {
           </span>
         </div>
       </div>
-      <div className={s.shadow}></div>
     </div>
   );
 }

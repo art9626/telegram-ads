@@ -29,7 +29,7 @@ export default function UserStats() {
       value: userStats?.total_balance,
     },
     {
-      title: "Total Watched:",
+      title: "Golden Clicks:",
       value: userStats?.total_watched,
     },
     {
@@ -42,7 +42,7 @@ export default function UserStats() {
         Math.round(((userStats?.auto_mining_speed ?? 0) / 3600) * 100) / 100,
     },
     {
-      title: "Coins per watch (x2 when you click ad):",
+      title: "Golden click:",
       value: userStats?.coins_per_watch,
     },
     {

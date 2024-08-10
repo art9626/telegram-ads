@@ -152,17 +152,15 @@ function getBuildEffect(perk: IPerk): string {
     case PerkTypes.REF_PERK:
       return `${effect}% from ref earnings`;
     case PerkTypes.COIN_PERK:
-      return `${effect} coins per watch (x2 when you click ad)`;
-    case PerkTypes.ADS_PERK:
-      return `${effect} ads`;
+      return `${effect}% panning efficiency`;
     case PerkTypes.EXP_PERK:
-      return `${effect * 100}%`;
+      return `${effect}% exp gain`;
     case PerkTypes.ROBOT_PERK:
-      return `${effect} coins per hour`;
+      return `${effect} gold per hour`;
     case PerkTypes.FRIENDS_PERK:
       return `${effect} friends assigned`;
     case PerkTypes.DOUBLE_CHANCE_PERK:
-      return `${effect}% chance`;
+      return `${effect}% chance to get really huge nugget`;
     default:
       ((v: never) => v)(perk.type);
       return "";

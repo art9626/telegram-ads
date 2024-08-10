@@ -8,8 +8,9 @@ export interface GameData {
   level: number;
   xp_to_next_level: number;
   available_watch_count: number;
-  max_watch_count: number;
   last_watched_at: string;
+  next_ad_at: number;
+  mining_speed: number;
 }
 
 export interface GameUser {
@@ -62,9 +63,8 @@ export interface GameGlobalInfo {
 }
 
 export enum PerkTypes {
-  REF_PERK,
   COIN_PERK,
-  ADS_PERK,
+  REF_PERK,
   EXP_PERK,
   ROBOT_PERK,
   FRIENDS_PERK,

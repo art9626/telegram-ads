@@ -4,7 +4,7 @@ import classNames from "classnames";
 import { useLocation } from "react-router-dom";
 import { useHapticFeedback } from "@tma.js/sdk-react";
 import { useAchievements } from "../../providers/AchievementsProvider.tsx";
-import AdGame from "../AdGame/AdGame.tsx";
+import Game from "../Game/Game.tsx";
 import Tasks from "../Tasks.tsx";
 import Friends from "../Friends/Friends.tsx";
 import Perks from "../Perks/Perks.tsx";
@@ -12,7 +12,7 @@ import Achievements from "../Achievements/Achievements.tsx";
 import s from "./tabs.module.css";
 
 export enum TabTypes {
-  AD_GAME = "AD_GAME",
+  GAME = "GAME",
   ACHIEVEMENTS = "ACHIEVEMENTS",
   TASKS = "TASKS",
   PERKS = "PERKS",
@@ -28,7 +28,7 @@ interface ITab {
 const tabs: ITab[] = [
   { key: TabTypes.FRIENDS, title: "Friends", icon: <span /> },
   { key: TabTypes.PERKS, title: "Perks", icon: <span /> },
-  { key: TabTypes.AD_GAME, title: "Earn", icon: <span /> },
+  { key: TabTypes.GAME, title: "Earn", icon: <span /> },
   { key: TabTypes.ACHIEVEMENTS, title: "Prizes", icon: <span /> },
   { key: TabTypes.TASKS, title: "Tasks", icon: <span /> },
 ];
@@ -42,10 +42,7 @@ export default function Tabs() {
   }, [location]);
 
   return (
-    <RTabs.Root
-      defaultValue={defaultTab ?? TabTypes.AD_GAME}
-      className={s.root}
-    >
+    <RTabs.Root defaultValue={defaultTab ?? TabTypes.GAME} className={s.root}>
       {tabs.map(({ key }) => {
         return (
           <RTabs.Content key={key} value={key} className={s.content}>
@@ -88,8 +85,8 @@ const Trigger = React.memo(({ tab: { key, icon, title } }: { tab: ITab }) => {
 
 const Content = React.memo(({ type }: { type: TabTypes }) => {
   switch (type) {
-    case TabTypes.AD_GAME:
-      return <AdGame />;
+    case TabTypes.GAME:
+      return <Game />;
     case TabTypes.ACHIEVEMENTS:
       return <Achievements />;
     case TabTypes.TASKS:
