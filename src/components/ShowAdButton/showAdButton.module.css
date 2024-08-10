@@ -24,11 +24,12 @@
 }
 
 .coin {
-  --coin-size: 60vw;
+  --coin-size: 30vw;
 
   position: relative;
   height: var(--coin-size);
   width: var(--coin-size);
+  z-index: 1;
 }
 
 .coin:active {
@@ -111,27 +112,5 @@
   }
   100% {
     margin: 20px -65px;
-  }
-}
-
-.shadow {
-  width: 50vw;
-  height: 20px;
-  border-radius: 50%;
-  margin-top: 20px;
-  background: rgba(0, 0, 0, 0.4);
-  animation: swift 2s infinite ease;
-}
-
-@keyframes swift {
-  0% {
-    opacity: 0.8;
-  }
-  50% {
-    opacity: 0.4;
-    transform: scale(0.9);
-  }
-  100% {
-    opacity: 0.8;
   }
 }

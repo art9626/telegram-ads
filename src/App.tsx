@@ -12,6 +12,7 @@ import ServicesProvider from "./providers/ServicesProvider";
 import AchievementsProvider from "./providers/AchievementsProvider";
 import GlobalStatsPage from "./pages/GlobalStatsPage.tsx";
 import UserStatsPage from "./pages/UserStatsPage.tsx";
+import BalanceProvider from "./providers/BalanceProvider.tsx";
 // import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 const queryClient = new QueryClient();
@@ -33,22 +34,24 @@ function App() {
               <AuthProvider>
                 <UserProvider>
                   <AchievementsProvider>
-                    <BrowserRouter>
-                      <Routes>
-                        <Route path="/" element={<BaseLayout />}>
-                          <Route index element={<MainPage />} />
-                          <Route
-                            path="/global-stats"
-                            element={<GlobalStatsPage />}
-                          />
-                          <Route
-                            path="/user-stats"
-                            element={<UserStatsPage />}
-                          />
-                          <Route path="*" element={<Navigate to="/" />} />
-                        </Route>
-                      </Routes>
-                    </BrowserRouter>
+                    <BalanceProvider>
+                      <BrowserRouter>
+                        <Routes>
+                          <Route path="/" element={<BaseLayout />}>
+                            <Route index element={<MainPage />} />
+                            <Route
+                              path="/global-stats"
+                              element={<GlobalStatsPage />}
+                            />
+                            <Route
+                              path="/user-stats"
+                              element={<UserStatsPage />}
+                            />
+                            <Route path="*" element={<Navigate to="/" />} />
+                          </Route>
+                        </Routes>
+                      </BrowserRouter>
+                    </BalanceProvider>
                   </AchievementsProvider>
                 </UserProvider>
               </AuthProvider>
