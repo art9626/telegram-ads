@@ -29,37 +29,24 @@ export default function UserStats() {
       value: userStats?.total_balance,
     },
     {
-      title: "Golden Clicks:",
+      title: "Gold Nuggets Collected:",
       value: userStats?.total_watched,
     },
     {
       title: "Mining Speed (per hour):",
-      value: userStats?.auto_mining_speed,
+      value: Math.round(((userStats?.mining_speed ?? 0) * 3600) * 100) / 100,
     },
     {
       title: "Mining Speed (per second):",
-      value:
-        Math.round(((userStats?.auto_mining_speed ?? 0) / 3600) * 100) / 100,
+      value: Math.round(((userStats?.mining_speed ?? 0)) * 100) / 100,
     },
     {
-      title: "Golden click:",
-      value: userStats?.coins_per_watch,
+      title: "Gold bonus:",
+      value: Math.round((userStats?.gold_bonus ?? 0) * 100) / 100,
     },
     {
-      title: "Coins multiplier:",
-      value: Math.round((userStats?.coins_multiplier ?? 0) * 100),
-    },
-    {
-      title: "Coins per ref:",
-      value: userStats?.coins_per_ref,
-    },
-    {
-      title: "Ref multiplier:",
-      value: `${Math.round((userStats?.ref_multiplier ?? 0) * 100) / 100}%`,
-    },
-    {
-      title: "XP per watch:",
-      value: userStats?.xp_per_watch,
+      title: "Ref bonus:",
+      value: `${userStats?.ref_bonus ?? 0}%`,
     },
     {
       title: "Total friends:",
@@ -71,7 +58,7 @@ export default function UserStats() {
     },
     {
       title: "Double coins chance:",
-      value: `${userStats?.double_coins_chance}%`,
+      value: `${userStats?.double_gold_chance}%`,
     },
   ];
 

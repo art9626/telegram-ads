@@ -24,19 +24,15 @@ export interface GameUser {
 }
 
 export interface IGameUserStats {
-  coins_per_watch: number;
-  coins_multiplier: number;
-  xp_per_watch: number;
-  coins_per_ref: number;
-  ref_multiplier: number;
-  auto_mining_speed: number;
-  ads_available: number;
+  gold_bonus: number;
+  ref_bonus: number;
+  mining_speed: number;
   total_balance: number;
   total_spent: number;
   total_watched: number;
   total_friends: number;
   total_achievements: number;
-  double_coins_chance: number;
+  double_gold_chance: number;
 }
 
 export interface Friend {
