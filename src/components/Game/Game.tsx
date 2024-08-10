@@ -1,10 +1,10 @@
 import React from "react";
-import UserInfo from "../UserInfo/UserInfo";
+import UserInfo from "../UserInfo/UserInfo.tsx";
 import { useUser } from "../../providers/UserProvider.tsx";
 import ShowAdButton from "../ShowAdButton/ShowAdButton.tsx";
-import s from "./adGame.module.css";
+import s from "./game.module.css";
 
-export default function AdGame() {
+export default function Game() {
   return (
     <div className={s.container}>
       <CoinsMemo />
