@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import { useSpringValue, animated } from "@react-spring/web";
 import { Link } from "react-router-dom";
 import { FaTrophy, FaChevronRight } from "react-icons/fa";
@@ -19,27 +19,27 @@ export default function UserInfo({ tab }: { tab?: TabTypes }) {
         Level {user?.game_data.level}
         <FaChevronRight size={20} />
       </Link>
-      <LevelProgress/>
+      <LevelProgress />
     </div>
   );
 }
 
 function Balance() {
   const { data: user } = useUser();
-  const getBalance = () => Math.floor(user?.game_data.balance ?? 0);
-  const miningSpeed = () => Math.floor(user?.game_data.mining_speed ?? 0)
-  const [startBalance] = React.useState(() => getBalance());
-  const speed = miningSpeed();
-
-  const [balance, setBalance] = useState(startBalance)
+  const speed = Math.floor(user?.game_data.mining_speed ?? 0);
+  const [startBalance] = React.useState(() =>
+    Math.floor(user?.game_data.balance ?? 0)
+  );
+  const [balance, setBalance] = useState(startBalance);
 
   useEffect(() => {
     const id = setInterval(() => {
-      setBalance(balance + speed)
-    }, 1000)
-    return () => clearInterval(id);
-  }, [balance]);
-
+      setBalance((b) => b + speed);
+    }, 1000);
+    return () => {
+      clearInterval(id);
+    };
+  }, [speed]);
 
   return (
     <div className={s.balance}>
