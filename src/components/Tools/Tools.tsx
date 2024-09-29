@@ -28,7 +28,7 @@ export default function Tools() {
         <div>Loading...</div>
       ) : (
         <ul className={s.toolsList}>
-          {tools.map((tool: ITool) => (
+          {tools.filter(tool => tool.unlocked).map((tool: ITool) => (
             <Tool key={tool.id} tool={tool} />
           ))}
         </ul>
@@ -67,9 +67,10 @@ function ToolDialogContent({ tool }: { tool: ITool }) {
   const { level, base_cost, upgrade_rate, base_production, produced, description } = tool;
 
   const { data: user } = useUser();
+  const cost = Math.floor(base_cost * Math.pow(upgrade_rate, level))
 
   const available = (user?.data.balance || 0) > base_cost * Math.pow(upgrade_rate, level)
-
+  const production = level == 0 ? base_production : level * base_production
   const { upgradeTool } = useServices();
   const hf = useHapticFeedback();
   const queryClient = useQueryClient();
@@ -84,7 +85,8 @@ function ToolDialogContent({ tool }: { tool: ITool }) {
     <div className={s.ToolDialogContent}>
       <p>{description}</p>
       <p>Level: {level}</p>
-      <p>Production: {numberSeparatedBySpaces(level * base_production)}</p>
+      <p>Base production: {numberSeparatedBySpaces(base_production)}</p>
+      <p>Production: {numberSeparatedBySpaces(production)}</p>
       <p>Produced: {numberSeparatedBySpaces(produced)}</p>
       <Button
         disabled={!available}
@@ -97,7 +99,7 @@ function ToolDialogContent({ tool }: { tool: ITool }) {
           });
         }}
       >
-        Get it!
+        Upgrade {numberSeparatedBySpaces(cost)} gold
       </Button>
     </div>
   );

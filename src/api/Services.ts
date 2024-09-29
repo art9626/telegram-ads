@@ -90,6 +90,7 @@ export interface ITool {
   base_production: number;
   produced: number;
   description: string;
+  unlocked: boolean;
 }
 
 export interface IPerkRequirements {
