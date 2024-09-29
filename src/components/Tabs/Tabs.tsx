@@ -3,20 +3,20 @@ import * as RTabs from "@radix-ui/react-tabs";
 import classNames from "classnames";
 import { useLocation } from "react-router-dom";
 import { useHapticFeedback } from "@tma.js/sdk-react";
-import { useAchievements } from "../../providers/AchievementsProvider.tsx";
 import Game from "../Game/Game.tsx";
 import Tasks from "../Tasks.tsx";
 import Friends from "../Friends/Friends.tsx";
-import Perks from "../Perks/Perks.tsx";
-import Achievements from "../Achievements/Achievements.tsx";
 import s from "./tabs.module.css";
+import Tools from "../Tools/Tools.tsx";
+import Skills from "../Skills/Skills.tsx";
 
 export enum TabTypes {
   GAME = "GAME",
   ACHIEVEMENTS = "ACHIEVEMENTS",
   TASKS = "TASKS",
-  PERKS = "PERKS",
+  SKILLS = "SKILLS",
   FRIENDS = "FRIENDS",
+  TOOLS = "TOOLS"
 }
 
 interface ITab {
@@ -27,10 +27,9 @@ interface ITab {
 
 const tabs: ITab[] = [
   { key: TabTypes.FRIENDS, title: "Friends", icon: <span /> },
-  { key: TabTypes.PERKS, title: "Perks", icon: <span /> },
+  { key: TabTypes.SKILLS, title: "Skills", icon: <span /> },
   { key: TabTypes.GAME, title: "Earn", icon: <span /> },
-  { key: TabTypes.ACHIEVEMENTS, title: "Prizes", icon: <span /> },
-  { key: TabTypes.TASKS, title: "Tasks", icon: <span /> },
+  { key: TabTypes.TOOLS, title: "Tools", icon: <span /> },
 ];
 
 export default function Tabs() {
@@ -61,14 +60,14 @@ export default function Tabs() {
 
 const Trigger = React.memo(({ tab: { key, icon, title } }: { tab: ITab }) => {
   const hf = useHapticFeedback();
-  const { data: achievementsResponse } = useAchievements();
+  // const { data: achievementsResponse } = useAchievements();
 
-  const hasNewAchievements = achievementsResponse?.achievements?.some(
-    (a) => !a.claimed
-  );
+  // const hasNewAchievements = achievementsResponse?.achievements?.some(
+  //   (a) => !a.claimed
+  // );
 
   const className = classNames(s.trigger, {
-    [s.indicate]: hasNewAchievements && key === TabTypes.ACHIEVEMENTS,
+    // [s.indicate]: hasNewAchievements && key === TabTypes.ACHIEVEMENTS,
   });
 
   return (
@@ -87,17 +86,15 @@ const Content = React.memo(({ type }: { type: TabTypes }) => {
   switch (type) {
     case TabTypes.GAME:
       return <Game />;
-    case TabTypes.ACHIEVEMENTS:
-      return <Achievements />;
     case TabTypes.TASKS:
       return <Tasks />;
-    case TabTypes.PERKS:
-      return <Perks />;
+    case TabTypes.SKILLS:
+      return <Skills />;
+    case TabTypes.TOOLS:
+      return <Tools />;
     case TabTypes.FRIENDS:
       return <Friends />;
-
     default:
-      ((v: never) => v)(type);
       return null;
   }
 });

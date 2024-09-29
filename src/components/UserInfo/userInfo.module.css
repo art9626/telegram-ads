@@ -10,14 +10,15 @@
   align-items: center;
 }
 
-.balance > img {
+.balance>img {
   width: 50px;
   margin-right: 10px;
 }
 
 .balance {
-  font-size: 50px;
+  font-size: 36px;
   font-weight: 500;
+  font-family: monospace;
 }
 
 .userInfoLink {

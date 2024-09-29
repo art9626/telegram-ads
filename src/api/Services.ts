@@ -4,13 +4,11 @@ import { Endpoints } from "./Endpoints";
 
 export interface GameData {
   balance: number;
-  xp: number;
+  current_exp: number;
   level: number;
-  xp_to_next_level: number;
-  available_watch_count: number;
-  last_watched_at: string;
-  next_ad_at: number;
+  next_exp: number;
   mining_speed: number;
+  production: number;
 }
 
 export interface GameUser {
@@ -20,7 +18,7 @@ export interface GameUser {
   premium: boolean;
   ref_link: string;
   wallet_id: string;
-  game_data: GameData;
+  data: GameData;
 }
 
 export interface IGameUserStats {
@@ -67,7 +65,7 @@ export enum PerkTypes {
   DOUBLE_CHANCE_PERK,
 }
 
-export interface IPerk {
+export interface ISkill {
   id: number;
   type: PerkTypes;
   name: string;
@@ -80,6 +78,18 @@ export interface IPerk {
   effect: number;
   requirements: IPerkRequirements;
   actual_data: IPerkActual;
+}
+
+export interface ITool {
+  id: number
+  name: string;
+  desc: string;
+  level: number;
+  base_cost: number;
+  upgrade_rate: number;
+  base_production: number;
+  produced: number;
+  description: string;
 }
 
 export interface IPerkRequirements {
@@ -179,17 +189,23 @@ export class Services {
       .then((res) => res.data.data);
   };
 
-  getPerks = async () => {
+  getSkills = async () => {
     return apiClient
-      .get<{ data: { perks: IPerk[] } }>(Endpoints.PERKS)
-      .then((res) => res.data.data.perks);
+      .get<{ data: { skills: ISkill[] } }>(Endpoints.SKILLS)
+      .then((res) => res.data.data.skills);
   };
 
-  applyPerk = async (id: number) => {
+  getTools = async () => {
     return apiClient
-      .post<{ data: { perks: IPerk[] } }>(`${Endpoints.PERKS}/${id}`)
-      .then((res) => res.data.data.perks);
+      .get<{ data: { tools: ITool[] } }>(Endpoints.TOOLS)
+      .then((res) => res.data.data.tools);
   };
+
+  upgradeTool = async (id: number) => {
+    return apiClient
+      .post<{ data: { tools: ITool[] } }>(`${Endpoints.TOOLS}/${id}`)
+      .then((res) => res.data.data.tools)
+  }
 
   getUserFriends = async () => {
     return apiClient

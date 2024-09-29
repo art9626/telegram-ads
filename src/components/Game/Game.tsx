@@ -64,10 +64,7 @@ const GoldMiningPan = () => {
     []
   );
 
-  const isAdAvailable: boolean =
-    (user?.game_data.available_watch_count &&
-      user?.game_data.available_watch_count > 0) ||
-    false;
+  const isAdAvailable: boolean = false;
 
   return (
     <div className={s.goldMiningPan}>

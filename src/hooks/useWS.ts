@@ -9,6 +9,7 @@ enum WebsocketMessageTypes {
   NEW_ACHIEVEMENTS = "new_achievements",
   NEW_LEVEL = "new_level",
   DOUBLE_COINS = "double_coins",
+  UPDATE = "update"
 }
 
 interface INewAdMessage {
@@ -47,11 +48,25 @@ interface IDoubleCoinsMessage {
   };
 }
 
+interface IUpdate {
+  event: {
+    type: WebsocketMessageTypes.UPDATE,
+    message: {
+      balance: number,
+      current_exp: number,
+      next_exp: number,
+      level: number,
+      production: number
+    }
+  }
+}
+
 type TWebsocketMessage =
   | INewAdMessage
   | INewAchievementsMessage
   | INewLevelMessage
-  | IDoubleCoinsMessage;
+  | IDoubleCoinsMessage
+  | IUpdate;
 
 export default function useWS() {
   const queryClient = useQueryClient();
@@ -69,7 +84,7 @@ export default function useWS() {
             return {
               ...oldData,
               game_data: {
-                ...oldData.game_data,
+                ...oldData.data,
                 available_watch_count: event.message.available_watch_count,
               },
             };
@@ -96,12 +111,27 @@ export default function useWS() {
             return {
               ...oldData,
               game_data: {
-                ...oldData.game_data,
+                ...oldData.data,
                 level: event.message.level,
               },
             };
           });
 
+        case WebsocketMessageTypes.UPDATE:
+          return queryClient.setQueryData<GameUser>(["user"], (oldData) => {
+            if (!oldData) return;
+            return {
+              ...oldData,
+              data: {
+                ...oldData.data,
+                level: event.message.level,
+                balance: event.message.balance,
+                current_exp: event.message.current_exp,
+                next_exp: event.message.next_exp,
+                production: event.message.production
+              },
+            };
+          });
         case WebsocketMessageTypes.DOUBLE_COINS:
           console.log("You got doubled reward!");
           return;
