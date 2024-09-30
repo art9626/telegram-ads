@@ -33,26 +33,24 @@ function App() {
             <ServicesProvider>
               <AuthProvider>
                 <UserProvider>
-                  <AchievementsProvider>
-                    <BalanceProvider>
-                      <BrowserRouter>
-                        <Routes>
-                          <Route path="/" element={<BaseLayout />}>
-                            <Route index element={<MainPage />} />
-                            <Route
-                              path="/global-stats"
-                              element={<GlobalStatsPage />}
-                            />
-                            <Route
-                              path="/user-stats"
-                              element={<UserStatsPage />}
-                            />
-                            <Route path="*" element={<Navigate to="/" />} />
-                          </Route>
-                        </Routes>
-                      </BrowserRouter>
-                    </BalanceProvider>
-                  </AchievementsProvider>
+                  <BalanceProvider>
+                    <BrowserRouter>
+                      <Routes>
+                        <Route path="/" element={<BaseLayout />}>
+                          <Route index element={<MainPage />} />
+                          <Route
+                            path="/global-stats"
+                            element={<GlobalStatsPage />}
+                          />
+                          <Route
+                            path="/user-stats"
+                            element={<UserStatsPage />}
+                          />
+                          <Route path="*" element={<Navigate to="/" />} />
+                        </Route>
+                      </Routes>
+                    </BrowserRouter>
+                  </BalanceProvider>
                 </UserProvider>
               </AuthProvider>
             </ServicesProvider>

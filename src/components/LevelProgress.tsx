@@ -7,16 +7,16 @@ export default function LevelProgress() {
   if (!user) return null;
 
   const {
-    game_data: { xp, xp_to_next_level },
+    data: { current_exp, next_exp },
   } = user;
 
-  const label = `${user.game_data.xp} / ${user.game_data.xp_to_next_level}`
+  const label = `${current_exp} / ${next_exp}`
   return (
-    <Progress max={xp_to_next_level}
-              value={xp} size={"sm"}
-              indProps={{style: {backgroundColor: "gray"}}}
-              label={label}
-              style={{ maxWidth: "50vw", border: "1px solid gray" }}
+    <Progress max={next_exp}
+      value={current_exp} size={"sm"}
+      indProps={{ style: { backgroundColor: "gray" } }}
+      label={label}
+      style={{ maxWidth: "50vw", border: "1px solid gray" }}
     />
   );
 }

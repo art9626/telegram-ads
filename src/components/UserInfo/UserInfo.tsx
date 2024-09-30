@@ -14,10 +14,11 @@ export default function UserInfo({ tab }: { tab?: TabTypes }) {
 
   return (
     <div className={s.info}>
+      <div>{numberSeparatedBySpaces(user?.data.production || 0)} gold per second</div>
       <BalanceMemo />
       <Link to="/user-stats" state={{ tab }} className={s.userInfoLink}>
-        <FaTrophy size={25} />
-        Level {user?.game_data.level}
+        <FaTrophy size={18} />
+        Level {user?.data.level}
         <FaChevronRight size={20} />
       </Link>
       <LevelProgress />

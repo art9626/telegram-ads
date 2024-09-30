@@ -7,7 +7,7 @@ export default defineConfig({
     host: true,
     proxy: {
       "/api": {
-        target: "https://adventuregame.win",
+        target: "http://localhost:8000",
         changeOrigin: true,
         ws: true,
         rewrite: (path) => path.replace(/^\/api/, "/api"),

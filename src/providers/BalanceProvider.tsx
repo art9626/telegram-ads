@@ -12,16 +12,16 @@ export default function BalanceProvider({
   children: React.ReactNode;
 }) {
   const { data: user } = useUser();
-  const speed = Math.floor(user?.game_data.mining_speed ?? 0);
+  const speed = Math.floor(user?.data.production ?? 0);
   const [currentBalance, setBalance] = React.useState(() =>
-    Math.floor(user?.game_data.balance ?? 0)
+    Math.floor(user?.data.balance ?? 0)
   );
 
   React.useEffect(() => {
-    if (typeof user?.game_data.balance === "number") {
-      setBalance(user.game_data.balance);
+    if (typeof user?.data.balance === "number") {
+      setBalance(user.data.balance);
     }
-  }, [user?.game_data.balance]);
+  }, [user?.data.balance]);
 
   React.useEffect(() => {
     const id = setInterval(() => {

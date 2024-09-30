@@ -10,20 +10,21 @@
   align-items: center;
 }
 
-.balance > img {
+.balance>img {
   width: 50px;
   margin-right: 10px;
 }
 
 .balance {
-  font-size: 50px;
+  font-size: 36px;
   font-weight: 500;
+  font-family: monospace;
 }
 
 .userInfoLink {
   display: flex;
   align-items: center;
-  font-size: 30px;
+  font-size: 24px;
   font-weight: 500;
   color: var(--text-primary);
 }

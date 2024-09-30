@@ -32,7 +32,7 @@ export default function ShowAdButton() {
     onError: (e) => toast(e.message, { type: "error" }),
   });
 
-  const counterIsOut = user?.game_data.available_watch_count === 0;
+  const counterIsOut = true
 
   const clickHandler = () => {
     hf.impactOccurred("medium");

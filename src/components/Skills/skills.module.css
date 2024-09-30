@@ -5,7 +5,7 @@
   height: 100%;
 }
 
-.perksList {
+.skillsList {
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -14,7 +14,7 @@
   overflow-x: scroll;
 }
 
-.perksItem {
+.skillsItem {
   position: relative;
   display: flex;
   justify-content: space-between;
@@ -29,26 +29,26 @@
   margin-right: 15px;
 }
 
-.perksItem h4 {
+.skillsItem h4 {
   margin: 0;
   font-size: var(--font-size-lg);
   color: var(--orange);
 }
 
-.perksItem b {
+.skillsItem b {
   font-size: var(--font-size-md);
   font-weight: 400;
   color: var(--text-transparent);
 }
 
-.perksItem p {
+.skillsItem p {
   margin: 0;
   margin-bottom: 15px;
   font-size: var(--font-size-md);
   font-weight: 400;
 }
 
-.perkDialogContent {
+.skillDialogContent {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -89,6 +89,6 @@
   border-right: 2px solid var(--stroke-default);
 }
 
-.perkDialog > h2 {
+.skillDialog>h2 {
   color: var(--orange);
 }

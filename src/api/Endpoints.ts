@@ -14,8 +14,11 @@ export const Endpoints = {
   get GLOBAL_GAME_STATS() {
     return `/game/stats`;
   },
-  get PERKS() {
-    return `/game/perks`;
+  get SKILLS() {
+    return `/game/skills`
+  },
+  get TOOLS() {
+    return `/game/tools`
   },
   get WATCHED() {
     return `/game/watched`;
