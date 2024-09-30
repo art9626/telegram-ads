@@ -9,6 +9,7 @@ export interface GameData {
   next_exp: number;
   mining_speed: number;
   production: number;
+  skill_points: number;
 }
 
 export interface GameUser {
@@ -67,17 +68,9 @@ export enum PerkTypes {
 
 export interface ISkill {
   id: number;
-  type: PerkTypes;
   name: string;
-  desc: string;
-  effect_desc: string;
-  synergy_desc: string;
-  available: boolean;
+  description: string;
   level: number;
-  max_level: number;
-  effect: number;
-  requirements: IPerkRequirements;
-  actual_data: IPerkActual;
 }
 
 export interface ITool {
@@ -91,18 +84,6 @@ export interface ITool {
   produced: number;
   description: string;
   unlocked: boolean;
-}
-
-export interface IPerkRequirements {
-  friends_count: number;
-  game_level: number;
-  cost: number;
-}
-
-export interface IPerkActual {
-  friends_count: number;
-  game_level: number;
-  balance: number;
 }
 
 export interface IAchievement {
@@ -195,6 +176,12 @@ export class Services {
       .get<{ data: { skills: ISkill[] } }>(Endpoints.SKILLS)
       .then((res) => res.data.data.skills);
   };
+
+  upgradeSkill = async (id: number) => {
+    return apiClient
+      .post<{ data: { skills: ISkill[] } }>(`${Endpoints.SKILLS}/${id}`)
+      .then((res) => res.data.data.skills)
+  }
 
   getTools = async () => {
     return apiClient

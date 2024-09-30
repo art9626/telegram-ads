@@ -71,6 +71,7 @@ function ToolDialogContent({ tool }: { tool: ITool }) {
 
   const available = (user?.data.balance || 0) > base_cost * Math.pow(upgrade_rate, level)
   const production = level == 0 ? base_production : level * base_production
+  const percent_production = Math.floor(production / (user?.data.production || 1) * 100)
   const { upgradeTool } = useServices();
   const hf = useHapticFeedback();
   const queryClient = useQueryClient();
@@ -86,7 +87,7 @@ function ToolDialogContent({ tool }: { tool: ITool }) {
       <p>{description}</p>
       <p>Level: {level}</p>
       <p>Base production: {numberSeparatedBySpaces(base_production)}</p>
-      <p>Production: {numberSeparatedBySpaces(production)}</p>
+      <p>Production: {numberSeparatedBySpaces(production)} ({percent_production}% of total)</p>
       <p>Produced: {numberSeparatedBySpaces(produced)}</p>
       <Button
         disabled={!available}
